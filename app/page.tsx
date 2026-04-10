@@ -1,5 +1,4 @@
 import { Check, Clock3, Headphones, MapPin, Wind, Bike, Mail, Phone } from 'lucide-react'
-
 const APP_URL = 'https://app.wadnverhaal.nl'
 
 const tours = [
