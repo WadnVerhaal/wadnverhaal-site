@@ -1,5 +1,7 @@
 import { MapPin, Headphones, Clock3, Users, ChevronRight, Mail, Phone, Compass, Star } from 'lucide-react'
 
+const APP_URL = 'https://app.wadnverhaal.nl'
+
 export default function WadnVerhaalHomepage() {
   const tours = [
     {
@@ -79,7 +81,7 @@ export default function WadnVerhaalHomepage() {
     },
     {
       question: 'Hoe boek of start ik een tour?',
-      answer: 'Via de contactknop of het aanvraagformulier kun je informatie opvragen of direct starten zodra de tours live staan.'
+      answer: 'Je kiest eenvoudig je tour en bestelt direct online via onze app.'
     }
   ]
 
@@ -95,7 +97,12 @@ export default function WadnVerhaalHomepage() {
             <a href="#tours" className="transition hover:text-slate-600">Tours</a>
             <a href="#hoe-werkt-het" className="transition hover:text-slate-600">Hoe het werkt</a>
             <a href="#faq" className="transition hover:text-slate-600">FAQ</a>
-            <a href="#contact" className="rounded-2xl bg-slate-900 px-4 py-2 font-medium text-white transition hover:opacity-90">Start tour</a>
+            <a
+              href={APP_URL}
+              className="rounded-2xl bg-slate-900 px-4 py-2 font-medium text-white transition hover:opacity-90"
+            >
+              Bestel je tour
+            </a>
           </nav>
         </div>
       </header>
@@ -115,11 +122,17 @@ export default function WadnVerhaalHomepage() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href="#tours" className="inline-flex items-center rounded-2xl bg-slate-900 px-6 py-3 font-medium text-white transition hover:opacity-90">
+              <a
+                href="#tours"
+                className="inline-flex items-center rounded-2xl bg-slate-900 px-6 py-3 font-medium text-white transition hover:opacity-90"
+              >
                 Bekijk de tours
               </a>
-              <a href="#contact" className="inline-flex items-center rounded-2xl border border-stone-300 bg-white px-6 py-3 font-medium transition hover:bg-stone-100">
-                Start tour
+              <a
+                href={APP_URL}
+                className="inline-flex items-center rounded-2xl border border-stone-300 bg-white px-6 py-3 font-medium transition hover:bg-stone-100"
+              >
+                Bestel direct
               </a>
             </div>
 
@@ -190,8 +203,8 @@ export default function WadnVerhaalHomepage() {
                   Iedere tour is eenvoudig te volgen en ontworpen om bezoekers op een leuke, informatieve manier het eiland te laten beleven.
                 </p>
               </div>
-              <a href="#contact" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700">
-                Start tour <ChevronRight className="h-4 w-4" />
+              <a href={APP_URL} className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700">
+                Bestel direct <ChevronRight className="h-4 w-4" />
               </a>
             </div>
 
@@ -215,8 +228,11 @@ export default function WadnVerhaalHomepage() {
                     ))}
                   </div>
 
-                  <a href="#contact" className="mt-8 inline-flex items-center justify-center rounded-2xl bg-slate-900 px-5 py-3 font-medium text-white transition hover:opacity-90">
-                    Start tour
+                  <a
+                    href={APP_URL}
+                    className="mt-8 inline-flex items-center justify-center rounded-2xl bg-slate-900 px-5 py-3 font-medium text-white transition hover:opacity-90"
+                  >
+                    Bestel deze tour
                   </a>
                 </div>
               ))}
@@ -255,12 +271,15 @@ export default function WadnVerhaalHomepage() {
 
               <div className="rounded-[2rem] bg-amber-100 p-8 ring-1 ring-amber-200">
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-900">Klaar om te starten?</p>
-                <h2 className="mt-3 text-3xl font-black tracking-tight">Start tour</h2>
+                <h2 className="mt-3 text-3xl font-black tracking-tight">Bestel je tour</h2>
                 <p className="mt-4 leading-7 text-slate-700">
-                  Klaar om op pad te gaan? Start je tour of neem contact op voor meer informatie over de beschikbare routes.
+                  Klaar om op pad te gaan? Kies eenvoudig jouw tour en bestel direct online via onze app.
                 </p>
-                <a href="#contact" className="mt-6 inline-flex rounded-2xl bg-slate-900 px-5 py-3 font-medium text-white transition hover:opacity-90">
-                  Start tour
+                <a
+                  href={APP_URL}
+                  className="mt-6 inline-flex rounded-2xl bg-slate-900 px-5 py-3 font-medium text-white transition hover:opacity-90"
+                >
+                  Ga naar de app
                 </a>
               </div>
             </div>
@@ -300,17 +319,23 @@ export default function WadnVerhaalHomepage() {
           </div>
 
           <div className="rounded-[2rem] bg-stone-50 p-8 ring-1 ring-stone-200">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Interesse?</p>
-            <h3 className="mt-3 text-2xl font-black tracking-tight">Start tour</h3>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Direct starten?</p>
+            <h3 className="mt-3 text-2xl font-black tracking-tight">Bestel online</h3>
             <p className="mt-4 leading-7 text-slate-600">
-              Wil je direct starten of eerst kort overleggen welke tour het beste past? Neem contact op via e-mail of telefoon.
+              Kies jouw tour en bestel direct online via de app van Wad&apos;n Verhaal.
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
-              <a href="mailto:info@wadnverhaal.nl" className="inline-flex rounded-2xl bg-slate-900 px-5 py-3 font-medium text-white transition hover:opacity-90">
-                Mail ons
+              <a
+                href={APP_URL}
+                className="inline-flex rounded-2xl bg-slate-900 px-5 py-3 font-medium text-white transition hover:opacity-90"
+              >
+                Open de app
               </a>
-              <a href="tel:+31613678310" className="inline-flex rounded-2xl border border-stone-300 bg-white px-5 py-3 font-medium transition hover:bg-stone-100">
-                Bel ons
+              <a
+                href={APP_URL}
+                className="inline-flex rounded-2xl border border-stone-300 bg-white px-5 py-3 font-medium transition hover:bg-stone-100"
+              >
+                Bekijk tours
               </a>
             </div>
           </div>
