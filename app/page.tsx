@@ -1,4 +1,4 @@
-import { MapPin, Headphones, Clock3, Users, Mail, Phone, Check, Wind, Waves } from 'lucide-react'
+import { MapPin, Headphones, Clock3, Users, Mail, Phone, Check, Wind, Bike } from 'lucide-react'
 
 const APP_URL = 'https://app.wadnverhaal.nl'
 
@@ -25,13 +25,13 @@ export default function WadnVerhaalHomepage() {
       cta: 'Start met deze tour'
     },
     {
-      title: 'Natuur & Duinen',
+      title: 'Fietsroute door Duin & Dorp',
       subtitle: 'Voor rust, ruimte en eilandgevoel',
       duration: '60–90 min',
-      audience: 'Natuurliefhebbers',
-      badge: 'Buitenfavoriet',
+      audience: 'Fietsers & natuurliefhebbers',
+      badge: 'Premium',
       highlight: false,
-      points: ['Meer natuur en beleving', 'Prachtige routes', 'Sfeervolle audio onderweg'],
+      points: ['Mooie fietsroutes langs natuur en dorp', 'Sfeervolle audio onderweg', 'Perfect voor een complete eilandervaring'],
       cta: 'Ontdek deze tour'
     }
   ]
@@ -40,7 +40,7 @@ export default function WadnVerhaalHomepage() {
     {
       number: '01',
       title: 'Kies jouw tour',
-      text: 'Bekijk welke route het beste past bij jouw dag op Ameland.'
+      text: 'Bekijk welke route past bij jouw dag op Ameland.'
     },
     {
       number: '02',
@@ -50,37 +50,22 @@ export default function WadnVerhaalHomepage() {
     {
       number: '03',
       title: 'Ga op pad',
-      text: 'Start wanneer je wilt en beleef het eiland met verhalen, sfeer en bijzondere plekken.'
-    }
-  ]
-
-  const faqItems = [
-    {
-      question: 'Moet ik een app downloaden?',
-      answer: 'Nee, je opent de tour eenvoudig op je telefoon.'
-    },
-    {
-      question: 'Kan ik starten wanneer ik wil?',
-      answer: 'Ja, je kiest zelf het moment waarop je op pad gaat.'
-    },
-    {
-      question: 'Is het geschikt voor gezinnen?',
-      answer: 'Ja, vooral de Familietour is heel geschikt voor gezinnen.'
+      text: 'Start wanneer je wilt en beleef Ameland via verhalen, sfeer en bijzondere plekken.'
     }
   ]
 
   return (
-    <div className="min-h-screen bg-[#F5F1E8] text-[#2F3E46]">
-      <header className="sticky top-0 z-30 border-b border-[#D9D2C3] bg-[#F5F1E8]/95 backdrop-blur">
+    <div className="min-h-screen bg-[#F7F3EC] text-[#2E3C3C]">
+      <header className="sticky top-0 z-30 border-b border-[#DDD4C7] bg-[#F7F3EC]/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <a href="#top" className="group">
             <p className="text-2xl font-black tracking-tight text-[#2F4A4A]">Wad&apos;n Verhaal</p>
-            <p className="text-sm text-[#5F6F6A]">Audiotours op Ameland</p>
+            <p className="text-sm text-[#64706B]">Audiotours op Ameland</p>
           </a>
           <nav className="hidden items-center gap-6 text-sm md:flex">
             <a href="#tours" className="transition hover:text-[#2F4A4A]">Tours</a>
             <a href="#hoe-werkt-het" className="transition hover:text-[#2F4A4A]">Hoe het werkt</a>
-            <a href="#faq" className="transition hover:text-[#2F4A4A]">FAQ</a>
+            <a href="/faq" className="transition hover:text-[#2F4A4A]">FAQ</a>
             <a
               href={APP_URL}
               className="rounded-2xl bg-[#2F4A4A] px-4 py-2 font-medium text-white transition hover:opacity-90"
@@ -93,22 +78,22 @@ export default function WadnVerhaalHomepage() {
 
       <main id="top">
         <section className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(169,214,229,0.28),transparent_30%),radial-gradient(circle_at_left,rgba(231,198,106,0.18),transparent_28%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(210,226,220,0.45),transparent_30%),radial-gradient(circle_at_left,rgba(231,198,106,0.14),transparent_30%)]" />
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-            <div className="grid gap-10 md:grid-cols-[1.05fr_0.95fr] md:items-center">
-              <div className="relative">
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#E7C66A]/35 px-4 py-2 text-sm font-medium text-[#6A5832]">
+            <div className="grid gap-10 md:grid-cols-[1.02fr_0.98fr] md:items-center">
+              <div>
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#E8D9A8]/40 px-4 py-2 text-sm font-medium text-[#6A5B34]">
                   <Wind className="h-4 w-4" />
-                  Beleef Ameland op jouw tempo
+                  Rust, ruimte en verhalen van het eiland
                 </div>
 
                 <h1 className="max-w-3xl text-4xl font-black tracking-tight text-[#2F4A4A] sm:text-5xl md:text-6xl">
-                  Kies de tour die past bij jouw eilanddag.
+                  Premium audiotours voor wandelen en fietsen op Ameland.
                 </h1>
 
-                <p className="mt-5 max-w-2xl text-lg leading-8 text-[#5F6F6A]">
-                  Wad&apos;n Verhaal brengt duin, dorp en eilandgevoel samen in toegankelijke audiotours.
-                  Rustig, sfeervol en direct te starten op je telefoon.
+                <p className="mt-5 max-w-2xl text-lg leading-8 text-[#5F6D67]">
+                  Geen drukke excursie, maar een stijlvolle manier om Ameland zelf te ontdekken.
+                  Kies jouw route en beleef duin, dorp en landschap met verhalen in je oor.
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-4">
@@ -120,44 +105,52 @@ export default function WadnVerhaalHomepage() {
                   </a>
                   <a
                     href={APP_URL}
-                    className="inline-flex items-center rounded-2xl border border-[#CFC6B4] bg-white px-6 py-3 font-medium text-[#2F4A4A] transition hover:bg-[#F8F5EE]"
+                    className="inline-flex items-center rounded-2xl border border-[#CFC6B8] bg-white px-6 py-3 font-medium text-[#2F4A4A] transition hover:bg-[#FBF8F2]"
                   >
                     Bestel direct
                   </a>
                 </div>
 
                 <div className="mt-10 grid gap-4 sm:grid-cols-3">
-                  <div className="rounded-2xl bg-white/85 p-4 shadow-sm ring-1 ring-[#DDD5C7] backdrop-blur">
+                  <div className="rounded-2xl bg-white/90 p-4 shadow-sm ring-1 ring-[#DDD4C7]">
                     <Clock3 className="h-5 w-5 text-[#2F4A4A]" />
                     <p className="mt-3 font-semibold text-[#2F4A4A]">Direct starten</p>
-                    <p className="mt-1 text-sm text-[#6B746F]">Geen gedoe, meteen op je telefoon</p>
+                    <p className="mt-1 text-sm text-[#68736D]">Geen gedoe, meteen op je telefoon</p>
                   </div>
-                  <div className="rounded-2xl bg-white/85 p-4 shadow-sm ring-1 ring-[#DDD5C7] backdrop-blur">
+                  <div className="rounded-2xl bg-white/90 p-4 shadow-sm ring-1 ring-[#DDD4C7]">
                     <Headphones className="h-5 w-5 text-[#2F4A4A]" />
-                    <p className="mt-3 font-semibold text-[#2F4A4A]">Met audioverhalen</p>
-                    <p className="mt-1 text-sm text-[#6B746F]">Meer beleving dan een gewone route</p>
+                    <p className="mt-3 font-semibold text-[#2F4A4A]">Rijke audioverhalen</p>
+                    <p className="mt-1 text-sm text-[#68736D]">Meer beleving dan een gewone route</p>
                   </div>
-                  <div className="rounded-2xl bg-white/85 p-4 shadow-sm ring-1 ring-[#DDD5C7] backdrop-blur">
-                    <Users className="h-5 w-5 text-[#2F4A4A]" />
-                    <p className="mt-3 font-semibold text-[#2F4A4A]">Voor elk gezelschap</p>
-                    <p className="mt-1 text-sm text-[#6B746F]">Van gezinnen tot rustzoekers</p>
+                  <div className="rounded-2xl bg-white/90 p-4 shadow-sm ring-1 ring-[#DDD4C7]">
+                    <Bike className="h-5 w-5 text-[#2F4A4A]" />
+                    <p className="mt-3 font-semibold text-[#2F4A4A]">Wandelen & fietsen</p>
+                    <p className="mt-1 text-sm text-[#68736D]">Past bij jouw tempo en dag</p>
                   </div>
                 </div>
               </div>
 
-              <div className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-[#DDD5C7] shadow-xl">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop')] bg-cover bg-center" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#2F4A4A]/65 via-[#2F4A4A]/20 to-transparent" />
-                <div className="relative flex h-full items-end p-6">
-                  <div className="max-w-sm rounded-[1.75rem] bg-[#F8F4EC]/92 p-6 shadow-xl backdrop-blur">
-                    <p className="text-sm font-semibold text-[#6B746F]">Eilandgevoel in je oor</p>
-                    <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#2F4A4A]">
-                      Verhalen van duin, dorp en zee
-                    </h2>
-                    <p className="mt-3 text-sm leading-6 text-[#5F6F6A]">
-                      Geen drukke toeristische site, maar een rustige en sfeervolle manier om Ameland écht te beleven.
-                    </p>
-                  </div>
+              <div className="grid gap-4 sm:grid-cols-2 sm:grid-rows-2">
+                <div className="sm:col-span-2 overflow-hidden rounded-[2rem] border border-[#DDD4C7] bg-white shadow-xl">
+                  <img
+                    src="/images/ameland-fietspad.jpg"
+                    alt="Fietsers op een rustig pad door het landschap van Ameland"
+                    className="h-[320px] w-full object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-[1.75rem] border border-[#DDD4C7] bg-white shadow-md">
+                  <img
+                    src="/images/ameland-dorp.jpg"
+                    alt="Sfeervol dorp op Ameland"
+                    className="h-[210px] w-full object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-[1.75rem] border border-[#DDD4C7] bg-white shadow-md">
+                  <img
+                    src="/images/ameland-vuurtoren.jpg"
+                    alt="Landschap met vuurtoren op Ameland"
+                    className="h-[210px] w-full object-cover"
+                  />
                 </div>
               </div>
             </div>
@@ -167,12 +160,12 @@ export default function WadnVerhaalHomepage() {
         <section id="tours" className="pb-20 pt-8">
           <div className="mx-auto max-w-6xl px-6">
             <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7A867F]">Tours</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7B8780]">Tours</p>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-[#2F4A4A] sm:text-4xl">
                 Kies jouw eilandervaring
               </h2>
-              <p className="mt-4 text-lg leading-8 text-[#5F6F6A]">
-                Overzichtelijk, duidelijk en direct te boeken. Kies de tour die het beste past bij jouw bezoek aan Ameland.
+              <p className="mt-4 text-lg leading-8 text-[#5F6D67]">
+                Overzichtelijk, rustig en premium gepresenteerd. Kies de tour die het beste past bij jouw bezoek aan Ameland.
               </p>
             </div>
 
@@ -180,33 +173,33 @@ export default function WadnVerhaalHomepage() {
               {tours.map((tour) => (
                 <div
                   key={tour.title}
-                  className={`relative flex h-full flex-col rounded-[2rem] p-6 shadow-sm ${
+                  className={`relative flex h-full flex-col rounded-[2rem] p-6 ${
                     tour.highlight
-                      ? 'border-2 border-[#E7C66A] bg-white shadow-xl ring-2 ring-[#E7C66A]/20'
-                      : 'border border-[#DDD5C7] bg-[#FCFAF6]'
+                      ? 'border-2 border-[#D8B85F] bg-white shadow-xl ring-2 ring-[#D8B85F]/15'
+                      : 'border border-[#DDD4C7] bg-[#FCFAF6] shadow-sm'
                   }`}
                 >
                   {tour.highlight && (
-                    <div className="absolute -top-3 left-6 rounded-full bg-[#E7C66A] px-3 py-1 text-xs font-bold text-[#4F4630] shadow-sm">
-                      Meest gekozen op Ameland
+                    <div className="absolute -top-3 left-6 rounded-full bg-[#D8B85F] px-3 py-1 text-xs font-bold text-[#4D432A] shadow-sm">
+                      Meest gekozen
                     </div>
                   )}
 
                   <div className="flex items-center justify-between gap-3">
-                    <span className="rounded-full bg-[#EDE8DB] px-3 py-1 text-xs font-semibold text-[#5C6864]">
+                    <span className="rounded-full bg-[#EEE7D8] px-3 py-1 text-xs font-semibold text-[#5E6A65]">
                       {tour.badge}
                     </span>
-                    <span className="text-sm text-[#7A867F]">{tour.duration}</span>
+                    <span className="text-sm text-[#7B8780]">{tour.duration}</span>
                   </div>
 
                   <h3 className="mt-5 text-2xl font-bold tracking-tight text-[#2F4A4A]">{tour.title}</h3>
-                  <p className="mt-2 text-sm font-medium text-[#8A7A4D]">{tour.subtitle}</p>
-                  <p className="mt-3 text-[#5F6F6A]">{tour.audience}</p>
+                  <p className="mt-2 text-sm font-medium text-[#8C7A48]">{tour.subtitle}</p>
+                  <p className="mt-3 text-[#5F6D67]">{tour.audience}</p>
 
                   <div className="mt-6 space-y-3">
                     {tour.points.map((point) => (
-                      <div key={point} className="flex items-start gap-3 text-sm text-[#4F5D59]">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#6F8B79]" />
+                      <div key={point} className="flex items-start gap-3 text-sm text-[#4F5D58]">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#7B9A87]" />
                         <span>{point}</span>
                       </div>
                     ))}
@@ -217,7 +210,7 @@ export default function WadnVerhaalHomepage() {
                     className={`mt-8 inline-flex items-center justify-center rounded-2xl px-5 py-3 font-medium transition ${
                       tour.highlight
                         ? 'bg-[#2F4A4A] text-white hover:opacity-90'
-                        : 'border border-[#CFC6B4] bg-white text-[#2F4A4A] hover:bg-[#F7F3EA]'
+                        : 'border border-[#CCC3B4] bg-white text-[#2F4A4A] hover:bg-[#F8F4EC]'
                     }`}
                   >
                     {tour.cta}
@@ -228,21 +221,21 @@ export default function WadnVerhaalHomepage() {
           </div>
         </section>
 
-        <section id="hoe-werkt-het" className="bg-[#F8F4EC] py-20">
+        <section id="hoe-werkt-het" className="bg-[#F3EEE4] py-20">
           <div className="mx-auto max-w-6xl px-6">
             <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7A867F]">Hoe het werkt</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7B8780]">Hoe het werkt</p>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-[#2F4A4A] sm:text-4xl">
-                Binnen een paar stappen op pad
+                Binnen drie stappen op pad
               </h2>
             </div>
 
             <div className="mt-10 grid gap-6 md:grid-cols-3">
               {steps.map((item) => (
-                <div key={item.number} className="rounded-[1.75rem] border border-[#DED6C8] bg-white p-6 shadow-sm">
-                  <p className="text-sm font-semibold text-[#7A867F]">Stap {item.number}</p>
+                <div key={item.number} className="rounded-[1.75rem] border border-[#DED5C7] bg-white p-6 shadow-sm">
+                  <p className="text-sm font-semibold text-[#7B8780]">Stap {item.number}</p>
                   <h3 className="mt-3 text-2xl font-bold text-[#2F4A4A]">{item.title}</h3>
-                  <p className="mt-3 leading-7 text-[#5F6F6A]">{item.text}</p>
+                  <p className="mt-3 leading-7 text-[#5F6D67]">{item.text}</p>
                 </div>
               ))}
             </div>
@@ -254,18 +247,18 @@ export default function WadnVerhaalHomepage() {
             <div className="rounded-[2rem] bg-[#2F4A4A] px-8 py-10 text-white shadow-xl">
               <div className="grid gap-8 md:grid-cols-[1.25fr_0.75fr] md:items-center">
                 <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#C8D7D1]">Klaar om te starten?</p>
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#C9D7D1]">Klaar om te starten?</p>
                   <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
                     Bestel jouw tour direct online
                   </h2>
-                  <p className="mt-4 max-w-2xl text-lg leading-8 text-[#D9E4E0]">
-                    Geen mail of telefoontje nodig. Kies je tour, rond je bestelling af en ga direct op pad over Ameland.
+                  <p className="mt-4 max-w-2xl text-lg leading-8 text-[#D8E4DF]">
+                    Kies je route, rond je bestelling af en ga direct op pad door dorp, duin en landschap.
                   </p>
                 </div>
                 <div className="flex md:justify-end">
                   <a
                     href={APP_URL}
-                    className="inline-flex items-center justify-center rounded-2xl bg-[#F5F1E8] px-6 py-3 font-medium text-[#2F4A4A] transition hover:bg-white"
+                    className="inline-flex items-center justify-center rounded-2xl bg-[#F7F3EC] px-6 py-3 font-medium text-[#2F4A4A] transition hover:bg-white"
                   >
                     Ga naar de app
                   </a>
@@ -274,50 +267,27 @@ export default function WadnVerhaalHomepage() {
             </div>
           </div>
         </section>
-
-        <section id="faq" className="pb-20">
-          <div className="mx-auto max-w-4xl px-6">
-            <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7A867F]">FAQ</p>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-[#2F4A4A] sm:text-4xl">
-                Veelgestelde vragen
-              </h2>
-            </div>
-
-            <div className="mt-10 space-y-4">
-              {faqItems.map((faq) => (
-                <div key={faq.question} className="rounded-[1.5rem] border border-[#DDD5C7] bg-white p-6 shadow-sm">
-                  <h3 className="text-lg font-bold text-[#2F4A4A]">{faq.question}</h3>
-                  <p className="mt-3 leading-7 text-[#5F6F6A]">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
       </main>
 
-      <footer className="border-t border-[#DDD5C7] bg-[#F8F4EC]">
+      <footer className="border-t border-[#DDD4C7] bg-[#F8F4EC]">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-2">
           <div>
             <h2 className="text-2xl font-black tracking-tight text-[#2F4A4A]">Wad&apos;n Verhaal</h2>
-            <p className="mt-4 max-w-md leading-7 text-[#5F6F6A]">
-              Informatieve audiotours die bezoekers van Ameland op een rustige, originele en toegankelijke manier meenemen langs verhalen van het eiland.
+            <p className="mt-4 max-w-md leading-7 text-[#5F6D67]">
+              Premium audiotours die bezoekers van Ameland op een rustige, originele en toegankelijke manier meenemen langs verhalen van het eiland.
             </p>
-            <div className="mt-6 space-y-3 text-[#4F5D59]">
+            <div className="mt-6 space-y-3 text-[#4F5D58]">
               <div className="flex items-center gap-3"><Mail className="h-4 w-4" /> <span>info@wadnverhaal.nl</span></div>
               <div className="flex items-center gap-3"><Phone className="h-4 w-4" /> <span>06 13 67 83 10</span></div>
               <div className="flex items-center gap-3"><MapPin className="h-4 w-4" /> <span>Ameland, Nederland</span></div>
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-[#DED6C8] bg-white p-8 shadow-sm">
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#DDECF1] px-3 py-1 text-sm font-medium text-[#4F6B75]">
-              <Waves className="h-4 w-4" />
-              Direct starten
-            </div>
-            <h3 className="mt-4 text-2xl font-black tracking-tight text-[#2F4A4A]">Kies en bestel online</h3>
-            <p className="mt-4 leading-7 text-[#5F6F6A]">
-              Ga direct naar de app van Wad&apos;n Verhaal en kies de tour die het beste bij jouw bezoek past.
+          <div className="rounded-[2rem] border border-[#DED5C7] bg-white p-8 shadow-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7B8780]">Direct starten?</p>
+            <h3 className="mt-3 text-2xl font-black tracking-tight text-[#2F4A4A]">Kies en bestel online</h3>
+            <p className="mt-4 leading-7 text-[#5F6D67]">
+              Ga direct naar de app van Wad&apos;n Verhaal en kies de tour die past bij jouw wandeling of fietstocht.
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
               <a
@@ -327,10 +297,10 @@ export default function WadnVerhaalHomepage() {
                 Open de app
               </a>
               <a
-                href={APP_URL}
-                className="inline-flex rounded-2xl border border-[#CFC6B4] bg-[#F8F4EC] px-5 py-3 font-medium text-[#2F4A4A] transition hover:bg-[#F2ECE0]"
+                href="/faq"
+                className="inline-flex rounded-2xl border border-[#CCC3B4] bg-[#F8F4EC] px-5 py-3 font-medium text-[#2F4A4A] transition hover:bg-[#F2ECE1]"
               >
-                Bekijk tours
+                Bekijk FAQ
               </a>
             </div>
           </div>
