@@ -1,17 +1,16 @@
-import { Check, Clock3, Headphones, MapPin, Wind, Bike, Mail, Phone } from 'lucide-react'
+import { Check, MapPin, Mail, Phone } from 'lucide-react'
 
 const APP_URL = 'https://app.wadnverhaal.nl'
 
 const tours = [
   {
     title: 'Historische Dorpswandeling',
-    label: 'Rustig ontdekken',
+    badge: 'Rustig ontdekken',
     duration: '45–60 min',
-    audience: 'Voor volwassenen & gezinnen',
     image: '/images/tour-fietsen.jpg',
     points: [
-      'Lokale verhalen en geschiedenis',
-      'Rustig tempo en duidelijke route',
+      'Verhalen over dorp en geschiedenis',
+      'Zelfstandig en eenvoudig te volgen',
       'Ideaal als eerste kennismaking',
     ],
     cta: 'Bekijk tour',
@@ -19,27 +18,25 @@ const tours = [
   },
   {
     title: 'Familietour',
-    label: 'Meest gekozen',
+    badge: 'Meest gekozen',
     duration: '30–45 min',
-    audience: 'Voor gezinnen met kinderen',
     image: '/images/tour-dorp.jpg',
     points: [
       'Speels en toegankelijk',
       'Leuk voor jong en oud',
-      'Perfect voor een ontspannen uitje',
+      'Ontspannen route met verrassingen',
     ],
-    cta: 'Start hier',
+    cta: 'Bestel direct',
     featured: true,
   },
   {
     title: 'Fietsroute door Duin & Dorp',
-    label: 'Voor natuurliefhebbers',
+    badge: 'Voor natuurliefhebbers',
     duration: '60–90 min',
-    audience: 'Voor fietsers en eilandliefhebbers',
     image: '/images/tour-duinen.jpg',
     points: [
-      'Sfeervolle route door landschap en dorp',
-      'Audio op de juiste plekken',
+      'Route door landschap en dorp',
+      'Luisteren op bijzondere plekken',
       'Een complete eilandbeleving',
     ],
     cta: 'Ontdek route',
@@ -56,7 +53,7 @@ const steps = [
   {
     number: '02',
     title: 'Bestel direct online',
-    text: 'Open de tour op je telefoon en start wanneer je wilt.',
+    text: 'Open de tour eenvoudig op je telefoon en start wanneer je wilt.',
   },
   {
     number: '03',
@@ -67,27 +64,27 @@ const steps = [
 
 export default function WadnVerhaalHomepage() {
   return (
-    <div className="min-h-screen bg-[#f7f3eb] text-[#29453f]">
-      <header className="sticky top-0 z-40 border-b border-[#ddd4c7] bg-[#f7f3eb]/90 backdrop-blur">
+    <div className="min-h-screen bg-[#f7f3ea] text-[#29453f]">
+      <header className="sticky top-0 z-50 border-b border-[#ddd5c7] bg-[#f7f3ea]/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <a href="/" className="group">
-            <p className="text-2xl font-black tracking-tight text-[#24413b]">Wad&apos;n Verhaal</p>
-            <p className="text-sm text-[#6b746f]">Audiotours op Ameland</p>
+          <a href="/" className="leading-tight">
+            <div className="text-[2rem] font-black tracking-tight text-[#26443e]">Wad&apos;n Verhaal</div>
+            <div className="text-sm text-[#6f7872]">Audiotours op Ameland</div>
           </a>
 
-          <nav className="hidden items-center gap-6 text-sm md:flex">
-            <a href="#tours" className="transition hover:text-[#24413b]">
+          <nav className="hidden items-center gap-8 text-sm text-[#314b45] md:flex">
+            <a href="#tours" className="transition hover:opacity-70">
               Tours
             </a>
-            <a href="#hoe-werkt-het" className="transition hover:text-[#24413b]">
+            <a href="#hoe-werkt-het" className="transition hover:opacity-70">
               Hoe het werkt
             </a>
-            <a href="/faq" className="transition hover:text-[#24413b]">
+            <a href="/faq" className="transition hover:opacity-70">
               FAQ
             </a>
             <a
               href={APP_URL}
-              className="rounded-2xl bg-[#26463f] px-4 py-2 font-medium text-white transition hover:opacity-90"
+              className="rounded-full bg-[#26443e] px-5 py-3 font-medium text-white transition hover:opacity-90"
             >
               Bestel direct
             </a>
@@ -96,95 +93,92 @@ export default function WadnVerhaalHomepage() {
       </header>
 
       <main>
-        <section className="relative overflow-hidden">
-          <div className="mx-auto max-w-6xl px-6 pb-10 pt-10 md:pb-14 md:pt-14">
-            <div className="relative overflow-hidden rounded-[2.5rem] border border-[#ddd4c7] bg-[#efe7d8] shadow-xl">
-              <div className="relative min-h-[820px] md:min-h-[920px]">
+        <section className="px-6 pb-8 pt-10 md:pb-12 md:pt-14">
+          <div className="mx-auto max-w-6xl">
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-[#ddd5c7] bg-[#efe7d8] shadow-[0_25px_80px_rgba(70,60,40,0.10)]">
+              <div className="relative min-h-[980px] md:min-h-[1080px]">
                 <img
                   src="/images/hero-ameland.jpg"
-                  alt="Wandelen en fietsen door het landschap van Ameland"
+                  alt="Fietsen en wandelen op Ameland"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
 
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(247,243,235,0.96)_0%,rgba(247,243,235,0.82)_34%,rgba(247,243,235,0.28)_62%,rgba(247,243,235,0.08)_100%)]" />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(247,243,235,0.10)_0%,rgba(247,243,235,0.00)_45%,rgba(247,243,235,0.85)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(247,243,234,0.94)_0%,rgba(247,243,234,0.80)_34%,rgba(247,243,234,0.24)_62%,rgba(247,243,234,0.08)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(247,243,234,0.12)_0%,rgba(247,243,234,0.02)_40%,rgba(247,243,234,0.92)_78%,rgba(247,243,234,1)_100%)]" />
 
-                <div className="relative z-10 flex h-full flex-col justify-between p-8 md:p-12">
-                  <div className="max-w-2xl pt-2 md:pt-6">
-                    <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#ebe1bf]/80 px-4 py-2 text-sm font-medium text-[#6a5a33] backdrop-blur">
-                      <Wind className="h-4 w-4" />
+                <div className="relative z-10 flex h-full flex-col justify-between p-8 md:p-14">
+                  <div className="max-w-2xl pt-2">
+                    <div className="mb-6 inline-flex items-center rounded-full bg-[#e9dfbf]/85 px-5 py-2 text-sm font-medium text-[#6a5c37] shadow-sm">
                       Audiotours voor wandelen en fietsen op Ameland
                     </div>
 
-                    <h1 className="max-w-3xl text-4xl font-black leading-[1.02] tracking-tight text-[#24413b] sm:text-5xl md:text-7xl">
+                    <h1 className="max-w-3xl font-serif text-5xl leading-[0.97] tracking-tight text-[#23413b] sm:text-6xl md:text-[5.8rem]">
                       Audiotours voor wandelen en fietsen op Ameland
                     </h1>
 
-                    <p className="mt-6 max-w-xl text-lg leading-8 text-[#5f6c66]">
-                      Geen drukke excursie, maar een rustige manier om het eiland te ontdekken. Kies
-                      jouw route en beleef dorp, duin en landschap met verhalen in je oor.
+                    <p className="mt-8 max-w-xl text-xl leading-9 text-[#5e6b66]">
+                      Geen drukke excursie, maar een rustige manier om het eiland te ontdekken.
+                      Kies jouw route en beleef dorp, duin en landschap met verhalen in je oor.
                     </p>
 
                     <div className="mt-8 flex flex-wrap gap-4">
                       <a
                         href="#tours"
-                        className="inline-flex items-center rounded-2xl bg-[#26463f] px-6 py-3 font-medium text-white transition hover:opacity-90"
+                        className="rounded-2xl bg-[#26443e] px-7 py-4 text-base font-medium text-white transition hover:opacity-90"
                       >
                         Bekijk de tours
                       </a>
                       <a
                         href={APP_URL}
-                        className="inline-flex items-center rounded-2xl border border-[#cfc4b4] bg-[#f8f4ec] px-6 py-3 font-medium text-[#26463f] transition hover:bg-white"
+                        className="rounded-2xl border border-[#cfc5b6] bg-[#f7f3ea] px-7 py-4 text-base font-medium text-[#26443e] transition hover:bg-white"
                       >
                         Bestel direct
                       </a>
                     </div>
                   </div>
 
-                  <div id="tours" className="mt-12 grid gap-5 lg:grid-cols-3">
+                  <div id="tours" className="mt-14 grid gap-6 lg:grid-cols-3">
                     {tours.map((tour) => (
                       <div
                         key={tour.title}
-                        className={`overflow-hidden rounded-[1.8rem] ${
+                        className={`overflow-hidden rounded-[2rem] border bg-[#f8f4eb]/95 shadow-lg backdrop-blur ${
                           tour.featured
-                            ? 'border border-[#d3b190] bg-[#f8f3ea] shadow-xl'
-                            : 'border border-[#ded5c9] bg-[#f8f4ec]/95 shadow-md backdrop-blur'
+                            ? 'border-[#d8b091] ring-1 ring-[#d8b091]/50'
+                            : 'border-[#dfd7ca]'
                         }`}
                       >
-                        <div className="p-3 pb-0">
-                          <div className="overflow-hidden rounded-[1.25rem]">
+                        <div className="p-4 pb-0">
+                          <div className="overflow-hidden rounded-[1.35rem]">
                             <img
                               src={tour.image}
                               alt={tour.title}
-                              className="h-44 w-full object-cover"
+                              className="h-56 w-full object-cover"
                             />
                           </div>
                         </div>
 
-                        <div className="p-5">
+                        <div className="p-6">
                           <div className="flex items-center justify-between gap-3">
                             <span
                               className={`rounded-full px-3 py-1 text-xs font-semibold ${
                                 tour.featured
-                                  ? 'bg-[#b87758] text-white'
-                                  : 'bg-[#ece4d7] text-[#64706b]'
+                                  ? 'bg-[#b97858] text-white'
+                                  : 'bg-[#eae3d5] text-[#67736d]'
                               }`}
                             >
-                              {tour.label}
+                              {tour.badge}
                             </span>
                             <span className="text-sm text-[#7a857f]">{tour.duration}</span>
                           </div>
 
-                          <h3 className="mt-4 text-[1.8rem] font-bold leading-tight tracking-tight text-[#29453f]">
+                          <h3 className="mt-5 text-[2rem] font-semibold leading-tight tracking-tight text-[#29453f]">
                             {tour.title}
                           </h3>
 
-                          <p className="mt-2 text-sm text-[#66736d]">{tour.audience}</p>
-
                           <div className="mt-5 space-y-3">
                             {tour.points.map((point) => (
-                              <div key={point} className="flex items-start gap-3 text-sm text-[#4f5c57]">
-                                <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#76917f]" />
+                              <div key={point} className="flex items-start gap-3 text-sm text-[#4e5b56]">
+                                <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#7a9183]" />
                                 <span>{point}</span>
                               </div>
                             ))}
@@ -192,10 +186,10 @@ export default function WadnVerhaalHomepage() {
 
                           <a
                             href={APP_URL}
-                            className={`mt-7 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3 font-medium transition ${
+                            className={`mt-7 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3.5 font-medium transition ${
                               tour.featured
-                                ? 'bg-[#26463f] text-white hover:opacity-90'
-                                : 'border border-[#cfc4b4] bg-white text-[#26463f] hover:bg-[#f7f2e8]'
+                                ? 'bg-[#26443e] text-white hover:opacity-90'
+                                : 'border border-[#cfc5b6] bg-white text-[#26443e] hover:bg-[#f3eee4]'
                             }`}
                           >
                             {tour.cta}
@@ -210,14 +204,14 @@ export default function WadnVerhaalHomepage() {
           </div>
         </section>
 
-        <section className="pb-8 pt-4 md:pb-12">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#75827c]">Tours</p>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-[#24413b] sm:text-5xl">
+        <section className="px-6 pb-8 pt-8">
+          <div className="mx-auto max-w-6xl">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#73807a]">Tours</p>
+              <h2 className="mt-4 font-serif text-5xl leading-tight tracking-tight text-[#23413b]">
                 Kies jouw eilandervaring
               </h2>
-              <p className="mt-4 text-lg leading-8 text-[#5d6a64]">
+              <p className="mt-5 max-w-2xl text-xl leading-8 text-[#5d6a65]">
                 Overzichtelijk en rustig gepresenteerd. Kies de tour die het beste past bij jouw
                 bezoek aan Ameland.
               </p>
@@ -225,43 +219,43 @@ export default function WadnVerhaalHomepage() {
           </div>
         </section>
 
-        <section id="hoe-werkt-het" className="pb-20 pt-4">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="grid gap-5 md:grid-cols-3">
+        <section id="hoe-werkt-het" className="px-6 pb-20 pt-6">
+          <div className="mx-auto max-w-6xl">
+            <div className="grid gap-6 md:grid-cols-3">
               {steps.map((step) => (
                 <div
                   key={step.number}
-                  className="rounded-[1.6rem] border border-[#e2d9cc] bg-[#f4efe4] p-6 shadow-sm"
+                  className="rounded-[1.8rem] border border-[#e4dccf] bg-[#f2ece0] p-7 shadow-sm"
                 >
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#e6dfd0] text-lg font-bold text-[#2f4a44]">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#e3ddcf] text-lg font-bold text-[#28453f]">
                     {step.number}
                   </div>
-                  <h3 className="mt-4 text-2xl font-bold tracking-tight text-[#29453f]">
+                  <h3 className="mt-5 text-3xl font-semibold tracking-tight text-[#29453f]">
                     {step.title}
                   </h3>
-                  <p className="mt-3 leading-7 text-[#5f6b66]">{step.text}</p>
+                  <p className="mt-4 text-lg leading-8 text-[#5f6b66]">{step.text}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="pb-20">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="relative overflow-hidden rounded-[2rem] bg-[#24453f] shadow-xl">
+        <section className="px-6 pb-20">
+          <div className="mx-auto max-w-6xl">
+            <div className="relative overflow-hidden rounded-[2rem] bg-[#20453f] shadow-[0_25px_70px_rgba(30,50,40,0.22)]">
               <img
                 src="/images/tour-duinen.jpg"
-                alt="Landschap op Ameland"
-                className="absolute inset-0 h-full w-full object-cover opacity-20"
+                alt="Duinlandschap op Ameland"
+                className="absolute inset-0 h-full w-full object-cover opacity-25"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(36,69,63,0.96)_0%,rgba(36,69,63,0.88)_55%,rgba(36,69,63,0.70)_100%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(30,69,62,0.96)_0%,rgba(30,69,62,0.88)_52%,rgba(30,69,62,0.74)_100%)]" />
 
-              <div className="relative z-10 grid gap-8 px-8 py-12 md:grid-cols-[1.2fr_0.8fr] md:items-center md:px-10">
+              <div className="relative z-10 grid gap-8 px-8 py-12 md:grid-cols-[1.2fr_0.8fr] md:items-center md:px-12">
                 <div>
-                  <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl">
+                  <h2 className="font-serif text-5xl leading-tight tracking-tight text-white">
                     Bestel jouw tour direct online
                   </h2>
-                  <p className="mt-4 max-w-2xl text-lg leading-8 text-[#d8e3de]">
+                  <p className="mt-5 max-w-2xl text-xl leading-8 text-[#d8e4df]">
                     Kies je route, rond je bestelling af en ga direct op pad door dorp, duin en
                     landschap.
                   </p>
@@ -270,7 +264,7 @@ export default function WadnVerhaalHomepage() {
                 <div className="flex md:justify-end">
                   <a
                     href={APP_URL}
-                    className="inline-flex items-center justify-center rounded-2xl bg-[#f7f3eb] px-6 py-3 font-medium text-[#26463f] transition hover:bg-white"
+                    className="inline-flex items-center justify-center rounded-2xl bg-[#f7f3ea] px-8 py-4 text-base font-medium text-[#26443e] transition hover:bg-white"
                   >
                     Ga naar de app
                   </a>
@@ -281,11 +275,11 @@ export default function WadnVerhaalHomepage() {
         </section>
       </main>
 
-      <footer className="border-t border-[#ddd4c7] bg-[#f8f4ec]">
+      <footer className="border-t border-[#ddd5c7] bg-[#f8f4eb]">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-2">
           <div>
-            <h2 className="text-2xl font-black tracking-tight text-[#24413b]">Wad&apos;n Verhaal</h2>
-            <p className="mt-4 max-w-md leading-7 text-[#5f6c66]">
+            <h2 className="text-3xl font-black tracking-tight text-[#24413b]">Wad&apos;n Verhaal</h2>
+            <p className="mt-4 max-w-md text-lg leading-8 text-[#5e6b66]">
               Audiotours die bezoekers van Ameland op een rustige, toegankelijke en sfeervolle manier
               meenemen langs verhalen van het eiland.
             </p>
@@ -305,26 +299,26 @@ export default function WadnVerhaalHomepage() {
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-[#ddd4c7] bg-white p-8 shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#77837d]">
+          <div className="rounded-[2rem] border border-[#ddd5c7] bg-white p-8 shadow-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#74807b]">
               Direct starten
             </p>
-            <h3 className="mt-3 text-2xl font-black tracking-tight text-[#24413b]">
+            <h3 className="mt-4 text-3xl font-semibold tracking-tight text-[#24413b]">
               Kies en bestel online
             </h3>
-            <p className="mt-4 leading-7 text-[#5f6c66]">
+            <p className="mt-4 text-lg leading-8 text-[#5e6b66]">
               Ga direct naar de app en kies de tour die past bij jouw wandeling of fietstocht.
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
               <a
                 href={APP_URL}
-                className="inline-flex rounded-2xl bg-[#26463f] px-5 py-3 font-medium text-white transition hover:opacity-90"
+                className="inline-flex rounded-2xl bg-[#26443e] px-5 py-3 font-medium text-white transition hover:opacity-90"
               >
                 Open de app
               </a>
               <a
                 href="/faq"
-                className="inline-flex rounded-2xl border border-[#cfc4b4] bg-[#f8f4ec] px-5 py-3 font-medium text-[#26463f] transition hover:bg-[#f2ece1]"
+                className="inline-flex rounded-2xl border border-[#cfc5b6] bg-[#f8f4eb] px-5 py-3 font-medium text-[#26443e] transition hover:bg-[#f1ebe0]"
               >
                 Bekijk FAQ
               </a>
