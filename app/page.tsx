@@ -49,17 +49,17 @@ const tours = [
 
 const steps = [
   {
-    number: '01',
+    number: '1',
     title: 'Kies jouw tour',
     text: 'Kies de route die past bij jouw dag op Ameland.',
   },
   {
-    number: '02',
+    number: '2',
     title: 'Bestel direct online',
     text: 'Open de tour eenvoudig op je telefoon en start wanneer je wilt.',
   },
   {
-    number: '03',
+    number: '3',
     title: 'Ga op pad',
     text: 'Ontdek dorp, duin en landschap met verhalen onderweg.',
   },
@@ -235,21 +235,27 @@ export default function WadnVerhaalHomepage() {
 
         <section id="hoe-werkt-het" className="px-6 pb-20 pt-6">
           <div className="mx-auto max-w-6xl">
-            <div className="grid gap-6 md:grid-cols-3">
-              {steps.map((step) => (
-                <div
-                  key={step.number}
-                  className="rounded-[1.8rem] border border-[#e4dccf] bg-[#f2ece0] p-7 shadow-sm"
-                >
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#e3ddcf] text-lg font-bold text-[#28453f]">
-                    {step.number}
+            <div className="overflow-hidden rounded-[2.2rem] border border-[#ddd5c7] bg-[#f2ece0] shadow-[0_18px_50px_rgba(70,60,40,0.08)]">
+              <div className="grid divide-y divide-[#ddd5c7] md:grid-cols-3 md:divide-x md:divide-y-0">
+                {steps.map((step) => (
+                  <div key={step.number} className="relative p-8 md:p-10">
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#26443e] text-2xl font-bold text-white shadow-sm">
+                        {step.number}
+                      </div>
+                      <div className="h-px flex-1 bg-[#d7cebf]" />
+                    </div>
+
+                    <h3 className="mt-6 text-[2rem] font-semibold leading-tight tracking-tight text-[#29453f]">
+                      {step.title}
+                    </h3>
+
+                    <p className="mt-4 max-w-[24ch] text-lg leading-8 text-[#5f6b66]">
+                      {step.text}
+                    </p>
                   </div>
-                  <h3 className="mt-5 text-3xl font-semibold tracking-tight text-[#29453f]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-4 text-lg leading-8 text-[#5f6b66]">{step.text}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
