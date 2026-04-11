@@ -13,21 +13,23 @@ const tours = [
       'Zelfstandig en eenvoudig te volgen',
       'Ideaal als eerste kennismaking',
     ],
-    cta: 'Bekijk tour',
+    cta: 'Binnenkort verkrijgbaar',
     featured: false,
+    available: false,
   },
   {
-    title: 'Familietour',
+    title: 'Maak kennis met Hollum',
     badge: 'Meest gekozen',
-    duration: '30–45 min',
-    image: '/images/tour-dorp.jpg',
+    duration: '90 min',
+    image: '/images/tour-duinen.jpg',
     points: [
-      'Speels en toegankelijk',
-      'Leuk voor jong en oud',
-      'Ontspannen route met verrassingen',
+      'Een rustige wandeling langs bijzondere plekken',
+      'Live kaart en audio precies op de juiste locatie',
+      'Perfect als eerste kennismaking met Hollum',
     ],
     cta: 'Bestel direct',
     featured: true,
+    available: true,
   },
   {
     title: 'Fietsroute door Duin & Dorp',
@@ -39,8 +41,9 @@ const tours = [
       'Luisteren op bijzondere plekken',
       'Een complete eilandbeleving',
     ],
-    cta: 'Ontdek route',
+    cta: 'Binnenkort verkrijgbaar',
     featured: false,
+    available: false,
   },
 ]
 
@@ -141,23 +144,34 @@ export default function WadnVerhaalHomepage() {
                     {tours.map((tour) => (
                       <div
                         key={tour.title}
-                        className={`overflow-hidden rounded-[2rem] border bg-[#f8f4eb]/95 shadow-lg backdrop-blur ${
+                        className={`relative overflow-hidden rounded-[2rem] border bg-[#f8f4eb]/95 shadow-lg backdrop-blur ${
                           tour.featured
                             ? 'border-[#d8b091] ring-1 ring-[#d8b091]/50'
                             : 'border-[#dfd7ca]'
-                        }`}
+                        } ${tour.available ? '' : 'opacity-70'}`}
                       >
-                        <div className="p-4 pb-0">
+                        {!tour.available && (
+                          <>
+                            <div className="absolute inset-0 z-20 bg-white/18 backdrop-[blur(1px)]" />
+                            <div className="absolute left-4 right-4 top-6 z-30 flex justify-center">
+                              <div className="rounded-full border border-[#d5c8b8] bg-[#f7f3ea]/95 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#6f6456] shadow-sm">
+                                Binnenkort verkrijgbaar
+                              </div>
+                            </div>
+                          </>
+                        )}
+
+                        <div className="relative z-10 p-4 pb-0">
                           <div className="overflow-hidden rounded-[1.35rem]">
                             <img
                               src={tour.image}
                               alt={tour.title}
-                              className="h-56 w-full object-cover"
+                              className={`h-56 w-full object-cover ${tour.available ? '' : 'grayscale-[25%]'}`}
                             />
                           </div>
                         </div>
 
-                        <div className="p-6">
+                        <div className="relative z-10 p-6">
                           <div className="flex items-center justify-between gap-3">
                             <span
                               className={`rounded-full px-3 py-1 text-xs font-semibold ${
@@ -185,12 +199,12 @@ export default function WadnVerhaalHomepage() {
                           </div>
 
                           <a
-                            href={APP_URL}
+                            href={tour.available ? APP_URL : '#'}
                             className={`mt-7 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3.5 font-medium transition ${
                               tour.featured
                                 ? 'bg-[#26443e] text-white hover:opacity-90'
-                                : 'border border-[#cfc5b6] bg-white text-[#26443e] hover:bg-[#f3eee4]'
-                            }`}
+                                : 'border border-[#d8d0c2] bg-[#f4efe5] text-[#7c857f]'
+                            } ${tour.available ? '' : 'pointer-events-none cursor-default'}`}
                           >
                             {tour.cta}
                           </a>
