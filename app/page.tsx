@@ -35,7 +35,7 @@ const tours = [
     title: 'Fietsroute door Duin & Dorp',
     badge: 'Voor natuurliefhebbers',
     duration: '60–90 min',
-    image: '/images/tour-duinen.jpg',
+    image: '/images/tour-fietsen.jpg',
     points: [
       'Route door landschap en dorp',
       'Luisteren op bijzondere plekken',
