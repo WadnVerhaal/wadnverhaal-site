@@ -10,7 +10,7 @@ export default function FaqPage() {
     },
     {
       question: 'Zijn de tours geschikt voor gezinnen?',
-      answer: 'Ja, vooral de Familietour is heel geschikt voor gezinnen met kinderen.'
+      answer: 'Ja, Maak kennis met Hollum is ook geschikt voor gezinnen die op een rustige manier samen het dorp willen ontdekken.'
     },
     {
       question: 'Kan ik kiezen tussen wandelen en fietsen?',
