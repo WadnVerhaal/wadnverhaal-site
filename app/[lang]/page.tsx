@@ -55,6 +55,13 @@ type LocalPageCopy = {
   howTitle: string
   howText: string
   howCta: string
+  howFlowCardTitle: string
+  howFlowCardText: string
+  howStepLabel1: string
+  howStepLabel2: string
+  howStepLabel3: string
+  howEaseTitle: string
+  howEaseText: string
   finalTitle: string
   finalText: string
   finalPoint1: string
@@ -104,6 +111,15 @@ const pageCopy: Record<Locale, LocalPageCopy> = {
     howText:
       'Je kiest een tour, opent de app en kunt vrijwel direct op pad. Dat maakt de stap om nu te beginnen klein en aantrekkelijk.',
     howCta: 'Start jouw audiotour',
+    howFlowCardTitle: 'Snel, helder en zonder gedoe',
+    howFlowCardText:
+      'Je ziet direct wat je moet doen, volgt een logische volgorde en kunt bijna meteen op pad. Dat maakt de ervaring lichter en prettiger.',
+    howStepLabel1: 'Start',
+    howStepLabel2: 'Open',
+    howStepLabel3: 'Beleef',
+    howEaseTitle: 'Gebruiksgemak',
+    howEaseText:
+      'Alles is opgezet om je zonder twijfel van stap naar stap te brengen. Daardoor voelt starten eenvoudig, logisch en uitnodigend.',
     finalTitle: 'Klaar om meer uit je tijd op Ameland te halen?',
     finalText:
       'Kies je tour en ervaar hoe prettig het is als route, verhaal en beleving vanzelf samenkomen.',
@@ -139,6 +155,15 @@ const pageCopy: Record<Locale, LocalPageCopy> = {
     howText:
       'You choose a tour, open the app and can start almost right away. That makes the step to begin now feel small and appealing.',
     howCta: 'Start your audio tour',
+    howFlowCardTitle: 'Quick, clear, and hassle-free',
+    howFlowCardText:
+      'You immediately see what to do, follow a logical flow, and can start almost right away. That makes the experience feel lighter and more pleasant.',
+    howStepLabel1: 'Start',
+    howStepLabel2: 'Open',
+    howStepLabel3: 'Experience',
+    howEaseTitle: 'Ease of use',
+    howEaseText:
+      'Everything is designed to guide you naturally from one step to the next. That makes getting started feel simple, logical, and inviting.',
     finalTitle: 'Ready to get more out of your time on Ameland?',
     finalText:
       'Choose your tour and discover how pleasant it is when route, story and atmosphere come together naturally.',
@@ -174,6 +199,15 @@ const pageCopy: Record<Locale, LocalPageCopy> = {
     howText:
       'Du wählst eine Tour, öffnest die App und kannst fast sofort losgehen. Dadurch fühlt sich der Schritt, jetzt zu starten, klein und attraktiv an.',
     howCta: 'Starte deine Audiotour',
+    howFlowCardTitle: 'Schnell, klar und ohne Aufwand',
+    howFlowCardText:
+      'Du siehst sofort, was zu tun ist, folgst einer logischen Reihenfolge und kannst fast direkt losgehen. Dadurch wirkt das Erlebnis leichter und angenehmer.',
+    howStepLabel1: 'Start',
+    howStepLabel2: 'Öffnen',
+    howStepLabel3: 'Erleben',
+    howEaseTitle: 'Benutzerfreundlichkeit',
+    howEaseText:
+      'Alles ist darauf ausgelegt, dich ohne Zweifel von Schritt zu Schritt zu führen. Dadurch fühlt sich der Start einfach, logisch und einladend an.',
     finalTitle: 'Bereit, mehr aus deiner Zeit auf Ameland zu machen?',
     finalText:
       'Wähle deine Tour und erlebe, wie angenehm es ist, wenn Route, Geschichte und Atmosphäre ganz natürlich zusammenkommen.',
@@ -289,13 +323,14 @@ export default async function LocalizedHomepage({ params }: Props) {
   const upcomingTours = marketingTours.filter((tour) => !tour.available)
   const orderedTours = [...availableTours, ...upcomingTours]
 
-  const heroBenefits = heroBlock?.items?.length === 3
-    ? heroBlock.items
-    : [
-        copy.heroBenefitRouteAudio,
-        copy.heroBenefitStartNow,
-        copy.heroBenefitEasyClear,
-      ]
+  const heroBenefits =
+    heroBlock?.items?.length === 3
+      ? heroBlock.items
+      : [
+          copy.heroBenefitRouteAudio,
+          copy.heroBenefitStartNow,
+          copy.heroBenefitEasyClear,
+        ]
 
   const footerEmail = contactSettings?.email || 'info@wadnverhaal.nl'
   const footerPhone = contactSettings?.phone || '06 13 67 83 10'
@@ -573,6 +608,22 @@ export default async function LocalizedHomepage({ params }: Props) {
                     {copy.howText}
                   </p>
 
+                  <div className="mt-8 rounded-[1.75rem] border border-[#dfeff0] bg-[#f8ffff] p-5">
+                    <div className="flex items-start gap-3">
+                      <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0f4b58] text-sm font-bold text-white">
+                        <Check className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <p className="text-base font-semibold text-[#143a43]">
+                          {copy.howFlowCardTitle}
+                        </p>
+                        <p className="mt-2 text-sm leading-7 text-[#5b757b]">
+                          {copy.howFlowCardText}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                   <a
                     href={getAppUrl(locale)}
                     className="mt-8 inline-flex rounded-2xl bg-[#ef7f63] px-6 py-3.5 font-semibold text-white shadow-[0_14px_35px_rgba(239,127,99,0.18)] transition hover:opacity-90"
@@ -581,25 +632,54 @@ export default async function LocalizedHomepage({ params }: Props) {
                   </a>
                 </div>
 
-                <div className="grid gap-0 md:grid-cols-3">
-                  {t.steps.map((step, index) => (
-                    <div
-                      key={step.number}
-                      className={`px-6 py-8 md:px-8 md:py-10 ${
-                        index < t.steps.length - 1
-                          ? 'border-b border-[#e7f1f2] md:border-b-0 md:border-r'
-                          : ''
-                      }`}
-                    >
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0f4b58] text-lg font-bold text-white">
-                        {step.number}
-                      </div>
-                      <h3 className="mt-5 text-2xl font-semibold tracking-tight text-[#143a43]">
-                        {step.title}
-                      </h3>
-                      <p className="mt-3 text-sm leading-7 text-[#5b757b]">{step.text}</p>
+                <div className="px-6 py-8 md:px-8 md:py-10">
+                  <div className="relative">
+                    <div className="absolute bottom-8 left-[23px] top-8 hidden w-[2px] bg-[#d9ebec] md:block" />
+
+                    <div className="space-y-5">
+                      {t.steps.map((step, index) => (
+                        <div
+                          key={step.number}
+                          className="relative rounded-[1.75rem] border border-[#e7f1f2] bg-[#fbfdfd] p-5 transition hover:bg-white"
+                        >
+                          <div className="flex gap-4">
+                            <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#0f4b58] text-base font-bold text-white shadow-[0_10px_24px_rgba(15,75,88,0.16)]">
+                              {step.number}
+                            </div>
+
+                            <div className="min-w-0 flex-1">
+                              <div className="flex flex-wrap items-center gap-3">
+                                <h3 className="text-2xl font-semibold tracking-tight text-[#143a43]">
+                                  {step.title}
+                                </h3>
+
+                                <span className="rounded-full bg-[#eef8f8] px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#4f8a8e]">
+                                  {index === 0
+                                    ? copy.howStepLabel1
+                                    : index === 1
+                                      ? copy.howStepLabel2
+                                      : copy.howStepLabel3}
+                                </span>
+                              </div>
+
+                              <p className="mt-3 max-w-xl text-sm leading-7 text-[#5b757b]">
+                                {step.text}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+
+                    <div className="mt-6 rounded-[1.75rem] bg-[linear-gradient(135deg,#0f4b58_0%,#0d3f4d_58%,#0a3340_100%)] p-5 text-white shadow-[0_20px_50px_rgba(15,75,88,0.18)]">
+                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9cd4d1]">
+                        {copy.howEaseTitle}
+                      </p>
+                      <p className="mt-3 text-base leading-7 text-[#e1f1f1]">
+                        {copy.howEaseText}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -666,7 +746,9 @@ export default async function LocalizedHomepage({ params }: Props) {
               <h2 className="text-2xl font-black tracking-tight text-white">{t.site.name}</h2>
             </div>
 
-            <p className="mt-4 max-w-md text-lg leading-8 text-[#c8e2e2]">{t.footer.description}</p>
+            <p className="mt-4 max-w-md text-lg leading-8 text-[#c8e2e2]">
+              {t.footer.description}
+            </p>
 
             <div className="mt-6 space-y-3 text-[#d7ecec]">
               <div className="flex items-center gap-3">
