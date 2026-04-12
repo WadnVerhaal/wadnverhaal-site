@@ -112,10 +112,6 @@ export default async function LocalizedHomepage({ params }: Props) {
 
                 <div className="relative z-10 flex h-full flex-col justify-between p-8 md:p-14">
                   <div className="max-w-2xl pt-2">
-                    <div className="mb-6 inline-flex items-center rounded-full bg-[#e9dfbf]/85 px-5 py-2 text-sm font-medium text-[#6a5c37] shadow-sm">
-                      {t.home.heroBadge}
-                    </div>
-
                     <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-[#ddd5c7] bg-[#fbf8f1]/95 px-4 py-2 shadow-sm">
                       <div className="relative h-10 w-10 overflow-hidden rounded-full border border-[#d8cfbf] bg-white">
                         <Image
@@ -330,11 +326,9 @@ export default async function LocalizedHomepage({ params }: Props) {
                 />
               </div>
 
-              <div>
-                <h2 className="text-2xl font-black tracking-tight text-[#24413b]">
-                  {t.site.name}
-                </h2>
-                </div>
+              <h2 className="text-2xl font-black tracking-tight text-[#24413b]">
+                {t.site.name}
+              </h2>
             </div>
 
             <p className="mt-4 max-w-md text-lg leading-8 text-[#5e6b66]">
