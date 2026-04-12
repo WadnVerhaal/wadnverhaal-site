@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { getTranslation, isValidLocale, locales } from '@/lib/i18n'
 import { notFound } from 'next/navigation'
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!isValidLocale(lang)) {
     return {
-      title: 'FAQ | Wad’n Verhaal',
+      title: "FAQ | Wad'n Verhaal",
       description: 'Veelgestelde vragen',
     }
   }
@@ -45,9 +46,19 @@ export default async function FaqPage({ params }: Props) {
       <div className="mx-auto max-w-4xl">
         <Link
           href={`/${lang}`}
-          className="text-sm font-medium text-[#6E7B75] hover:text-[#2F4A4A]"
+          className="inline-flex items-center gap-4 text-sm font-medium text-[#6E7B75] hover:text-[#2F4A4A]"
         >
-          {t.faq.backToHome}
+          <div className="relative h-12 w-12 overflow-hidden rounded-full border border-[#d8cfbf] bg-white shadow-sm">
+            <Image
+              src="/images/logo-round.png"
+              alt="Wad'n Verhaal logo"
+              fill
+              className="object-cover"
+              sizes="48px"
+              priority
+            />
+          </div>
+          <span>{t.faq.backToHome}</span>
         </Link>
 
         <div className="mt-6 max-w-2xl">

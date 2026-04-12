@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Check, MapPin, Mail, Phone } from 'lucide-react'
 import LanguageSwitcher from '@/components/language-switcher'
@@ -49,11 +50,24 @@ export default async function LocalizedHomepage({ params }: Props) {
     <div className="min-h-screen bg-[#f7f3ea] text-[#29453f]">
       <header className="sticky top-0 z-50 border-b border-[#ddd5c7] bg-[#f7f3ea]/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
-          <Link href={`/${locale}`} className="leading-tight">
-            <div className="text-[2rem] font-black tracking-tight text-[#26443e]">
-              {t.site.name}
+          <Link href={`/${locale}`} className="flex items-center gap-4 leading-tight">
+            <div className="relative h-14 w-14 overflow-hidden rounded-full border border-[#d8cfbf] bg-white shadow-sm">
+              <Image
+                src="/images/logo-round.png"
+                alt="Wad'n Verhaal logo"
+                fill
+                className="object-cover"
+                sizes="56px"
+                priority
+              />
             </div>
-            <div className="text-sm text-[#6f7872]">{t.site.tagline}</div>
+
+            <div>
+              <div className="text-[2rem] font-black tracking-tight text-[#26443e]">
+                {t.site.name}
+              </div>
+              <div className="text-sm text-[#6f7872]">{t.site.tagline}</div>
+            </div>
           </Link>
 
           <div className="flex items-center gap-4">
@@ -98,6 +112,28 @@ export default async function LocalizedHomepage({ params }: Props) {
                   <div className="max-w-2xl pt-2">
                     <div className="mb-6 inline-flex items-center rounded-full bg-[#e9dfbf]/85 px-5 py-2 text-sm font-medium text-[#6a5c37] shadow-sm">
                       {t.home.heroBadge}
+                    </div>
+
+                    <div className="mb-8 flex items-center gap-5">
+                      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border border-[#d8cfbf] bg-white shadow-md md:h-24 md:w-24">
+                        <Image
+                          src="/images/logo-round.png"
+                          alt="Wad'n Verhaal logo"
+                          fill
+                          className="object-cover"
+                          sizes="96px"
+                          priority
+                        />
+                      </div>
+
+                      <div>
+                        <div className="text-sm font-semibold uppercase tracking-[0.18em] text-[#73807a]">
+                          Wad&apos;n Verhaal
+                        </div>
+                        <div className="mt-1 text-base text-[#5e6b66]">
+                          Audiotours op Ameland
+                        </div>
+                      </div>
                     </div>
 
                     <h1 className="max-w-3xl font-serif text-5xl leading-[0.97] tracking-tight text-[#23413b] sm:text-6xl md:text-[5.8rem]">
@@ -282,7 +318,23 @@ export default async function LocalizedHomepage({ params }: Props) {
       <footer className="border-t border-[#ddd5c7] bg-[#f8f4eb]">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-2">
           <div>
-            <h2 className="text-3xl font-black tracking-tight text-[#24413b]">{t.site.name}</h2>
+            <div className="flex items-center gap-4">
+              <div className="relative h-16 w-16 overflow-hidden rounded-full border border-[#d8cfbf] bg-white shadow-sm">
+                <Image
+                  src="/images/logo-round.png"
+                  alt="Wad'n Verhaal logo"
+                  fill
+                  className="object-cover"
+                  sizes="64px"
+                />
+              </div>
+
+              <div>
+                <h2 className="text-3xl font-black tracking-tight text-[#24413b]">{t.site.name}</h2>
+                <p className="mt-1 text-sm text-[#6f7872]">{t.site.tagline}</p>
+              </div>
+            </div>
+
             <p className="mt-4 max-w-md text-lg leading-8 text-[#5e6b66]">
               {t.footer.description}
             </p>
