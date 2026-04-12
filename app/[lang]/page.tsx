@@ -1,7 +1,18 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Check, Headphones, Map, MapPin, Mail, Phone, Waves } from 'lucide-react'
+import {
+  ArrowRight,
+  Check,
+  Compass,
+  Headphones,
+  Map,
+  MapPin,
+  Mail,
+  Phone,
+  Shell,
+  Waves,
+} from 'lucide-react'
 import LanguageSwitcher from '@/components/language-switcher'
 import { getTranslation, isValidLocale, locales, type Locale } from '@/lib/i18n'
 import { notFound } from 'next/navigation'
@@ -47,35 +58,38 @@ export default async function LocalizedHomepage({ params }: Props) {
   const t = getTranslation(locale)
 
   return (
-    <div className="min-h-screen bg-transparent text-[#143c43]">
-      <header className="sticky top-0 z-50 border-b border-[#cfe7e5] bg-[#f7ffff]/88 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
+    <div className="min-h-screen bg-[#f3fbfb] text-[#143b43]">
+      <header className="sticky top-0 z-50 border-b border-[#d8ecea] bg-[#f7ffff]/90 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
           <Link
             href={`/${locale}`}
-            className="flex items-center gap-3 rounded-full border border-[#cfe7e5] bg-white/95 px-3 py-2 shadow-[0_10px_30px_rgba(19,74,82,0.08)] transition hover:bg-white"
+            className="flex items-center gap-3 rounded-full border border-[#d5ebe8] bg-white px-3 py-2 shadow-[0_8px_25px_rgba(18,75,84,0.06)]"
           >
-            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-[#d5ebe9] bg-white">
+            <div className="relative h-11 w-11 overflow-hidden rounded-full border border-[#d5ebe8] bg-white">
               <Image
                 src="/images/logo-round.png"
                 alt="Wad'n Verhaal logo"
                 fill
                 className="object-cover"
-                sizes="48px"
+                sizes="44px"
                 priority
               />
             </div>
-            <span className="text-[1.35rem] font-black tracking-tight text-[#12505a] sm:text-[1.6rem]">
+            <span className="text-[1.3rem] font-black tracking-tight text-[#12505a] sm:text-[1.55rem]">
               {t.site.name}
             </span>
           </Link>
 
           <div className="flex items-center gap-4">
-            <nav className="hidden items-center gap-8 text-sm text-[#28545b] md:flex">
+            <nav className="hidden items-center gap-8 text-sm text-[#27545b] md:flex">
               <a href="#tours" className="transition hover:opacity-70">
                 {t.nav.tours}
               </a>
-              <a href="#beleef" className="transition hover:opacity-70">
-                {t.nav.howItWorks}
+              <a href="#verhalen" className="transition hover:opacity-70">
+                Verhalen
+              </a>
+              <a href="#eiland" className="transition hover:opacity-70">
+                Eilandgevoel
               </a>
               <Link href={`/${locale}/faq`} className="transition hover:opacity-70">
                 {t.nav.faq}
@@ -94,154 +108,122 @@ export default async function LocalizedHomepage({ params }: Props) {
       </header>
 
       <main>
-        <section className="px-6 pt-8 md:pt-12">
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div className="order-2 lg:order-1">
-              <div className="inline-flex items-center gap-3 rounded-full border border-[#cfe7e5] bg-white/95 px-4 py-2 shadow-sm">
-                <div className="relative h-10 w-10 overflow-hidden rounded-full border border-[#d5ebe9] bg-white">
-                  <Image
-                    src="/images/logo-round.png"
-                    alt="Wad'n Verhaal logo"
-                    fill
-                    className="object-cover"
-                    sizes="40px"
-                    priority
-                  />
+        <section className="px-6 pb-10 pt-8 md:pb-14 md:pt-12">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="flex flex-col justify-between rounded-[2.5rem] border border-[#d8ecea] bg-[linear-gradient(180deg,#fbffff_0%,#eef9f8_100%)] p-8 shadow-[0_25px_70px_rgba(18,75,84,0.08)] md:p-10">
+              <div>
+                <div className="inline-flex items-center gap-3 rounded-full border border-[#d6ece9] bg-white px-4 py-2 shadow-sm">
+                  <div className="relative h-9 w-9 overflow-hidden rounded-full border border-[#d6ece9] bg-white">
+                    <Image
+                      src="/images/logo-round.png"
+                      alt="Wad'n Verhaal logo"
+                      fill
+                      className="object-cover"
+                      sizes="36px"
+                      priority
+                    />
+                  </div>
+                  <span className="text-sm font-semibold tracking-[0.1em] text-[#12505a]">
+                    Wad&apos;n Verhaal
+                  </span>
                 </div>
-                <span className="text-sm font-semibold tracking-[0.08em] text-[#12505a]">
-                  Wad&apos;n Verhaal
-                </span>
+
+                <h1 className="mt-7 font-serif text-5xl leading-[0.95] tracking-tight text-[#0f3f47] sm:text-6xl md:text-[5.3rem]">
+                  Ontdek Ameland
+                  <br />
+                  al luisterend
+                </h1>
+
+                <p className="mt-6 max-w-xl text-xl leading-9 text-[#496c73]">
+                  Verken het eiland met audiotours vol sfeer, geschiedenis en verhalen die
+                  precies passen bij de plek waar je bent.
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <a
+                    href="#tours"
+                    className="inline-flex items-center gap-2 rounded-2xl bg-[#12505a] px-7 py-4 text-base font-medium text-white shadow-[0_14px_35px_rgba(18,80,90,0.18)] transition hover:opacity-90"
+                  >
+                    Bekijk tours
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+
+                  <a
+                    href={getAppUrl(locale)}
+                    className="rounded-2xl border border-[#cfe7e5] bg-white px-7 py-4 text-base font-medium text-[#12505a] transition hover:bg-[#f7ffff]"
+                  >
+                    Open de app
+                  </a>
+                </div>
               </div>
 
-              <h1 className="mt-6 max-w-3xl font-serif text-5xl leading-[0.95] tracking-tight text-[#103f47] sm:text-6xl md:text-[5.2rem]">
-                {t.home.heroTitle}
-              </h1>
-
-              <p className="mt-6 max-w-xl text-xl leading-9 text-[#456b72]">
-                {t.home.heroText}
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href="#tours"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-[#12505a] px-7 py-4 text-base font-medium text-white shadow-[0_14px_35px_rgba(18,80,90,0.18)] transition hover:opacity-90"
-                >
-                  {t.home.viewTours}
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-
-                <a
-                  href={getAppUrl(locale)}
-                  className="rounded-2xl border border-[#c9e5e2] bg-white/95 px-7 py-4 text-base font-medium text-[#12505a] transition hover:bg-white"
-                >
-                  {t.home.orderNow}
-                </a>
-              </div>
-
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                <div className="rounded-[1.6rem] border border-[#d7ecea] bg-white/90 p-5 shadow-[0_12px_30px_rgba(18,75,84,0.07)]">
-                  <Headphones className="h-6 w-6 text-[#1d8fa0]" />
-                  <p className="mt-3 text-sm font-semibold text-[#143c43]">Luister onderweg</p>
-                  <p className="mt-1 text-sm leading-6 text-[#5a7a7f]">Verhalen die passen bij de plek waar je bent.</p>
+              <div className="mt-10 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-[1.8rem] border border-[#d8ecea] bg-white/90 p-5">
+                  <div className="flex items-center gap-3">
+                    <Headphones className="h-5 w-5 text-[#1d98a5]" />
+                    <p className="font-semibold text-[#143b43]">Luister onderweg</p>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-[#5c7a7f]">
+                    Verhalen die je wandeling of fietstocht meer diepte geven.
+                  </p>
                 </div>
 
-                <div className="rounded-[1.6rem] border border-[#d7ecea] bg-white/90 p-5 shadow-[0_12px_30px_rgba(18,75,84,0.07)]">
-                  <Map className="h-6 w-6 text-[#1d8fa0]" />
-                  <p className="mt-3 text-sm font-semibold text-[#143c43]">Route & ontdekking</p>
-                  <p className="mt-1 text-sm leading-6 text-[#5a7a7f]">Wandel of fiets langs bijzondere plekken op Ameland.</p>
-                </div>
-
-                <div className="rounded-[1.6rem] border border-[#d7ecea] bg-white/90 p-5 shadow-[0_12px_30px_rgba(18,75,84,0.07)]">
-                  <Waves className="h-6 w-6 text-[#ef7f63]" />
-                  <p className="mt-3 text-sm font-semibold text-[#143c43]">Eilandgevoel</p>
-                  <p className="mt-1 text-sm leading-6 text-[#5a7a7f]">Frisse lucht, zee, duinen en verhalen met karakter.</p>
+                <div className="rounded-[1.8rem] border border-[#ffd7cc] bg-[linear-gradient(180deg,#fff8f5_0%,#fffdfa_100%)] p-5">
+                  <div className="flex items-center gap-3">
+                    <Compass className="h-5 w-5 text-[#ef7f63]" />
+                    <p className="font-semibold text-[#143b43]">Eilandbeleving</p>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-[#6a777a]">
+                    Duinen, dorpen, zee en verhalen in één rustige ervaring.
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="order-1 lg:order-2">
-              <div className="relative overflow-hidden rounded-[2.5rem] border border-[#cfe7e5] bg-[#e8f7f6] shadow-[0_30px_90px_rgba(18,75,84,0.12)]">
-                <div className="relative aspect-[4/5] md:aspect-[5/6]">
-                  <img
-                    src="/images/hero-ameland.jpg"
-                    alt={t.home.heroTitle}
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,70,80,0.10)_0%,rgba(255,255,255,0.04)_40%,rgba(246,255,254,0.92)_100%)]" />
-
-                  <div className="absolute bottom-0 left-0 right-0 p-5 md:p-7">
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div className="rounded-[1.4rem] border border-white/60 bg-white/85 p-4 backdrop-blur">
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#5c8b90]">
-                          Ontdek
-                        </p>
-                        <p className="mt-2 text-lg font-semibold text-[#143c43]">
-                          Luisteren, kijken en beleven
-                        </p>
-                      </div>
-
-                      <div className="rounded-[1.4rem] border border-white/60 bg-[#12505a] p-4 text-white shadow-lg">
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#b8ece7]">
-                          Ameland
-                        </p>
-                        <p className="mt-2 text-lg font-semibold">
-                          Audiotours met sfeer, route en verhaal
-                        </p>
-                      </div>
-                    </div>
+            <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
+              <div className="relative min-h-[320px] overflow-hidden rounded-[2.5rem] border border-[#d8ecea] shadow-[0_30px_80px_rgba(18,75,84,0.10)] md:min-h-[640px]">
+                <img
+                  src="/images/hero-ameland.jpg"
+                  alt={t.home.heroTitle}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,64,73,0.08)_0%,rgba(12,64,73,0.12)_45%,rgba(12,64,73,0.52)_100%)]" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                  <div className="max-w-md rounded-[1.8rem] border border-white/50 bg-white/85 p-5 backdrop-blur">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#5c8b90]">
+                      Eilandroute
+                    </p>
+                    <p className="mt-2 text-2xl font-semibold text-[#143b43]">
+                      Hoor het verhaal achter de plek
+                    </p>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
 
-        <section id="beleef" className="px-6 pb-8 pt-20">
-          <div className="mx-auto max-w-6xl">
-            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#4d8b8f]">
-                  Beleven
-                </p>
-                <h2 className="mt-4 font-serif text-5xl leading-tight tracking-tight text-[#103f47]">
-                  Meer dan een route
-                </h2>
-                <p className="mt-5 max-w-xl text-xl leading-8 text-[#456b72]">
-                  Met Wad&apos;n Verhaal ontdek je Ameland niet alleen met je ogen, maar ook met je oren.
-                  Je volgt een route, hoort verhalen en beleeft het eiland op een rustigere en rijkere manier.
-                </p>
-              </div>
-
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="rounded-[1.8rem] border border-[#d6ece9] bg-white/90 p-6 shadow-[0_14px_34px_rgba(18,75,84,0.08)]">
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#4d8b8f]">1</p>
-                  <h3 className="mt-3 text-2xl font-semibold text-[#143c43]">Kies je tour</h3>
-                  <p className="mt-3 leading-7 text-[#5a7a7f]">
-                    Kies een route die past bij jouw dag: fietsen, wandelen, dorp, natuur of strand.
+              <div className="grid gap-6">
+                <div className="rounded-[2rem] border border-[#d8ecea] bg-white p-6 shadow-[0_18px_40px_rgba(18,75,84,0.08)]">
+                  <Map className="h-6 w-6 text-[#1d98a5]" />
+                  <h2 className="mt-4 text-2xl font-semibold text-[#143b43]">Volg de route</h2>
+                  <p className="mt-3 leading-7 text-[#56757a]">
+                    Elke tour verbindt locatie, verhaal en beleving tot één soepel avontuur op
+                    je telefoon.
                   </p>
                 </div>
 
-                <div className="rounded-[1.8rem] border border-[#d6ece9] bg-white/90 p-6 shadow-[0_14px_34px_rgba(18,75,84,0.08)]">
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#4d8b8f]">2</p>
-                  <h3 className="mt-3 text-2xl font-semibold text-[#143c43]">Open de app</h3>
-                  <p className="mt-3 leading-7 text-[#5a7a7f]">
-                    Je start eenvoudig op je telefoon en volgt de tour terwijl je onderweg bent.
+                <div className="rounded-[2rem] border border-[#d8ecea] bg-[#12505a] p-6 text-white shadow-[0_20px_45px_rgba(18,75,84,0.18)]">
+                  <Shell className="h-6 w-6 text-[#ffd1c3]" />
+                  <h2 className="mt-4 text-2xl font-semibold">Typisch Ameland</h2>
+                  <p className="mt-3 leading-7 text-[#d4ece9]">
+                    Een stijl die past bij lucht, kust, eilandcultuur en de warme verhalen van
+                    onderweg.
                   </p>
                 </div>
 
-                <div className="rounded-[1.8rem] border border-[#d6ece9] bg-white/90 p-6 shadow-[0_14px_34px_rgba(18,75,84,0.08)]">
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#4d8b8f]">3</p>
-                  <h3 className="mt-3 text-2xl font-semibold text-[#143c43]">Luister op locatie</h3>
-                  <p className="mt-3 leading-7 text-[#5a7a7f]">
-                    Op bijzondere plekken hoor je verhalen, weetjes en eilandbeleving die passen bij de omgeving.
-                  </p>
-                </div>
-
-                <div className="rounded-[1.8rem] border border-[#ffd3c7] bg-[linear-gradient(180deg,#fff7f4_0%,#fffdfb_100%)] p-6 shadow-[0_14px_34px_rgba(239,127,99,0.10)]">
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#d56b51]">Extra fijn</p>
-                  <h3 className="mt-3 text-2xl font-semibold text-[#143c43]">Rustig en flexibel</h3>
-                  <p className="mt-3 leading-7 text-[#6e797b]">
-                    Je kunt audio pauzeren en later verder luisteren wanneer het veilig en rustig uitkomt.
+                <div className="rounded-[2rem] border border-[#d8ecea] bg-[linear-gradient(180deg,#effafa_0%,#ffffff_100%)] p-6 shadow-[0_18px_40px_rgba(18,75,84,0.08)]">
+                  <Waves className="h-6 w-6 text-[#ef7f63]" />
+                  <h2 className="mt-4 text-2xl font-semibold text-[#143b43]">Zee, dorp, duin</h2>
+                  <p className="mt-3 leading-7 text-[#56757a]">
+                    Ontworpen alsof je een digitaal eilandmagazine binnenstapt.
                   </p>
                 </div>
               </div>
@@ -249,8 +231,55 @@ export default async function LocalizedHomepage({ params }: Props) {
           </div>
         </section>
 
-        <section id="tours" className="px-6 pb-10 pt-14">
-          <div className="mx-auto max-w-6xl">
+        <section id="verhalen" className="px-6 pb-12 pt-8 md:pb-20">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-8 max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#4d8b8f]">
+                Verhalen
+              </p>
+              <h2 className="mt-4 font-serif text-5xl leading-tight tracking-tight text-[#103f47]">
+                Een layout die voelt als een eilandreis
+              </h2>
+            </div>
+
+            <div className="grid gap-6 lg:grid-cols-3">
+              <div className="rounded-[2.2rem] border border-[#d8ecea] bg-white p-7 shadow-[0_18px_45px_rgba(18,75,84,0.08)]">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#4d8b8f]">
+                  Verhalen
+                </p>
+                <h3 className="mt-4 text-3xl font-semibold text-[#143b43]">Luister en kijk</h3>
+                <p className="mt-4 leading-8 text-[#56757a]">
+                  Geen droge route, maar een ervaring waarin geluid, plek en sfeer elkaar
+                  versterken.
+                </p>
+              </div>
+
+              <div className="rounded-[2.2rem] border border-[#ffd7cc] bg-[linear-gradient(180deg,#fff8f5_0%,#ffffff_100%)] p-7 shadow-[0_18px_45px_rgba(239,127,99,0.08)]">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#d56b51]">
+                  Eiland
+                </p>
+                <h3 className="mt-4 text-3xl font-semibold text-[#143b43]">Sfeer van de kust</h3>
+                <p className="mt-4 leading-8 text-[#6a777a]">
+                  Kleur, ritme en rust geïnspireerd op lucht, vuurtoren, zee en zand.
+                </p>
+              </div>
+
+              <div className="rounded-[2.2rem] border border-[#d8ecea] bg-[#143f47] p-7 shadow-[0_18px_45px_rgba(18,75,84,0.16)]">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#9dd5cf]">
+                  Beleving
+                </p>
+                <h3 className="mt-4 text-3xl font-semibold text-white">Rustig en modern</h3>
+                <p className="mt-4 leading-8 text-[#d5ece9]">
+                  Meer boutique travel dan standaard landingspagina. Dat past veel beter bij je
+                  merk.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="tours" className="px-6 pb-12 pt-4 md:pb-20">
+          <div className="mx-auto max-w-7xl">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div className="max-w-3xl">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#4d8b8f]">
@@ -264,74 +293,77 @@ export default async function LocalizedHomepage({ params }: Props) {
 
               <a
                 href={getAppUrl(locale)}
-                className="inline-flex rounded-2xl border border-[#c9e5e2] bg-white px-5 py-3 font-medium text-[#12505a] transition hover:bg-[#f7ffff]"
+                className="inline-flex rounded-2xl border border-[#cfe7e5] bg-white px-5 py-3 font-medium text-[#12505a] transition hover:bg-[#f7ffff]"
               >
                 {t.home.orderNow}
               </a>
             </div>
 
-            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            <div className="mt-10 space-y-6">
               {t.tours.map((tour) => (
                 <div
                   key={tour.title}
-                  className={`relative overflow-hidden rounded-[2rem] border bg-white/94 shadow-[0_20px_50px_rgba(18,75,84,0.10)] ${
+                  className={`overflow-hidden rounded-[2.2rem] border bg-white shadow-[0_20px_50px_rgba(18,75,84,0.09)] ${
                     tour.featured
-                      ? 'border-[#ffb49f] ring-1 ring-[#ffb49f]/70'
+                      ? 'border-[#ffb49f] ring-1 ring-[#ffb49f]/60'
                       : 'border-[#d8ecea]'
-                  } ${tour.available ? '' : 'opacity-75'}`}
+                  }`}
                 >
-                  {!tour.available && (
-                    <div className="absolute left-5 top-5 z-20 rounded-full border border-white/70 bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#6c7c80] shadow-sm">
-                      {tour.cta}
+                  <div className="grid lg:grid-cols-[320px_1fr]">
+                    <div className="relative h-72 lg:h-full">
+                      <img
+                        src={tour.image}
+                        alt={tour.title}
+                        className={`h-full w-full object-cover ${tour.available ? '' : 'grayscale-[25%]'}`}
+                      />
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,39,45,0.05)_0%,rgba(8,39,45,0.08)_45%,rgba(8,39,45,0.45)_100%)]" />
+                      <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
+                        <span
+                          className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                            tour.featured ? 'bg-[#ef7f63] text-white' : 'bg-white/90 text-[#365f65]'
+                          }`}
+                        >
+                          {tour.badge}
+                        </span>
+                        <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-[#365f65]">
+                          {tour.duration}
+                        </span>
+                      </div>
                     </div>
-                  )}
 
-                  <div className="relative h-64 overflow-hidden">
-                    <img
-                      src={tour.image}
-                      alt={tour.title}
-                      className={`h-full w-full object-cover ${tour.available ? '' : 'grayscale-[25%]'}`}
-                    />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,49,57,0.02)_0%,rgba(10,49,57,0.05)_50%,rgba(10,49,57,0.42)_100%)]" />
+                    <div className="flex flex-col justify-between p-7 md:p-8">
+                      <div>
+                        <h3 className="text-[2.1rem] font-semibold leading-tight tracking-tight text-[#143b43]">
+                          {tour.title}
+                        </h3>
 
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-3">
-                      <span
-                        className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                          tour.featured ? 'bg-[#ef7f63] text-white' : 'bg-white/90 text-[#365f65]'
-                        }`}
-                      >
-                        {tour.badge}
-                      </span>
-                      <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-[#365f65]">
-                        {tour.duration}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="p-6">
-                    <h3 className="text-[2rem] font-semibold leading-tight tracking-tight text-[#143c43]">
-                      {tour.title}
-                    </h3>
-
-                    <div className="mt-5 space-y-3">
-                      {tour.points.map((point) => (
-                        <div key={point} className="flex items-start gap-3 text-sm text-[#4e7075]">
-                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#1d9baa]" />
-                          <span>{point}</span>
+                        <div className="mt-5 grid gap-3 md:grid-cols-2">
+                          {tour.points.map((point) => (
+                            <div key={point} className="flex items-start gap-3 text-sm text-[#4e7075]">
+                              <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#1d9baa]" />
+                              <span>{point}</span>
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
+                      </div>
 
-                    <a
-                      href={tour.available ? getAppUrl(locale) : '#'}
-                      className={`mt-7 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3.5 font-medium transition ${
-                        tour.featured
-                          ? 'bg-[#12505a] text-white hover:opacity-90'
-                          : 'border border-[#cfe7e5] bg-[#f7ffff] text-[#55777c]'
-                      } ${tour.available ? '' : 'pointer-events-none cursor-default'}`}
-                    >
-                      {tour.cta}
-                    </a>
+                      <div className="mt-7 flex flex-wrap items-center gap-4">
+                        <a
+                          href={tour.available ? getAppUrl(locale) : '#'}
+                          className={`inline-flex rounded-2xl px-5 py-3.5 font-medium transition ${
+                            tour.featured
+                              ? 'bg-[#12505a] text-white hover:opacity-90'
+                              : 'border border-[#cfe7e5] bg-[#f7ffff] text-[#55777c]'
+                          } ${tour.available ? '' : 'pointer-events-none cursor-default opacity-70'}`}
+                        >
+                          {tour.cta}
+                        </a>
+
+                        {!tour.available && (
+                          <span className="text-sm font-medium text-[#6b7c80]">Binnenkort beschikbaar</span>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -339,37 +371,29 @@ export default async function LocalizedHomepage({ params }: Props) {
           </div>
         </section>
 
-        <section className="px-6 pb-20 pt-14">
-          <div className="mx-auto max-w-6xl">
-            <div className="overflow-hidden rounded-[2.2rem] border border-[#cfe7e5] bg-[linear-gradient(135deg,#effcfb_0%,#f7ffff_58%,#fff8f5_100%)] p-8 shadow-[0_20px_60px_rgba(18,75,84,0.08)] md:p-12">
-              <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#4d8b8f]">
-                    Veilig luisteren
-                  </p>
-                  <h2 className="mt-4 font-serif text-5xl leading-tight tracking-tight text-[#103f47]">
-                    Ontspannen op pad, met aandacht voor je omgeving
-                  </h2>
-                  <p className="mt-5 max-w-2xl text-xl leading-8 text-[#486c72]">
-                    Gebruik bij voorkeur één oortje of open-ear audio, blijf letten op verkeer en omgeving,
-                    en pauzeer het fragment gerust om later op een veilig moment verder te luisteren.
-                  </p>
-                </div>
+        <section id="eiland" className="px-6 pb-12 pt-4 md:pb-20">
+          <div className="mx-auto max-w-7xl">
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-[#d8ecea] shadow-[0_30px_80px_rgba(18,75,84,0.10)]">
+              <div className="relative min-h-[620px]">
+                <img
+                  src="/images/tour-duinen.jpg"
+                  alt="Eilandgevoel op Ameland"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,46,54,0.76)_0%,rgba(8,46,54,0.54)_40%,rgba(8,46,54,0.14)_100%)]" />
 
-                <div className="rounded-[1.8rem] border border-[#d9ecea] bg-white/95 p-6 shadow-sm">
-                  <div className="space-y-4 text-[#4a6b70]">
-                    <div className="flex items-start gap-3">
-                      <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#1d9baa]" />
-                      <span>Luister met één oortje of open-ear audio.</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#1d9baa]" />
-                      <span>Blijf onderweg alert op verkeer en andere weggebruikers.</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#1d9baa]" />
-                      <span>Pauzeer en rewind wanneer dat beter uitkomt.</span>
-                    </div>
+                <div className="relative z-10 flex min-h-[620px] items-end p-8 md:p-12">
+                  <div className="max-w-2xl rounded-[2rem] border border-white/20 bg-white/12 p-8 backdrop-blur-md">
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#bfe6e1]">
+                      Eilandgevoel
+                    </p>
+                    <h2 className="mt-4 font-serif text-5xl leading-tight tracking-tight text-white">
+                      Alsof iemand je Ameland persoonlijk laat zien
+                    </h2>
+                    <p className="mt-5 text-xl leading-8 text-[#d8efec]">
+                      Wad&apos;n Verhaal combineert routes met audio, sfeer en context. Zo wordt een
+                      wandeling of fietstocht niet alleen mooier, maar ook betekenisvoller.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -377,33 +401,37 @@ export default async function LocalizedHomepage({ params }: Props) {
           </div>
         </section>
 
-        <section className="px-6 pb-20">
-          <div className="mx-auto max-w-6xl">
-            <div className="relative overflow-hidden rounded-[2.2rem] bg-[#12505a] shadow-[0_28px_70px_rgba(18,75,84,0.24)]">
-              <img
-                src="/images/tour-duinen.jpg"
-                alt={t.home.ctaTitle}
-                className="absolute inset-0 h-full w-full object-cover opacity-18"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,80,90,0.96)_0%,rgba(18,80,90,0.88)_52%,rgba(18,80,90,0.76)_100%)]" />
+        <section className="px-6 pb-20 pt-4">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="rounded-[2.2rem] border border-[#d8ecea] bg-[linear-gradient(135deg,#effcfb_0%,#f7ffff_58%,#fff8f5_100%)] p-8 shadow-[0_20px_60px_rgba(18,75,84,0.08)] md:p-10">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#4d8b8f]">
+                  Veilig luisteren
+                </p>
+                <h2 className="mt-4 font-serif text-4xl leading-tight tracking-tight text-[#103f47]">
+                  Ontspannen op pad, met aandacht voor je omgeving
+                </h2>
+                <p className="mt-5 max-w-2xl text-lg leading-8 text-[#486c72]">
+                  Gebruik bij voorkeur één oortje of open-ear audio, blijf letten op verkeer en
+                  omgeving, en pauzeer het fragment gerust om later op een veilig moment verder te
+                  luisteren.
+                </p>
+              </div>
 
-              <div className="relative z-10 grid gap-8 px-8 py-12 md:grid-cols-[1.2fr_0.8fr] md:items-center md:px-12">
-                <div>
-                  <h2 className="font-serif text-5xl leading-tight tracking-tight text-white">
-                    {t.home.ctaTitle}
-                  </h2>
-                  <p className="mt-5 max-w-2xl text-xl leading-8 text-[#d7f0ee]">
-                    {t.home.ctaText}
-                  </p>
-                </div>
-
-                <div className="flex md:justify-end">
-                  <a
-                    href={getAppUrl(locale)}
-                    className="inline-flex items-center justify-center rounded-2xl bg-white px-8 py-4 text-base font-medium text-[#12505a] transition hover:bg-[#f4fffe]"
-                  >
-                    {t.home.goToApp}
-                  </a>
+              <div className="rounded-[2.2rem] border border-[#d8ecea] bg-white p-8 shadow-[0_18px_50px_rgba(18,75,84,0.08)] md:p-10">
+                <div className="space-y-4 text-[#4a6b70]">
+                  <div className="flex items-start gap-3">
+                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#1d9baa]" />
+                    <span>Luister met één oortje of open-ear audio.</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#1d9baa]" />
+                    <span>Blijf onderweg alert op verkeer en andere weggebruikers.</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#1d9baa]" />
+                    <span>Pauzeer en rewind wanneer dat beter uitkomt.</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -412,7 +440,7 @@ export default async function LocalizedHomepage({ params }: Props) {
       </main>
 
       <footer className="border-t border-[#0f4650] bg-[#103f47]">
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-2">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-2">
           <div>
             <div className="flex items-center gap-3">
               <div className="relative h-12 w-12 overflow-hidden rounded-full border border-[#2a6670] bg-white shadow-sm">
