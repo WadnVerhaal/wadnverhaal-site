@@ -5,13 +5,11 @@ import {
   ArrowRight,
   Check,
   Clock3,
-  Headphones,
   MapPin,
   Mail,
   Phone,
   Route,
   ShieldCheck,
-  Star,
 } from 'lucide-react'
 import LanguageSwitcher from '@/components/language-switcher'
 import { getTranslation, isValidLocale, locales, type Locale } from '@/lib/i18n'
@@ -56,12 +54,13 @@ export default async function LocalizedHomepage({ params }: Props) {
 
   const locale = lang as Locale
   const t = getTranslation(locale)
-  const featuredTour =
-    t.tours.find((tour) => tour.featured) ?? t.tours.find((tour) => tour.available) ?? t.tours[0]
+  const availableTours = t.tours.filter((tour) => tour.available)
+  const upcomingTours = t.tours.filter((tour) => !tour.available)
+  const orderedTours = [...availableTours, ...upcomingTours]
 
   return (
     <div className="min-h-screen bg-[#f4fbfb] text-[#143a43]">
-      <header className="sticky top-0 z-50 border-b border-[#d8e9ea] bg-[#f7ffff]/88 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-[#d8e9ea] bg-[#f7ffff]/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
           <Link href={`/${locale}`} className="flex items-center gap-3">
             <div className="relative h-12 w-12 overflow-hidden rounded-full border border-[#d9e9e9] bg-white shadow-sm">
@@ -105,15 +104,10 @@ export default async function LocalizedHomepage({ params }: Props) {
       </header>
 
       <main>
-        <section className="px-6 pb-14 pt-8 md:pb-20 md:pt-12">
-          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+        <section className="px-6 pb-16 pt-8 md:pb-20 md:pt-12">
+          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#d7e8e9] bg-white px-4 py-2 text-sm font-semibold text-[#2e6670] shadow-sm">
-                <Star className="h-4 w-4 text-[#ef7f63]" />
-                Ameland beleven met audio, route en verhaal
-              </div>
-
-              <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[0.94] tracking-tight text-[#0d3d48] sm:text-6xl md:text-[5.5rem]">
+              <h1 className="max-w-4xl font-serif text-5xl leading-[0.94] tracking-tight text-[#0d3d48] sm:text-6xl md:text-[5.6rem]">
                 Ontdek Ameland op een manier die je bijblijft
               </h1>
 
@@ -138,23 +132,18 @@ export default async function LocalizedHomepage({ params }: Props) {
                 </a>
               </div>
 
-              <div className="mt-10 grid max-w-3xl gap-4 sm:grid-cols-3">
-                <div className="rounded-2xl border border-[#d9ebec] bg-white/90 p-4 shadow-sm">
-                  <Headphones className="h-5 w-5 text-[#12879a]" />
-                  <p className="mt-3 text-sm font-semibold text-[#163a43]">Direct luisteren</p>
-                  <p className="mt-1 text-sm leading-6 text-[#627d82]">Op je telefoon, onderweg.</p>
+              <div className="mt-10 flex flex-wrap gap-6 text-sm font-medium text-[#55757a]">
+                <div className="inline-flex items-center gap-2">
+                  <Route className="h-4 w-4 text-[#12879a]" />
+                  Route + audio in één
                 </div>
-
-                <div className="rounded-2xl border border-[#d9ebec] bg-white/90 p-4 shadow-sm">
-                  <Route className="h-5 w-5 text-[#12879a]" />
-                  <p className="mt-3 text-sm font-semibold text-[#163a43]">Slimme route</p>
-                  <p className="mt-1 text-sm leading-6 text-[#627d82]">Wandelen of fietsen met richting.</p>
+                <div className="inline-flex items-center gap-2">
+                  <Clock3 className="h-4 w-4 text-[#12879a]" />
+                  Meteen te starten
                 </div>
-
-                <div className="rounded-2xl border border-[#ffd9ce] bg-[linear-gradient(180deg,#fff7f4_0%,#ffffff_100%)] p-4 shadow-sm">
-                  <ShieldCheck className="h-5 w-5 text-[#ef7f63]" />
-                  <p className="mt-3 text-sm font-semibold text-[#163a43]">Makkelijk starten</p>
-                  <p className="mt-1 text-sm leading-6 text-[#627d82]">Kopen, openen en op pad.</p>
+                <div className="inline-flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4 text-[#ef7f63]" />
+                  Eenvoudig en duidelijk
                 </div>
               </div>
             </div>
@@ -169,13 +158,8 @@ export default async function LocalizedHomepage({ params }: Props) {
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,48,56,0.04)_0%,rgba(8,48,56,0.14)_46%,rgba(8,48,56,0.72)_100%)]" />
 
-                  <div className="absolute left-5 right-5 top-5 flex justify-between gap-3">
-                    <div className="rounded-full bg-white/92 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#37676f] shadow-sm">
-                      Premium audiotour
-                    </div>
-                    <div className="rounded-full bg-[#0f4b58] px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white shadow-sm">
-                      Ameland
-                    </div>
+                  <div className="absolute right-5 top-5 rounded-full bg-[#0f4b58] px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white shadow-sm">
+                    Ameland
                   </div>
 
                   <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
@@ -183,11 +167,11 @@ export default async function LocalizedHomepage({ params }: Props) {
                       <div className="flex flex-wrap items-center gap-3 text-white/95">
                         <div className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-1.5 text-sm font-medium">
                           <Clock3 className="h-4 w-4" />
-                          {featuredTour?.duration ?? 'Tour'}
+                          Luisteren onderweg
                         </div>
                         <div className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-1.5 text-sm font-medium">
                           <MapPin className="h-4 w-4" />
-                          Op locatie luisteren
+                          Op locatie beleven
                         </div>
                       </div>
 
@@ -213,7 +197,7 @@ export default async function LocalizedHomepage({ params }: Props) {
           </div>
         </section>
 
-        <section id="tours" className="px-6 pb-10">
+        <section id="tours" className="px-6 pb-12">
           <div className="mx-auto max-w-7xl">
             <div className="overflow-hidden rounded-[2.4rem] border border-[#dbecef] bg-white shadow-[0_24px_70px_rgba(15,75,88,0.08)]">
               <div className="border-b border-[#e7f1f2] px-6 py-6 md:px-8">
@@ -238,43 +222,75 @@ export default async function LocalizedHomepage({ params }: Props) {
               </div>
 
               <div className="divide-y divide-[#e7f1f2]">
-                {t.tours.map((tour) => (
+                {orderedTours.map((tour) => (
                   <div
                     key={tour.title}
-                    className="grid gap-6 px-6 py-6 md:px-8 lg:grid-cols-[260px_1fr_auto] lg:items-center"
+                    className={`grid gap-6 px-6 py-6 md:px-8 lg:grid-cols-[260px_1fr_auto] lg:items-center ${
+                      tour.available ? '' : 'bg-[#fafdfd]'
+                    }`}
                   >
                     <div className="relative h-52 overflow-hidden rounded-[1.5rem]">
                       <img
                         src={tour.image}
                         alt={tour.title}
-                        className={`h-full w-full object-cover ${tour.available ? '' : 'grayscale-[25%]'}`}
+                        className={`h-full w-full object-cover ${
+                          tour.available ? '' : 'grayscale brightness-90 saturate-50'
+                        }`}
                       />
                       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,48,56,0.02)_0%,rgba(8,48,56,0.08)_46%,rgba(8,48,56,0.35)_100%)]" />
-                      <div className="absolute left-4 top-4 flex gap-2">
-                        <span
-                          className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                            tour.featured ? 'bg-[#ef7f63] text-white' : 'bg-white/92 text-[#355f65]'
-                          }`}
-                        >
-                          {tour.badge}
-                        </span>
-                      </div>
+
+                      {tour.available ? (
+                        <div className="absolute left-4 top-4">
+                          <span
+                            className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                              tour.featured ? 'bg-[#ef7f63] text-white' : 'bg-white/92 text-[#355f65]'
+                            }`}
+                          >
+                            {tour.badge}
+                          </span>
+                        </div>
+                      ) : (
+                        <div className="absolute left-4 top-4">
+                          <span className="rounded-full bg-[#0f4b58]/92 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white">
+                            Binnenkort
+                          </span>
+                        </div>
+                      )}
                     </div>
 
                     <div>
                       <div className="flex flex-wrap items-center gap-3">
-                        <h3 className="text-3xl font-semibold tracking-tight text-[#143a43]">
+                        <h3
+                          className={`text-3xl font-semibold tracking-tight ${
+                            tour.available ? 'text-[#143a43]' : 'text-[#6c7f83]'
+                          }`}
+                        >
                           {tour.title}
                         </h3>
-                        <span className="rounded-full bg-[#eef8f8] px-3 py-1 text-sm font-medium text-[#4c7177]">
+                        <span
+                          className={`rounded-full px-3 py-1 text-sm font-medium ${
+                            tour.available
+                              ? 'bg-[#eef8f8] text-[#4c7177]'
+                              : 'bg-[#f0f5f5] text-[#7d8e92]'
+                          }`}
+                        >
                           {tour.duration}
                         </span>
                       </div>
 
                       <div className="mt-5 grid gap-3 sm:grid-cols-2">
                         {tour.points.map((point) => (
-                          <div key={point} className="flex items-start gap-3 text-sm text-[#526f75]">
-                            <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#1694a3]" />
+                          <div
+                            key={point}
+                            className={`flex items-start gap-3 text-sm ${
+                              tour.available ? 'text-[#526f75]' : 'text-[#7c8c90]'
+                            }`}
+                          >
+                            <Check
+                              className={`mt-0.5 h-4 w-4 shrink-0 ${
+                                tour.available ? 'text-[#1694a3]' : 'text-[#a8b7bb]'
+                              }`}
+                            />
                             <span>{point}</span>
                           </div>
                         ))}
@@ -287,10 +303,10 @@ export default async function LocalizedHomepage({ params }: Props) {
                         className={`inline-flex min-w-[180px] items-center justify-center rounded-2xl px-5 py-3.5 font-semibold transition ${
                           tour.available
                             ? 'bg-[#0f4b58] text-white hover:opacity-90'
-                            : 'cursor-default border border-[#d7e7e8] bg-[#f7fbfb] text-[#7b8c90] pointer-events-none'
+                            : 'pointer-events-none cursor-default border border-[#d7e7e8] bg-[#f7fbfb] text-[#7b8c90]'
                         }`}
                       >
-                        {tour.cta}
+                        {tour.available ? tour.cta : 'Binnenkort'}
                       </a>
                     </div>
                   </div>
@@ -300,64 +316,64 @@ export default async function LocalizedHomepage({ params }: Props) {
           </div>
         </section>
 
-        <section id="hoe-werkt-het" className="px-6 pb-10 pt-8">
+        <section id="hoe-werkt-het" className="px-6 pb-12 pt-4">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#5a8d93]">
-                  {t.nav.howItWorks}
-                </p>
-                <h2 className="mt-4 font-serif text-4xl leading-tight tracking-tight text-[#0d3d48] md:text-5xl">
-                  Snel geregeld. Makkelijk te gebruiken.
-                </h2>
-                <p className="mt-5 max-w-xl text-lg leading-8 text-[#5b757b]">
-                  Deze pagina is gemaakt om bezoekers snel naar aankoop te begeleiden: eerst overtuigen,
-                  dan kiezen, dan starten.
-                </p>
+            <div className="overflow-hidden rounded-[2.4rem] border border-[#dbecef] bg-white shadow-[0_24px_70px_rgba(15,75,88,0.08)]">
+              <div className="grid gap-0 lg:grid-cols-[0.92fr_1.08fr]">
+                <div className="border-b border-[#e7f1f2] px-6 py-8 lg:border-b-0 lg:border-r md:px-8 md:py-10">
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#5a8d93]">
+                    {t.nav.howItWorks}
+                  </p>
+                  <h2 className="mt-4 font-serif text-4xl leading-tight tracking-tight text-[#0d3d48] md:text-5xl">
+                    Snel geregeld. Makkelijk te gebruiken.
+                  </h2>
+                  <p className="mt-5 max-w-xl text-lg leading-8 text-[#5b757b]">
+                    Van kiezen tot luisteren: alles is erop gericht om bezoekers snel en zonder gedoe op pad te laten gaan.
+                  </p>
 
-                <a
-                  href={getAppUrl(locale)}
-                  className="mt-8 inline-flex rounded-2xl bg-[#ef7f63] px-6 py-3.5 font-semibold text-white shadow-[0_14px_35px_rgba(239,127,99,0.18)] transition hover:opacity-90"
-                >
-                  Start jouw audiotour
-                </a>
-              </div>
-
-              <div className="grid gap-4 md:grid-cols-3">
-                {t.steps.map((step) => (
-                  <div
-                    key={step.number}
-                    className="rounded-[1.8rem] border border-[#dbecef] bg-white p-6 shadow-[0_16px_40px_rgba(15,75,88,0.06)]"
+                  <a
+                    href={getAppUrl(locale)}
+                    className="mt-8 inline-flex rounded-2xl bg-[#ef7f63] px-6 py-3.5 font-semibold text-white shadow-[0_14px_35px_rgba(239,127,99,0.18)] transition hover:opacity-90"
                   >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0f4b58] text-lg font-bold text-white">
-                      {step.number}
+                    Start jouw audiotour
+                  </a>
+                </div>
+
+                <div className="grid gap-0 md:grid-cols-3">
+                  {t.steps.map((step, index) => (
+                    <div
+                      key={step.number}
+                      className={`px-6 py-8 md:px-8 md:py-10 ${
+                        index < t.steps.length - 1 ? 'border-b border-[#e7f1f2] md:border-b-0 md:border-r' : ''
+                      }`}
+                    >
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0f4b58] text-lg font-bold text-white">
+                        {step.number}
+                      </div>
+                      <h3 className="mt-5 text-2xl font-semibold tracking-tight text-[#143a43]">
+                        {step.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-[#5b757b]">{step.text}</p>
                     </div>
-                    <h3 className="mt-5 text-2xl font-semibold tracking-tight text-[#143a43]">
-                      {step.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-[#5b757b]">{step.text}</p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="px-6 pb-20 pt-10">
+        <section className="px-6 pb-20 pt-6">
           <div className="mx-auto max-w-7xl">
             <div className="relative overflow-hidden rounded-[2.5rem] bg-[#0f4b58] shadow-[0_30px_80px_rgba(15,75,88,0.20)]">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.10),transparent_30%),linear-gradient(135deg,#0f4b58_0%,#0d3f4d_58%,#0a3340_100%)]" />
 
               <div className="relative z-10 grid gap-8 px-8 py-10 md:grid-cols-[1.1fr_0.9fr] md:items-center md:px-12 md:py-14">
                 <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9fd5d1]">
-                    Klaar om te starten?
-                  </p>
-                  <h2 className="mt-4 max-w-2xl font-serif text-4xl leading-tight tracking-tight text-white md:text-5xl">
-                    Een moderne eilandbeleving die verkoopt
+                  <h2 className="max-w-2xl font-serif text-4xl leading-tight tracking-tight text-white md:text-5xl">
+                    Klaar om Ameland op een nieuwe manier te beleven?
                   </h2>
                   <p className="mt-5 max-w-2xl text-lg leading-8 text-[#d3ebea]">
-                    Kies je tour, open de app en beleef Ameland op een manier die rust, richting en verhaal samenbrengt.
+                    Kies je tour, open de app en beleef Ameland met rust, richting en verhaal.
                   </p>
                 </div>
 
@@ -365,7 +381,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                   <div className="space-y-4 text-[#eef9f9]">
                     <div className="flex items-start gap-3">
                       <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#ffd0c3]" />
-                      <span>Duidelijke call to action</span>
+                      <span>Duidelijke start en snelle aankoop</span>
                     </div>
                     <div className="flex items-start gap-3">
                       <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#ffd0c3]" />
@@ -373,7 +389,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                     </div>
                     <div className="flex items-start gap-3">
                       <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#ffd0c3]" />
-                      <span>Gebouwd als echte verkoopsite</span>
+                      <span>Gemaakt als echte verkoopsite</span>
                     </div>
                   </div>
 
