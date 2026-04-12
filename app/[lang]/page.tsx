@@ -183,7 +183,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                           </div>
 
                           <a
-                            href={tour.available ? APP_URL : '#'}
+                            href={tour.available ? getAppUrl(locale) : '#'}
                             className={`mt-7 inline-flex w-full items-center justify-center rounded-2xl px-5 py-3.5 font-medium transition ${
                               tour.featured
                                 ? 'bg-[#26443e] text-white hover:opacity-90'
