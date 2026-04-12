@@ -113,11 +113,13 @@ export default async function LocalizedHomepage({ params }: Props) {
               </p>
 
               <h1 className="mt-5 max-w-4xl font-serif text-5xl leading-[0.92] tracking-tight text-[#0d3d48] sm:text-6xl md:text-[5.8rem]">
-                Ontdek Ameland op een manier die luxe, rust en verhaal samenbrengt
+                Beleef Ameland niet alleen met je ogen, maar ook met gevoel
               </h1>
 
               <p className="mt-6 max-w-2xl text-xl leading-9 text-[#4c6f75]">
-                {t.home.heroText}
+                Ontdek bijzondere plekken op het eiland met een audiotour die route, verhaal en sfeer
+                samenbrengt. Zo wordt een wandeling of fietstocht vanzelf iets om later nog aan terug
+                te denken.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
@@ -140,15 +142,15 @@ export default async function LocalizedHomepage({ params }: Props) {
               <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-[#55757a]">
                 <div className="inline-flex items-center gap-2">
                   <Route className="h-4 w-4 text-[#12879a]" />
-                  Route + audio in één
+                  Route en audio in één ervaring
                 </div>
                 <div className="inline-flex items-center gap-2">
                   <Clock3 className="h-4 w-4 text-[#12879a]" />
-                  Meteen te starten
+                  Meteen te starten op je telefoon
                 </div>
                 <div className="inline-flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4 text-[#ef7f63]" />
-                  Eenvoudig en duidelijk
+                  Eenvoudig, rustig en duidelijk
                 </div>
               </div>
             </div>
@@ -162,10 +164,6 @@ export default async function LocalizedHomepage({ params }: Props) {
                     className="absolute inset-0 h-full w-full object-cover"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,48,56,0.02)_0%,rgba(8,48,56,0.10)_42%,rgba(8,48,56,0.58)_100%)]" />
-
-                  <div className="absolute right-5 top-5 rounded-full bg-white/92 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#355f65] shadow-sm">
-                    Premium ervaring
-                  </div>
 
                   <div className="absolute bottom-0 left-0 right-0 p-5 md:p-7">
                     <div className="rounded-[2rem] border border-white/20 bg-[linear-gradient(180deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.10)_100%)] p-6 backdrop-blur-md">
@@ -181,11 +179,12 @@ export default async function LocalizedHomepage({ params }: Props) {
                       </div>
 
                       <h2 className="mt-4 max-w-xl text-3xl font-semibold leading-tight text-white md:text-[2.6rem]">
-                        Verhaal, route en eilandgevoel in één moderne audiotour
+                        Een ontspannen manier om meer uit je dag op Ameland te halen
                       </h2>
 
                       <p className="mt-3 max-w-xl text-base leading-7 text-[#e2f1f2]">
-                        Voor bezoekers die Ameland niet alleen willen zien, maar echt willen voelen en onthouden.
+                        Je hoeft niets uit te zoeken of op te zoeken: je volgt de route, luistert op
+                        het juiste moment en beleeft het eiland op een rijkere manier.
                       </p>
 
                       <a
@@ -214,7 +213,10 @@ export default async function LocalizedHomepage({ params }: Props) {
                     <h2 className="mt-3 font-serif text-4xl leading-tight tracking-tight text-[#0d3d48] md:text-5xl">
                       Kies de tour die bij jouw dag past
                     </h2>
-                    <p className="mt-4 text-lg leading-8 text-[#5b757b]">{t.home.toursText}</p>
+                    <p className="mt-4 text-lg leading-8 text-[#5b757b]">
+                      Kies een route die aansluit bij jouw moment op het eiland. Zo voelt het direct
+                      overzichtelijk en aantrekkelijk om te starten.
+                    </p>
                   </div>
 
                   <a
@@ -238,19 +240,9 @@ export default async function LocalizedHomepage({ params }: Props) {
                       <img
                         src={tour.image}
                         alt={tour.title}
-                        className={`h-full w-full object-cover ${
-                          tour.available
-                            ? ''
-                            : 'grayscale-[45%] brightness-[1.02] saturate-[0.72] contrast-[0.96]'
-                        }`}
+                        className="h-full w-full object-cover"
                       />
-                      <div
-                        className={`absolute inset-0 ${
-                          tour.available
-                            ? 'bg-[linear-gradient(180deg,rgba(8,48,56,0.02)_0%,rgba(8,48,56,0.08)_46%,rgba(8,48,56,0.35)_100%)]'
-                            : 'bg-[linear-gradient(180deg,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0.18)_100%)]'
-                        }`}
-                      />
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,48,56,0.02)_0%,rgba(8,48,56,0.08)_46%,rgba(8,48,56,0.35)_100%)]" />
 
                       {tour.available ? (
                         <div className="absolute left-4 top-4">
@@ -264,7 +256,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                         </div>
                       ) : (
                         <div className="absolute left-4 top-4">
-                          <span className="rounded-full bg-[#0f4b58]/88 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white">
+                          <span className="rounded-full bg-[#aeb8bb]/95 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white">
                             Binnenkort
                           </span>
                         </div>
@@ -341,7 +333,8 @@ export default async function LocalizedHomepage({ params }: Props) {
                     Snel geregeld. Makkelijk te gebruiken.
                   </h2>
                   <p className="mt-5 max-w-xl text-lg leading-8 text-[#5b757b]">
-                    Van kiezen tot luisteren: alles is erop gericht om bezoekers snel en zonder gedoe op pad te laten gaan.
+                    Je kiest een tour, opent de app en kunt vrijwel direct op pad. Dat maakt de stap
+                    om nu te beginnen klein en aantrekkelijk.
                   </p>
 
                   <a
@@ -385,10 +378,11 @@ export default async function LocalizedHomepage({ params }: Props) {
               <div className="relative z-10 grid gap-8 px-8 py-10 md:grid-cols-[1.1fr_0.9fr] md:items-center md:px-12 md:py-14">
                 <div>
                   <h2 className="max-w-2xl font-serif text-4xl leading-tight tracking-tight text-white md:text-5xl">
-                    Klaar om Ameland op een nieuwe manier te beleven?
+                    Klaar om meer uit je tijd op Ameland te halen?
                   </h2>
                   <p className="mt-5 max-w-2xl text-lg leading-8 text-[#d3ebea]">
-                    Kies je tour, open de app en beleef Ameland met rust, richting en verhaal.
+                    Kies je tour en ervaar hoe prettig het is als route, verhaal en beleving vanzelf
+                    samenkomen.
                   </p>
                 </div>
 
@@ -396,15 +390,15 @@ export default async function LocalizedHomepage({ params }: Props) {
                   <div className="space-y-4 text-[#eef9f9]">
                     <div className="flex items-start gap-3">
                       <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#ffd0c3]" />
-                      <span>Duidelijke start en snelle aankoop</span>
+                      <span>Direct duidelijk wat je krijgt</span>
                     </div>
                     <div className="flex items-start gap-3">
                       <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#ffd0c3]" />
-                      <span>Modern design in logo-kleuren</span>
+                      <span>Rustige, moderne eilandbeleving</span>
                     </div>
                     <div className="flex items-start gap-3">
                       <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#ffd0c3]" />
-                      <span>Gemaakt als echte verkoopsite</span>
+                      <span>Makkelijk om nu mee te starten</span>
                     </div>
                   </div>
 
