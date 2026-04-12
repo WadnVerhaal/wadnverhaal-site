@@ -200,7 +200,7 @@ export const translations: Record<Locale, Translation> = {
         title: 'Fietsroute door Duin & Dorp',
         badge: 'Voor natuurliefhebbers',
         duration: '60–90 min',
-        image: '/images/tour-fietsen.jpg',
+        image: '/images/tour-dorp.jpg',
         points: [
           'Route door landschap en dorp',
           'Luisteren op bijzondere plekken',
@@ -344,7 +344,7 @@ export const translations: Record<Locale, Translation> = {
         title: 'Cycling Route through Dunes & Village',
         badge: 'For nature lovers',
         duration: '60–90 min',
-        image: '/images/tour-fietsen.jpg',
+        image: '/images/tour-dorp.jpg',
         points: [
           'Route through landscape and village',
           'Listen at special locations',
@@ -489,7 +489,7 @@ export const translations: Record<Locale, Translation> = {
         title: 'Fahrradroute durch Dünen & Dorf',
         badge: 'Für Naturliebhaber',
         duration: '60–90 Min.',
-        image: '/images/tour-fietsen.jpg',
+        image: '/images/tour-dorp.jpg',
         points: [
           'Route durch Landschaft und Dorf',
           'An besonderen Orten zuhören',
