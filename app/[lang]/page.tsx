@@ -104,11 +104,16 @@ export default async function LocalizedHomepage({ params }: Props) {
       </header>
 
       <main>
-        <section className="px-6 pb-16 pt-8 md:pb-20 md:pt-12">
-          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
+        <section className="relative overflow-hidden px-6 pb-16 pt-8 md:pb-20 md:pt-12">
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(27,150,165,0.10),transparent_30%),radial-gradient(circle_at_top_right,rgba(239,127,99,0.08),transparent_24%)]" />
+          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.98fr] lg:items-center">
             <div>
-              <h1 className="max-w-4xl font-serif text-5xl leading-[0.94] tracking-tight text-[#0d3d48] sm:text-6xl md:text-[5.6rem]">
-                Ontdek Ameland op een manier die je bijblijft
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#5a8d93]">
+                Audiotours op Ameland
+              </p>
+
+              <h1 className="mt-5 max-w-4xl font-serif text-5xl leading-[0.92] tracking-tight text-[#0d3d48] sm:text-6xl md:text-[5.8rem]">
+                Ontdek Ameland op een manier die luxe, rust en verhaal samenbrengt
               </h1>
 
               <p className="mt-6 max-w-2xl text-xl leading-9 text-[#4c6f75]">
@@ -132,7 +137,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                 </a>
               </div>
 
-              <div className="mt-10 flex flex-wrap gap-6 text-sm font-medium text-[#55757a]">
+              <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-[#55757a]">
                 <div className="inline-flex items-center gap-2">
                   <Route className="h-4 w-4 text-[#12879a]" />
                   Route + audio in één
@@ -149,21 +154,21 @@ export default async function LocalizedHomepage({ params }: Props) {
             </div>
 
             <div>
-              <div className="relative overflow-hidden rounded-[2.2rem] border border-[#d9ebec] bg-white shadow-[0_30px_80px_rgba(15,75,88,0.12)]">
-                <div className="relative h-[560px]">
+              <div className="relative overflow-hidden rounded-[2.4rem] border border-[#d9ebec] bg-white shadow-[0_34px_90px_rgba(15,75,88,0.14)]">
+                <div className="relative h-[580px]">
                   <img
                     src="/images/hero-ameland.jpg"
                     alt={t.home.heroTitle}
                     className="absolute inset-0 h-full w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,48,56,0.04)_0%,rgba(8,48,56,0.14)_46%,rgba(8,48,56,0.72)_100%)]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,48,56,0.02)_0%,rgba(8,48,56,0.10)_42%,rgba(8,48,56,0.58)_100%)]" />
 
-                  <div className="absolute right-5 top-5 rounded-full bg-[#0f4b58] px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white shadow-sm">
-                    Ameland
+                  <div className="absolute right-5 top-5 rounded-full bg-white/92 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#355f65] shadow-sm">
+                    Premium ervaring
                   </div>
 
-                  <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
-                    <div className="rounded-[1.8rem] border border-white/20 bg-white/14 p-5 backdrop-blur-md">
+                  <div className="absolute bottom-0 left-0 right-0 p-5 md:p-7">
+                    <div className="rounded-[2rem] border border-white/20 bg-[linear-gradient(180deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.10)_100%)] p-6 backdrop-blur-md">
                       <div className="flex flex-wrap items-center gap-3 text-white/95">
                         <div className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-1.5 text-sm font-medium">
                           <Clock3 className="h-4 w-4" />
@@ -175,17 +180,17 @@ export default async function LocalizedHomepage({ params }: Props) {
                         </div>
                       </div>
 
-                      <h2 className="mt-4 max-w-xl text-3xl font-semibold leading-tight text-white md:text-4xl">
-                        Verhaal, route en eilandgevoel in één ervaring
+                      <h2 className="mt-4 max-w-xl text-3xl font-semibold leading-tight text-white md:text-[2.6rem]">
+                        Verhaal, route en eilandgevoel in één moderne audiotour
                       </h2>
 
                       <p className="mt-3 max-w-xl text-base leading-7 text-[#e2f1f2]">
-                        Perfect voor bezoekers die Ameland niet alleen willen zien, maar ook echt willen beleven.
+                        Voor bezoekers die Ameland niet alleen willen zien, maar echt willen voelen en onthouden.
                       </p>
 
                       <a
                         href={getAppUrl(locale)}
-                        className="mt-5 inline-flex rounded-2xl bg-white px-5 py-3 font-semibold text-[#0f4b58] transition hover:bg-[#f3ffff]"
+                        className="mt-6 inline-flex rounded-2xl bg-white px-5 py-3 font-semibold text-[#0f4b58] transition hover:bg-[#f3ffff]"
                       >
                         Kies jouw tour
                       </a>
@@ -226,7 +231,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                   <div
                     key={tour.title}
                     className={`grid gap-6 px-6 py-6 md:px-8 lg:grid-cols-[260px_1fr_auto] lg:items-center ${
-                      tour.available ? '' : 'bg-[#fafdfd]'
+                      tour.available ? '' : 'bg-[#fbfdfd]'
                     }`}
                   >
                     <div className="relative h-52 overflow-hidden rounded-[1.5rem]">
@@ -234,10 +239,16 @@ export default async function LocalizedHomepage({ params }: Props) {
                         src={tour.image}
                         alt={tour.title}
                         className={`h-full w-full object-cover ${
-                          tour.available ? '' : 'grayscale brightness-90 saturate-50'
+                          tour.available ? '' : 'grayscale-[100%] brightness-[1.03] saturate-[0.35]'
                         }`}
                       />
-                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,48,56,0.02)_0%,rgba(8,48,56,0.08)_46%,rgba(8,48,56,0.35)_100%)]" />
+                      <div
+                        className={`absolute inset-0 ${
+                          tour.available
+                            ? 'bg-[linear-gradient(180deg,rgba(8,48,56,0.02)_0%,rgba(8,48,56,0.08)_46%,rgba(8,48,56,0.35)_100%)]'
+                            : 'bg-[linear-gradient(180deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.26)_100%)]'
+                        }`}
+                      />
 
                       {tour.available ? (
                         <div className="absolute left-4 top-4">
@@ -251,7 +262,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                         </div>
                       ) : (
                         <div className="absolute left-4 top-4">
-                          <span className="rounded-full bg-[#0f4b58]/92 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white">
+                          <span className="rounded-full bg-[#0f4b58]/88 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white">
                             Binnenkort
                           </span>
                         </div>
@@ -262,7 +273,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                       <div className="flex flex-wrap items-center gap-3">
                         <h3
                           className={`text-3xl font-semibold tracking-tight ${
-                            tour.available ? 'text-[#143a43]' : 'text-[#6c7f83]'
+                            tour.available ? 'text-[#143a43]' : 'text-[#73858a]'
                           }`}
                         >
                           {tour.title}
@@ -271,7 +282,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                           className={`rounded-full px-3 py-1 text-sm font-medium ${
                             tour.available
                               ? 'bg-[#eef8f8] text-[#4c7177]'
-                              : 'bg-[#f0f5f5] text-[#7d8e92]'
+                              : 'bg-[#f2f6f6] text-[#87979b]'
                           }`}
                         >
                           {tour.duration}
@@ -283,12 +294,12 @@ export default async function LocalizedHomepage({ params }: Props) {
                           <div
                             key={point}
                             className={`flex items-start gap-3 text-sm ${
-                              tour.available ? 'text-[#526f75]' : 'text-[#7c8c90]'
+                              tour.available ? 'text-[#526f75]' : 'text-[#87979b]'
                             }`}
                           >
                             <Check
                               className={`mt-0.5 h-4 w-4 shrink-0 ${
-                                tour.available ? 'text-[#1694a3]' : 'text-[#a8b7bb]'
+                                tour.available ? 'text-[#1694a3]' : 'text-[#bcc9cc]'
                               }`}
                             />
                             <span>{point}</span>
@@ -303,7 +314,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                         className={`inline-flex min-w-[180px] items-center justify-center rounded-2xl px-5 py-3.5 font-semibold transition ${
                           tour.available
                             ? 'bg-[#0f4b58] text-white hover:opacity-90'
-                            : 'pointer-events-none cursor-default border border-[#d7e7e8] bg-[#f7fbfb] text-[#7b8c90]'
+                            : 'pointer-events-none cursor-default border border-[#dce8e9] bg-[#f8fbfb] text-[#8a9a9e]'
                         }`}
                       >
                         {tour.available ? tour.cta : 'Binnenkort'}
@@ -344,7 +355,9 @@ export default async function LocalizedHomepage({ params }: Props) {
                     <div
                       key={step.number}
                       className={`px-6 py-8 md:px-8 md:py-10 ${
-                        index < t.steps.length - 1 ? 'border-b border-[#e7f1f2] md:border-b-0 md:border-r' : ''
+                        index < t.steps.length - 1
+                          ? 'border-b border-[#e7f1f2] md:border-b-0 md:border-r'
+                          : ''
                       }`}
                     >
                       <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0f4b58] text-lg font-bold text-white">
@@ -362,7 +375,7 @@ export default async function LocalizedHomepage({ params }: Props) {
           </div>
         </section>
 
-        <section className="px-6 pb-20 pt-6">
+        <section className="px-6 pb-28 pt-6 md:pb-20">
           <div className="mx-auto max-w-7xl">
             <div className="relative overflow-hidden rounded-[2.5rem] bg-[#0f4b58] shadow-[0_30px_80px_rgba(15,75,88,0.20)]">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.10),transparent_30%),linear-gradient(135deg,#0f4b58_0%,#0d3f4d_58%,#0a3340_100%)]" />
@@ -465,6 +478,16 @@ export default async function LocalizedHomepage({ params }: Props) {
           </div>
         </div>
       </footer>
+
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-[#cfe3e5] bg-white/96 p-3 shadow-[0_-10px_30px_rgba(15,75,88,0.10)] backdrop-blur md:hidden">
+        <a
+          href={getAppUrl(locale)}
+          className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#0f4b58] px-5 py-4 text-base font-semibold text-white shadow-[0_10px_24px_rgba(15,75,88,0.18)] transition hover:opacity-90"
+        >
+          Start direct
+          <ArrowRight className="h-4 w-4" />
+        </a>
+      </div>
     </div>
   )
 }
