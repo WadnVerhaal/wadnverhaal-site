@@ -239,14 +239,16 @@ export default async function LocalizedHomepage({ params }: Props) {
                         src={tour.image}
                         alt={tour.title}
                         className={`h-full w-full object-cover ${
-                          tour.available ? '' : 'grayscale-[100%] brightness-[1.03] saturate-[0.35]'
+                          tour.available
+                            ? ''
+                            : 'grayscale-[45%] brightness-[1.02] saturate-[0.72] contrast-[0.96]'
                         }`}
                       />
                       <div
                         className={`absolute inset-0 ${
                           tour.available
                             ? 'bg-[linear-gradient(180deg,rgba(8,48,56,0.02)_0%,rgba(8,48,56,0.08)_46%,rgba(8,48,56,0.35)_100%)]'
-                            : 'bg-[linear-gradient(180deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.26)_100%)]'
+                            : 'bg-[linear-gradient(180deg,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0.18)_100%)]'
                         }`}
                       />
 
