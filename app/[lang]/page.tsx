@@ -23,6 +23,145 @@ type Props = {
   }>
 }
 
+type LocalPageCopy = {
+  heroEyebrow: string
+  heroTitle: string
+  heroText: string
+  heroPrimaryCta: string
+  heroSecondaryCta: string
+  heroBenefitRouteAudio: string
+  heroBenefitStartNow: string
+  heroBenefitEasyClear: string
+  heroChipListen: string
+  heroChipLocation: string
+  heroCardTitle: string
+  heroCardText: string
+  heroCardCta: string
+  toursTitle: string
+  toursText: string
+  toursOrderCta: string
+  upcomingBadge: string
+  upcomingButton: string
+  howTitle: string
+  howText: string
+  howCta: string
+  finalTitle: string
+  finalText: string
+  finalPoint1: string
+  finalPoint2: string
+  finalPoint3: string
+  finalCta: string
+  mobileStickyCta: string
+}
+
+const pageCopy: Record<Locale, LocalPageCopy> = {
+  nl: {
+    heroEyebrow: 'Audiotours op Ameland',
+    heroTitle: 'Beleef Ameland niet alleen met je ogen, maar ook met gevoel',
+    heroText:
+      'Ontdek bijzondere plekken op het eiland met een audiotour die route, verhaal en sfeer samenbrengt. Zo wordt een wandeling of fietstocht vanzelf iets om later nog aan terug te denken.',
+    heroPrimaryCta: 'Start direct',
+    heroSecondaryCta: 'Bekijk tours',
+    heroBenefitRouteAudio: 'Route en audio in één ervaring',
+    heroBenefitStartNow: 'Meteen te starten op je telefoon',
+    heroBenefitEasyClear: 'Eenvoudig, rustig en duidelijk',
+    heroChipListen: 'Luisteren onderweg',
+    heroChipLocation: 'Op locatie beleven',
+    heroCardTitle: 'Een ontspannen manier om meer uit je dag op Ameland te halen',
+    heroCardText:
+      'Je hoeft niets uit te zoeken of op te zoeken: je volgt de route, luistert op het juiste moment en beleeft het eiland op een rijkere manier.',
+    heroCardCta: 'Kies jouw tour',
+    toursTitle: 'Kies de tour die bij jouw dag past',
+    toursText:
+      'Kies een route die aansluit bij jouw moment op het eiland. Zo voelt het direct overzichtelijk en aantrekkelijk om te starten.',
+    toursOrderCta: 'Nu bestellen',
+    upcomingBadge: 'Binnenkort',
+    upcomingButton: 'Binnenkort',
+    howTitle: 'Snel geregeld. Makkelijk te gebruiken.',
+    howText:
+      'Je kiest een tour, opent de app en kunt vrijwel direct op pad. Dat maakt de stap om nu te beginnen klein en aantrekkelijk.',
+    howCta: 'Start jouw audiotour',
+    finalTitle: 'Klaar om meer uit je tijd op Ameland te halen?',
+    finalText:
+      'Kies je tour en ervaar hoe prettig het is als route, verhaal en beleving vanzelf samenkomen.',
+    finalPoint1: 'Direct duidelijk wat je krijgt',
+    finalPoint2: 'Rustige, moderne eilandbeleving',
+    finalPoint3: 'Makkelijk om nu mee te starten',
+    finalCta: 'Bestel nu',
+    mobileStickyCta: 'Start direct',
+  },
+  en: {
+    heroEyebrow: 'Audio tours on Ameland',
+    heroTitle: 'Experience Ameland not only with your eyes, but with feeling too',
+    heroText:
+      'Discover special places on the island with an audio tour that brings route, story and atmosphere together. That way, a walk or bike ride becomes something you will remember afterwards.',
+    heroPrimaryCta: 'Start now',
+    heroSecondaryCta: 'View tours',
+    heroBenefitRouteAudio: 'Route and audio in one experience',
+    heroBenefitStartNow: 'Ready to start on your phone',
+    heroBenefitEasyClear: 'Simple, calm and clear',
+    heroChipListen: 'Listen on the go',
+    heroChipLocation: 'Experience it on location',
+    heroCardTitle: 'A relaxed way to get more out of your day on Ameland',
+    heroCardText:
+      'You do not need to figure anything out first: just follow the route, listen at the right moment and experience the island in a richer way.',
+    heroCardCta: 'Choose your tour',
+    toursTitle: 'Choose the tour that fits your day',
+    toursText:
+      'Pick a route that matches your moment on the island. That makes it feel easy, clear and inviting to start right away.',
+    toursOrderCta: 'Order now',
+    upcomingBadge: 'Coming soon',
+    upcomingButton: 'Coming soon',
+    howTitle: 'Quick to arrange. Easy to use.',
+    howText:
+      'You choose a tour, open the app and can start almost right away. That makes the step to begin now feel small and appealing.',
+    howCta: 'Start your audio tour',
+    finalTitle: 'Ready to get more out of your time on Ameland?',
+    finalText:
+      'Choose your tour and discover how pleasant it is when route, story and atmosphere come together naturally.',
+    finalPoint1: 'You know exactly what to expect',
+    finalPoint2: 'Calm, modern island experience',
+    finalPoint3: 'Easy to start right away',
+    finalCta: 'Order now',
+    mobileStickyCta: 'Start now',
+  },
+  de: {
+    heroEyebrow: 'Audiotouren auf Ameland',
+    heroTitle: 'Erlebe Ameland nicht nur mit den Augen, sondern auch mit Gefühl',
+    heroText:
+      'Entdecke besondere Orte auf der Insel mit einer Audiotour, die Route, Geschichte und Atmosphäre zusammenbringt. So wird ein Spaziergang oder eine Fahrradtour zu etwas, woran du dich später gern erinnerst.',
+    heroPrimaryCta: 'Direkt starten',
+    heroSecondaryCta: 'Touren ansehen',
+    heroBenefitRouteAudio: 'Route und Audio in einem Erlebnis',
+    heroBenefitStartNow: 'Sofort auf dem Handy startklar',
+    heroBenefitEasyClear: 'Einfach, ruhig und klar',
+    heroChipListen: 'Unterwegs zuhören',
+    heroChipLocation: 'Vor Ort erleben',
+    heroCardTitle: 'Eine entspannte Art, mehr aus deinem Tag auf Ameland zu machen',
+    heroCardText:
+      'Du musst nichts vorbereiten oder nachlesen: Du folgst der Route, hörst im richtigen Moment zu und erlebst die Insel intensiver.',
+    heroCardCta: 'Wähle deine Tour',
+    toursTitle: 'Wähle die Tour, die zu deinem Tag passt',
+    toursText:
+      'Wähle eine Route, die zu deinem Moment auf der Insel passt. So fühlt es sich direkt übersichtlich und einladend an, zu starten.',
+    toursOrderCta: 'Jetzt buchen',
+    upcomingBadge: 'Bald verfügbar',
+    upcomingButton: 'Bald verfügbar',
+    howTitle: 'Schnell geregelt. Einfach zu nutzen.',
+    howText:
+      'Du wählst eine Tour, öffnest die App und kannst fast sofort losgehen. Dadurch fühlt sich der Schritt, jetzt zu starten, klein und attraktiv an.',
+    howCta: 'Starte deine Audiotour',
+    finalTitle: 'Bereit, mehr aus deiner Zeit auf Ameland zu machen?',
+    finalText:
+      'Wähle deine Tour und erlebe, wie angenehm es ist, wenn Route, Geschichte und Atmosphäre ganz natürlich zusammenkommen.',
+    finalPoint1: 'Sofort klar, was dich erwartet',
+    finalPoint2: 'Ruhiges, modernes Inselerlebnis',
+    finalPoint3: 'Einfach sofort zu starten',
+    finalCta: 'Jetzt buchen',
+    mobileStickyCta: 'Direkt starten',
+  },
+}
+
 export async function generateStaticParams() {
   return locales.map((lang) => ({ lang }))
 }
@@ -54,6 +193,7 @@ export default async function LocalizedHomepage({ params }: Props) {
 
   const locale = lang as Locale
   const t = getTranslation(locale)
+  const copy = pageCopy[locale]
   const availableTours = t.tours.filter((tour) => tour.available)
   const upcomingTours = t.tours.filter((tour) => !tour.available)
   const orderedTours = [...availableTours, ...upcomingTours]
@@ -83,7 +223,7 @@ export default async function LocalizedHomepage({ params }: Props) {
               <a href="#tours" className="transition hover:opacity-70">
                 {t.nav.tours}
               </a>
-              <a href="#hoe-werkt-het" className="transition hover:opacity-70">
+              <a href={`#${t.home.howItWorksId}`} className="transition hover:opacity-70">
                 {t.nav.howItWorks}
               </a>
               <Link href={`/${locale}/faq`} className="transition hover:opacity-70">
@@ -109,17 +249,15 @@ export default async function LocalizedHomepage({ params }: Props) {
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.98fr] lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#5a8d93]">
-                Audiotours op Ameland
+                {copy.heroEyebrow}
               </p>
 
               <h1 className="mt-5 max-w-4xl font-serif text-5xl leading-[0.92] tracking-tight text-[#0d3d48] sm:text-6xl md:text-[5.8rem]">
-                Beleef Ameland niet alleen met je ogen, maar ook met gevoel
+                {copy.heroTitle}
               </h1>
 
               <p className="mt-6 max-w-2xl text-xl leading-9 text-[#4c6f75]">
-                Ontdek bijzondere plekken op het eiland met een audiotour die route, verhaal en sfeer
-                samenbrengt. Zo wordt een wandeling of fietstocht vanzelf iets om later nog aan terug
-                te denken.
+                {copy.heroText}
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
@@ -127,7 +265,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                   href={getAppUrl(locale)}
                   className="inline-flex items-center gap-2 rounded-2xl bg-[#0f4b58] px-7 py-4 text-base font-semibold text-white shadow-[0_16px_38px_rgba(15,75,88,0.20)] transition hover:opacity-90"
                 >
-                  Start direct
+                  {copy.heroPrimaryCta}
                   <ArrowRight className="h-4 w-4" />
                 </a>
 
@@ -135,22 +273,22 @@ export default async function LocalizedHomepage({ params }: Props) {
                   href="#tours"
                   className="inline-flex rounded-2xl border border-[#cfe3e5] bg-white px-7 py-4 text-base font-semibold text-[#0f4b58] transition hover:bg-[#f8ffff]"
                 >
-                  Bekijk tours
+                  {copy.heroSecondaryCta}
                 </a>
               </div>
 
               <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-[#55757a]">
                 <div className="inline-flex items-center gap-2">
                   <Route className="h-4 w-4 text-[#12879a]" />
-                  Route en audio in één ervaring
+                  {copy.heroBenefitRouteAudio}
                 </div>
                 <div className="inline-flex items-center gap-2">
                   <Clock3 className="h-4 w-4 text-[#12879a]" />
-                  Meteen te starten op je telefoon
+                  {copy.heroBenefitStartNow}
                 </div>
                 <div className="inline-flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4 text-[#ef7f63]" />
-                  Eenvoudig, rustig en duidelijk
+                  {copy.heroBenefitEasyClear}
                 </div>
               </div>
             </div>
@@ -170,28 +308,27 @@ export default async function LocalizedHomepage({ params }: Props) {
                       <div className="flex flex-wrap items-center gap-3 text-white/95">
                         <div className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-1.5 text-sm font-medium">
                           <Clock3 className="h-4 w-4" />
-                          Luisteren onderweg
+                          {copy.heroChipListen}
                         </div>
                         <div className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-1.5 text-sm font-medium">
                           <MapPin className="h-4 w-4" />
-                          Op locatie beleven
+                          {copy.heroChipLocation}
                         </div>
                       </div>
 
                       <h2 className="mt-4 max-w-xl text-3xl font-semibold leading-tight text-white md:text-[2.6rem]">
-                        Een ontspannen manier om meer uit je dag op Ameland te halen
+                        {copy.heroCardTitle}
                       </h2>
 
                       <p className="mt-3 max-w-xl text-base leading-7 text-[#e2f1f2]">
-                        Je hoeft niets uit te zoeken of op te zoeken: je volgt de route, luistert op
-                        het juiste moment en beleeft het eiland op een rijkere manier.
+                        {copy.heroCardText}
                       </p>
 
                       <a
                         href={getAppUrl(locale)}
                         className="mt-6 inline-flex rounded-2xl bg-white px-5 py-3 font-semibold text-[#0f4b58] transition hover:bg-[#f3ffff]"
                       >
-                        Kies jouw tour
+                        {copy.heroCardCta}
                       </a>
                     </div>
                   </div>
@@ -211,19 +348,16 @@ export default async function LocalizedHomepage({ params }: Props) {
                       {t.home.toursEyebrow}
                     </p>
                     <h2 className="mt-3 font-serif text-4xl leading-tight tracking-tight text-[#0d3d48] md:text-5xl">
-                      Kies de tour die bij jouw dag past
+                      {copy.toursTitle}
                     </h2>
-                    <p className="mt-4 text-lg leading-8 text-[#5b757b]">
-                      Kies een route die aansluit bij jouw moment op het eiland. Zo voelt het direct
-                      overzichtelijk en aantrekkelijk om te starten.
-                    </p>
+                    <p className="mt-4 text-lg leading-8 text-[#5b757b]">{copy.toursText}</p>
                   </div>
 
                   <a
                     href={getAppUrl(locale)}
                     className="inline-flex rounded-2xl bg-[#0f4b58] px-5 py-3 font-semibold text-white transition hover:opacity-90"
                   >
-                    Nu bestellen
+                    {copy.toursOrderCta}
                   </a>
                 </div>
               </div>
@@ -257,7 +391,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                       ) : (
                         <div className="absolute left-4 top-4">
                           <span className="rounded-full bg-[#aeb8bb]/95 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white">
-                            Binnenkort
+                            {copy.upcomingBadge}
                           </span>
                         </div>
                       )}
@@ -311,7 +445,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                             : 'pointer-events-none cursor-default border border-[#dce8e9] bg-[#f8fbfb] text-[#8a9a9e]'
                         }`}
                       >
-                        {tour.available ? tour.cta : 'Binnenkort'}
+                        {tour.available ? tour.cta : copy.upcomingButton}
                       </a>
                     </div>
                   </div>
@@ -321,7 +455,7 @@ export default async function LocalizedHomepage({ params }: Props) {
           </div>
         </section>
 
-        <section id="hoe-werkt-het" className="px-6 pb-12 pt-4">
+        <section id={t.home.howItWorksId} className="px-6 pb-12 pt-4">
           <div className="mx-auto max-w-7xl">
             <div className="overflow-hidden rounded-[2.4rem] border border-[#dbecef] bg-white shadow-[0_24px_70px_rgba(15,75,88,0.08)]">
               <div className="grid gap-0 lg:grid-cols-[0.92fr_1.08fr]">
@@ -330,18 +464,17 @@ export default async function LocalizedHomepage({ params }: Props) {
                     {t.nav.howItWorks}
                   </p>
                   <h2 className="mt-4 font-serif text-4xl leading-tight tracking-tight text-[#0d3d48] md:text-5xl">
-                    Snel geregeld. Makkelijk te gebruiken.
+                    {copy.howTitle}
                   </h2>
                   <p className="mt-5 max-w-xl text-lg leading-8 text-[#5b757b]">
-                    Je kiest een tour, opent de app en kunt vrijwel direct op pad. Dat maakt de stap
-                    om nu te beginnen klein en aantrekkelijk.
+                    {copy.howText}
                   </p>
 
                   <a
                     href={getAppUrl(locale)}
                     className="mt-8 inline-flex rounded-2xl bg-[#ef7f63] px-6 py-3.5 font-semibold text-white shadow-[0_14px_35px_rgba(239,127,99,0.18)] transition hover:opacity-90"
                   >
-                    Start jouw audiotour
+                    {copy.howCta}
                   </a>
                 </div>
 
@@ -378,11 +511,10 @@ export default async function LocalizedHomepage({ params }: Props) {
               <div className="relative z-10 grid gap-8 px-8 py-10 md:grid-cols-[1.1fr_0.9fr] md:items-center md:px-12 md:py-14">
                 <div>
                   <h2 className="max-w-2xl font-serif text-4xl leading-tight tracking-tight text-white md:text-5xl">
-                    Klaar om meer uit je tijd op Ameland te halen?
+                    {copy.finalTitle}
                   </h2>
                   <p className="mt-5 max-w-2xl text-lg leading-8 text-[#d3ebea]">
-                    Kies je tour en ervaar hoe prettig het is als route, verhaal en beleving vanzelf
-                    samenkomen.
+                    {copy.finalText}
                   </p>
                 </div>
 
@@ -390,15 +522,15 @@ export default async function LocalizedHomepage({ params }: Props) {
                   <div className="space-y-4 text-[#eef9f9]">
                     <div className="flex items-start gap-3">
                       <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#ffd0c3]" />
-                      <span>Direct duidelijk wat je krijgt</span>
+                      <span>{copy.finalPoint1}</span>
                     </div>
                     <div className="flex items-start gap-3">
                       <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#ffd0c3]" />
-                      <span>Rustige, moderne eilandbeleving</span>
+                      <span>{copy.finalPoint2}</span>
                     </div>
                     <div className="flex items-start gap-3">
                       <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#ffd0c3]" />
-                      <span>Makkelijk om nu mee te starten</span>
+                      <span>{copy.finalPoint3}</span>
                     </div>
                   </div>
 
@@ -406,7 +538,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                     href={getAppUrl(locale)}
                     className="mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-white px-6 py-4 font-semibold text-[#0f4b58] transition hover:bg-[#f3ffff]"
                   >
-                    Bestel nu
+                    {copy.finalCta}
                   </a>
                 </div>
               </div>
@@ -480,7 +612,7 @@ export default async function LocalizedHomepage({ params }: Props) {
           href={getAppUrl(locale)}
           className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#0f4b58] px-5 py-4 text-base font-semibold text-white shadow-[0_10px_24px_rgba(15,75,88,0.18)] transition hover:opacity-90"
         >
-          Start direct
+          {copy.mobileStickyCta}
           <ArrowRight className="h-4 w-4" />
         </a>
       </div>
