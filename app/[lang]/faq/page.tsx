@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { getTranslation, isValidLocale, locales } from '@/lib/i18n'
+import { getTranslation, isValidLocale, locales, type Locale } from '@/lib/i18n'
+import { getFaqItems } from '@/lib/data/site-content'
 import { notFound } from 'next/navigation'
 
 type Props = {
@@ -39,7 +40,10 @@ export default async function FaqPage({ params }: Props) {
     notFound()
   }
 
-  const t = getTranslation(lang)
+  const locale = lang as Locale
+  const t = getTranslation(locale)
+  const faqItems = await getFaqItems(locale)
+  const items = faqItems.length > 0 ? faqItems : t.faq.items
 
   return (
     <main className="min-h-screen bg-transparent px-6 py-16 text-[#163c43]">
@@ -72,7 +76,7 @@ export default async function FaqPage({ params }: Props) {
         </div>
 
         <div className="mt-10 space-y-4">
-          {t.faq.items.map((faq) => (
+          {items.map((faq) => (
             <div
               key={faq.question}
               className="rounded-[1.5rem] border border-[#d7ecea] bg-white/94 p-6 shadow-[0_12px_35px_rgba(18,75,84,0.08)]"

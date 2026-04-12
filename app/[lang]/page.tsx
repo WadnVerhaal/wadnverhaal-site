@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { createClient } from '@supabase/supabase-js'
 import {
   ArrowRight,
   Check,
@@ -12,7 +13,16 @@ import {
   ShieldCheck,
 } from 'lucide-react'
 import LanguageSwitcher from '@/components/language-switcher'
-import { getTranslation, isValidLocale, locales, type Locale } from '@/lib/i18n'
+import {
+  getTranslation,
+  isValidLocale,
+  locales,
+  type Locale,
+} from '@/lib/i18n'
+import {
+  getContactSettings,
+  getSiteBlock,
+} from '@/lib/data/site-content'
 import { notFound } from 'next/navigation'
 
 const getAppUrl = (lang: string) => `https://app.wadnverhaal.nl?lang=${lang}`
@@ -52,6 +62,19 @@ type LocalPageCopy = {
   finalPoint3: string
   finalCta: string
   mobileStickyCta: string
+}
+
+type MarketingTour = {
+  slug: string
+  image_url: string
+  featured: boolean
+  available: boolean
+  sort_order: number
+  title: string
+  badge: string
+  duration_label: string
+  cta: string
+  points: string[]
 }
 
 const pageCopy: Record<Locale, LocalPageCopy> = {
@@ -162,6 +185,69 @@ const pageCopy: Record<Locale, LocalPageCopy> = {
   },
 }
 
+function getSupabaseAdminClient() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+
+  if (!url || !serviceRoleKey) {
+    throw new Error('Missing Supabase server environment variables')
+  }
+
+  return createClient(url, serviceRoleKey, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+    },
+  })
+}
+
+async function getMarketingTours(locale: Locale): Promise<MarketingTour[]> {
+  const supabase = getSupabaseAdminClient()
+
+  const { data, error } = await supabase
+    .from('tour_marketing')
+    .select(`
+      slug,
+      image_url,
+      featured,
+      available,
+      sort_order,
+      tour_marketing_translations!inner (
+        title,
+        badge,
+        duration_label,
+        cta,
+        points,
+        locale
+      )
+    `)
+    .eq('tour_marketing_translations.locale', locale)
+    .order('sort_order', { ascending: true })
+
+  if (error) {
+    throw error
+  }
+
+  return (data ?? []).map((row: any) => {
+    const translation = Array.isArray(row.tour_marketing_translations)
+      ? row.tour_marketing_translations[0]
+      : row.tour_marketing_translations
+
+    return {
+      slug: row.slug,
+      image_url: row.image_url,
+      featured: row.featured,
+      available: row.available,
+      sort_order: row.sort_order,
+      title: translation.title,
+      badge: translation.badge,
+      duration_label: translation.duration_label,
+      cta: translation.cta,
+      points: Array.isArray(translation.points) ? translation.points : [],
+    }
+  })
+}
+
 export async function generateStaticParams() {
   return locales.map((lang) => ({ lang }))
 }
@@ -194,9 +280,26 @@ export default async function LocalizedHomepage({ params }: Props) {
   const locale = lang as Locale
   const t = getTranslation(locale)
   const copy = pageCopy[locale]
-  const availableTours = t.tours.filter((tour) => tour.available)
-  const upcomingTours = t.tours.filter((tour) => !tour.available)
+
+  const marketingTours = await getMarketingTours(locale)
+  const heroBlock = await getSiteBlock('homepage_hero', locale)
+  const contactSettings = await getContactSettings()
+
+  const availableTours = marketingTours.filter((tour) => tour.available)
+  const upcomingTours = marketingTours.filter((tour) => !tour.available)
   const orderedTours = [...availableTours, ...upcomingTours]
+
+  const heroBenefits = heroBlock?.items?.length === 3
+    ? heroBlock.items
+    : [
+        copy.heroBenefitRouteAudio,
+        copy.heroBenefitStartNow,
+        copy.heroBenefitEasyClear,
+      ]
+
+  const footerEmail = contactSettings?.email || 'info@wadnverhaal.nl'
+  const footerPhone = contactSettings?.phone || '06 13 67 83 10'
+  const footerLocation = contactSettings?.location || t.footer.location
 
   return (
     <div className="min-h-screen bg-[#f4fbfb] text-[#143a43]">
@@ -249,46 +352,46 @@ export default async function LocalizedHomepage({ params }: Props) {
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.98fr] lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#5a8d93]">
-                {copy.heroEyebrow}
+                {heroBlock?.eyebrow || copy.heroEyebrow}
               </p>
 
               <h1 className="mt-5 max-w-4xl font-serif text-5xl leading-[0.92] tracking-tight text-[#0d3d48] sm:text-6xl md:text-[5.8rem]">
-                {copy.heroTitle}
+                {heroBlock?.title || copy.heroTitle}
               </h1>
 
               <p className="mt-6 max-w-2xl text-xl leading-9 text-[#4c6f75]">
-                {copy.heroText}
+                {heroBlock?.body || copy.heroText}
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
-                  href={getAppUrl(locale)}
+                  href={heroBlock?.primary_cta_url || getAppUrl(locale)}
                   className="inline-flex items-center gap-2 rounded-2xl bg-[#0f4b58] px-7 py-4 text-base font-semibold text-white shadow-[0_16px_38px_rgba(15,75,88,0.20)] transition hover:opacity-90"
                 >
-                  {copy.heroPrimaryCta}
+                  {heroBlock?.primary_cta_label || copy.heroPrimaryCta}
                   <ArrowRight className="h-4 w-4" />
                 </a>
 
                 <a
-                  href="#tours"
+                  href={heroBlock?.secondary_cta_url || '#tours'}
                   className="inline-flex rounded-2xl border border-[#cfe3e5] bg-white px-7 py-4 text-base font-semibold text-[#0f4b58] transition hover:bg-[#f8ffff]"
                 >
-                  {copy.heroSecondaryCta}
+                  {heroBlock?.secondary_cta_label || copy.heroSecondaryCta}
                 </a>
               </div>
 
               <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-[#55757a]">
                 <div className="inline-flex items-center gap-2">
                   <Route className="h-4 w-4 text-[#12879a]" />
-                  {copy.heroBenefitRouteAudio}
+                  {heroBenefits[0]}
                 </div>
                 <div className="inline-flex items-center gap-2">
                   <Clock3 className="h-4 w-4 text-[#12879a]" />
-                  {copy.heroBenefitStartNow}
+                  {heroBenefits[1]}
                 </div>
                 <div className="inline-flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4 text-[#ef7f63]" />
-                  {copy.heroBenefitEasyClear}
+                  {heroBenefits[2]}
                 </div>
               </div>
             </div>
@@ -298,7 +401,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                 <div className="relative h-[580px]">
                   <img
                     src="/images/hero-ameland.jpg"
-                    alt={t.home.heroTitle}
+                    alt={heroBlock?.title || t.home.heroTitle}
                     className="absolute inset-0 h-full w-full object-cover"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,48,56,0.02)_0%,rgba(8,48,56,0.10)_42%,rgba(8,48,56,0.58)_100%)]" />
@@ -365,14 +468,14 @@ export default async function LocalizedHomepage({ params }: Props) {
               <div className="divide-y divide-[#e7f1f2]">
                 {orderedTours.map((tour) => (
                   <div
-                    key={tour.title}
+                    key={tour.slug}
                     className={`grid gap-6 px-6 py-6 md:px-8 lg:grid-cols-[260px_1fr_auto] lg:items-center ${
                       tour.available ? '' : 'bg-[#fbfdfd]'
                     }`}
                   >
                     <div className="relative h-52 overflow-hidden rounded-[1.5rem]">
                       <img
-                        src={tour.image}
+                        src={tour.image_url}
                         alt={tour.title}
                         className="h-full w-full object-cover"
                       />
@@ -413,7 +516,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                               : 'bg-[#f2f6f6] text-[#87979b]'
                           }`}
                         >
-                          {tour.duration}
+                          {tour.duration_label}
                         </span>
                       </div>
 
@@ -568,15 +671,15 @@ export default async function LocalizedHomepage({ params }: Props) {
             <div className="mt-6 space-y-3 text-[#d7ecec]">
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4" />
-                <span>info@wadnverhaal.nl</span>
+                <span>{footerEmail}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="h-4 w-4" />
-                <span>06 13 67 83 10</span>
+                <span>{footerPhone}</span>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="h-4 w-4" />
-                <span>{t.footer.location}</span>
+                <span>{footerLocation}</span>
               </div>
             </div>
           </div>
@@ -609,10 +712,10 @@ export default async function LocalizedHomepage({ params }: Props) {
 
       <div className="fixed inset-x-0 bottom-0 z-50 border-t border-[#cfe3e5] bg-white/96 p-3 shadow-[0_-10px_30px_rgba(15,75,88,0.10)] backdrop-blur md:hidden">
         <a
-          href={getAppUrl(locale)}
+          href={heroBlock?.primary_cta_url || getAppUrl(locale)}
           className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#0f4b58] px-5 py-4 text-base font-semibold text-white shadow-[0_10px_24px_rgba(15,75,88,0.18)] transition hover:opacity-90"
         >
-          {copy.mobileStickyCta}
+          {heroBlock?.primary_cta_label || copy.mobileStickyCta}
           <ArrowRight className="h-4 w-4" />
         </a>
       </div>
