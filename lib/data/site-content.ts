@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import type { Locale } from '@/lib/i18n'
+import type { Locale } from '../i18n'
 
 type SiteBlockTranslationRow = {
   eyebrow: string | null
