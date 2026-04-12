@@ -5,7 +5,7 @@ import LanguageSwitcher from '@/components/language-switcher'
 import { getTranslation, isValidLocale, locales, type Locale } from '@/lib/i18n'
 import { notFound } from 'next/navigation'
 
-const APP_URL = 'https://app.wadnverhaal.nl'
+const getAppUrl = (lang: string) => `https://app.wadnverhaal.nl?lang=${lang}`
 
 type Props = {
   params: Promise<{
@@ -68,7 +68,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                 {t.nav.faq}
               </Link>
               <a
-                href={APP_URL}
+                href={getAppUrl(locale)}
                 className="rounded-full bg-[#26443e] px-5 py-3 font-medium text-white transition hover:opacity-90"
               >
                 {t.nav.orderNow}
@@ -116,7 +116,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                         {t.home.viewTours}
                       </a>
                       <a
-                        href={APP_URL}
+                        href={getAppUrl(locale)}
                         className="rounded-2xl border border-[#cfc5b6] bg-[#f7f3ea] px-7 py-4 text-base font-medium text-[#26443e] transition hover:bg-white"
                       >
                         {t.home.orderNow}
@@ -267,7 +267,7 @@ export default async function LocalizedHomepage({ params }: Props) {
 
                 <div className="flex md:justify-end">
                   <a
-                    href={APP_URL}
+                    href={getAppUrl(locale)}
                     className="inline-flex items-center justify-center rounded-2xl bg-[#f7f3ea] px-8 py-4 text-base font-medium text-[#26443e] transition hover:bg-white"
                   >
                     {t.home.goToApp}
@@ -314,7 +314,7 @@ export default async function LocalizedHomepage({ params }: Props) {
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
               <a
-                href={APP_URL}
+                href={getAppUrl(locale)}
                 className="inline-flex rounded-2xl bg-[#26443e] px-5 py-3 font-medium text-white transition hover:opacity-90"
               >
                 {t.footer.openApp}
