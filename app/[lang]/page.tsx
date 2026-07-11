@@ -26,6 +26,13 @@ import {
 import { notFound } from 'next/navigation'
 
 const getAppUrl = (lang: string) => `https://app.wadnverhaal.nl?lang=${lang}`
+const staticAssetOrigin =
+  process.env.NEXT_PUBLIC_STATIC_ASSET_ORIGIN ||
+  'https://ameland-audiotours-website-r1gbm5k5z-wadnverhaals-projects.vercel.app'
+
+function resolveTourImage(value: string) {
+  return value.startsWith('/images/') ? `${staticAssetOrigin}${value}` : value
+}
 
 type Props = {
   params: Promise<{
@@ -258,7 +265,7 @@ async function getMarketingTours(locale: Locale): Promise<MarketingTour[]> {
 
     return {
       slug: row.slug,
-      image_url: row.image_url,
+      image_url: resolveTourImage(row.image_url),
       featured: row.featured,
       available: row.available,
       sort_order: row.sort_order,
