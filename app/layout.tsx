@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { cookies } from 'next/headers'
 import { defaultLocale, isValidLocale } from '@/lib/i18n'
 import './globals.css'
+import { DeJutterChat } from '@/components/support/de-jutter-chat'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -33,7 +34,16 @@ export default async function RootLayout({
       lang={lang}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <DeJutterChat
+          apiEndpoint={
+            process.env.NEXT_PUBLIC_SUPPORT_API_URL ||
+            'https://app.amelandaudiotours.nl/api/support/chat'
+          }
+          privacyUrl="https://app.amelandaudiotours.nl/privacy"
+        />
+      </body>
     </html>
   )
 }
