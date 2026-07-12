@@ -88,12 +88,12 @@ type Translation = {
 export const translations: Record<Locale, Translation> = {
   nl: {
     meta: {
-      title: "Wad'n Verhaal | Audiotours op Ameland",
+      title: 'Ameland Audiotours | Audiotours op Ameland',
       description:
         "Ontdek Ameland met rustige, sfeervolle audiotours voor wandelen en fietsen.",
     },
     site: {
-      name: "Wad'n Verhaal",
+      name: 'Ameland Audiotours',
       tagline: 'Audiotours op Ameland',
     },
     nav: {
@@ -140,7 +140,7 @@ export const translations: Record<Locale, Translation> = {
       backToHome: '← Terug naar home',
       eyebrow: 'FAQ',
       title: 'Veelgestelde vragen',
-      intro: "Alles wat je wilt weten over de audiotours van Wad'n Verhaal.",
+      intro: 'Alles wat je wilt weten over de audiotours van Ameland Audiotours.',
       items: [
         {
           question: 'Moet ik een app downloaden?',
@@ -232,12 +232,12 @@ export const translations: Record<Locale, Translation> = {
 
   en: {
     meta: {
-      title: "Wad'n Verhaal | Audio tours on Ameland",
+      title: 'Ameland Audiotours | Audio tours on Ameland',
       description:
         'Discover Ameland with calm, atmospheric audio tours for walking and cycling.',
     },
     site: {
-      name: "Wad'n Verhaal",
+      name: 'Ameland Audiotours',
       tagline: 'Audio tours on Ameland',
     },
     nav: {
@@ -284,7 +284,7 @@ export const translations: Record<Locale, Translation> = {
       backToHome: '← Back to home',
       eyebrow: 'FAQ',
       title: 'Frequently asked questions',
-      intro: "Everything you want to know about Wad'n Verhaal audio tours.",
+      intro: 'Everything you want to know about Ameland Audiotours.',
       items: [
         {
           question: 'Do I need to download an app?',
@@ -376,12 +376,12 @@ export const translations: Record<Locale, Translation> = {
 
   de: {
     meta: {
-      title: "Wad'n Verhaal | Audiotouren auf Ameland",
+      title: 'Ameland Audiotours | Audiotouren auf Ameland',
       description:
         'Entdecke Ameland mit ruhigen, stimmungsvollen Audiotouren zum Wandern und Radfahren.',
     },
     site: {
-      name: "Wad'n Verhaal",
+      name: 'Ameland Audiotours',
       tagline: 'Audiotouren auf Ameland',
     },
     nav: {
@@ -428,7 +428,7 @@ export const translations: Record<Locale, Translation> = {
       backToHome: '← Zurück zur Startseite',
       eyebrow: 'FAQ',
       title: 'Häufig gestellte Fragen',
-      intro: "Alles, was du über die Audiotouren von Wad'n Verhaal wissen möchtest.",
+      intro: 'Alles, was du über die Audiotouren von Ameland Audiotours wissen möchtest.',
       items: [
         {
           question: 'Muss ich eine App herunterladen?',
