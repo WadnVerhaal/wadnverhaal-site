@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { cookies } from 'next/headers'
 import { defaultLocale, isValidLocale } from '@/lib/i18n'
 import './globals.css'
-import { DeJutterChat } from '@/components/support/de-jutter-chat'
+import { SkipperHiddeChat } from '@/components/support/skipper-hidde-chat'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Wad'n Verhaal",
-  description: 'Audiotours op Ameland',
+  title: 'Ameland Audiotours | Verhalen die met je meelopen',
+  description: 'Ontdek Ameland met sfeervolle wandel- en fietstours vol echte eilandverhalen.',
 }
 
 export default async function RootLayout({
@@ -36,12 +36,13 @@ export default async function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         {children}
-        <DeJutterChat
+        <SkipperHiddeChat
           apiEndpoint={
             process.env.NEXT_PUBLIC_SUPPORT_API_URL ||
             'https://app.amelandaudiotours.nl/api/support/chat'
           }
           privacyUrl="https://app.amelandaudiotours.nl/privacy"
+          avoidMobileBottomBar
         />
       </body>
     </html>
