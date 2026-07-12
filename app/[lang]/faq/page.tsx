@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!isValidLocale(lang)) {
     return {
-      title: "FAQ | Wad'n Verhaal",
+      title: 'FAQ | Ameland Audiotours',
       description: 'Veelgestelde vragen',
     }
   }
@@ -54,8 +54,8 @@ export default async function FaqPage({ params }: Props) {
         >
           <div className="relative h-10 w-10 overflow-hidden rounded-full border border-[#cde6e4] bg-white">
             <Image
-              src="/images/logo-round.png"
-              alt="Wad'n Verhaal logo"
+              src="/images/ameland-audiotours-logo.webp"
+              alt="Ameland Audiotours logo"
               fill
               className="object-cover"
               sizes="40px"

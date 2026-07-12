@@ -26,18 +26,21 @@ import {
 import { notFound } from 'next/navigation'
 
 const getAppUrl = (lang: string) => `https://app.amelandaudiotours.nl/tours?lang=${lang}`
-const staticAssetOrigin =
-  process.env.NEXT_PUBLIC_STATIC_ASSET_ORIGIN ||
-  'https://ameland-audiotours-website-r1gbm5k5z-wadnverhaals-projects.vercel.app'
 
 function resolveTourImage(value: unknown) {
   if (typeof value !== 'string' || !value.trim()) {
-    return `${staticAssetOrigin}/images/hero-ameland.jpg`
+    return '/images/hero-ameland.jpg'
   }
-  const assetPath = value
-    .trim()
-    .replace(/^https?:\/\/(?:www\.)?amelandaudiotours\.nl(?=\/images\/)/, '')
-  return assetPath.startsWith('/images/') ? `${staticAssetOrigin}${assetPath}` : value
+  const filename = value.trim().split(/[?#]/)[0].split('/').pop()
+  const localImages = new Set([
+    'hero-ameland.jpg',
+    'tour-dorp.jpg',
+    'tour-duinen.jpg',
+    'tour-fietsen.jpg',
+  ])
+  return filename && localImages.has(filename)
+    ? `/images/${filename}`
+    : '/images/hero-ameland.jpg'
 }
 
 type Props = {
@@ -310,7 +313,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!isValidLocale(lang)) {
     return {
-      title: "Wad'n Verhaal",
+      title: 'Ameland Audiotours',
       description: 'Audiotours op Ameland',
     }
   }
@@ -351,7 +354,7 @@ export default async function LocalizedHomepage({ params }: Props) {
           copy.heroBenefitEasyClear,
         ]
 
-  const footerEmail = contactSettings?.email || 'info@wadnverhaal.nl'
+  const footerEmail = contactSettings?.email || 'info@amelandaudiotours.nl'
   const footerPhone = contactSettings?.phone || '06 13 67 83 10'
   const footerLocation = contactSettings?.location || t.footer.location
 
@@ -362,8 +365,8 @@ export default async function LocalizedHomepage({ params }: Props) {
           <Link href={`/${locale}`} className="flex items-center gap-3">
             <div className="relative h-12 w-12 overflow-hidden rounded-full border border-[#d9e9e9] bg-white shadow-sm">
               <Image
-                src="/images/logo-round.png"
-                alt="Wad'n Verhaal logo"
+                src="/images/ameland-audiotours-logo.webp"
+                alt="Ameland Audiotours logo"
                 fill
                 className="object-cover"
                 sizes="48px"
@@ -748,8 +751,8 @@ export default async function LocalizedHomepage({ params }: Props) {
             <div className="flex items-center gap-3">
               <div className="relative h-12 w-12 overflow-hidden rounded-full border border-[#255964] bg-white shadow-sm">
                 <Image
-                  src="/images/logo-round.png"
-                  alt="Wad'n Verhaal logo"
+                  src="/images/ameland-audiotours-logo.webp"
+                  alt="Ameland Audiotours logo"
                   fill
                   className="object-cover"
                   sizes="48px"
