@@ -1,5 +1,16 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
-const nextConfig: NextConfig = {}
+const assetHost = 'https://ameland-audiotours-website-jmndstc7u-wadnverhaals-projects.vercel.app'
 
-export default nextConfig;
+const nextConfig: NextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: '/images/:path*',
+        destination: `${assetHost}/images/:path*`,
+      },
+    ]
+  },
+}
+
+export default nextConfig
