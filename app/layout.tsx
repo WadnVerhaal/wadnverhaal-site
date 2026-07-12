@@ -36,14 +36,15 @@ export default async function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         {children}
-        <SkipperHiddeChat
-          apiEndpoint={
-            process.env.NEXT_PUBLIC_SUPPORT_API_URL ||
-            'https://app.amelandaudiotours.nl/api/support/chat'
-          }
-          privacyUrl="https://app.amelandaudiotours.nl/privacy"
-          avoidMobileBottomBar
-        />
+        <div className="hidden md:block">
+          <SkipperHiddeChat
+            apiEndpoint={
+              process.env.NEXT_PUBLIC_SUPPORT_API_URL ||
+              'https://app.amelandaudiotours.nl/api/support/chat'
+            }
+            privacyUrl="https://app.amelandaudiotours.nl/privacy"
+          />
+        </div>
       </body>
     </html>
   )
