@@ -8,23 +8,6 @@ export function isValidLocale(value: string): value is Locale {
   return locales.includes(value as Locale)
 }
 
-type Tour = {
-  title: string
-  badge: string
-  duration: string
-  image: string
-  points: string[]
-  cta: string
-  featured: boolean
-  available: boolean
-}
-
-type Step = {
-  number: string
-  title: string
-  text: string
-}
-
 type FaqItem = {
   question: string
   answer: string
@@ -37,42 +20,11 @@ type Translation = {
   }
   site: {
     name: string
-    tagline: string
   }
   nav: {
     tours: string
     howItWorks: string
     faq: string
-    orderNow: string
-  }
-  languageSwitcher: {
-    label: string
-    nl: string
-    en: string
-    de: string
-  }
-  home: {
-    heroBadge: string
-    heroTitle: string
-    heroText: string
-    viewTours: string
-    orderNow: string
-    toursEyebrow: string
-    toursTitle: string
-    toursText: string
-    howItWorksId: string
-    ctaTitle: string
-    ctaText: string
-    goToApp: string
-  }
-  footer: {
-    description: string
-    location: string
-    quickStart: string
-    chooseAndOrder: string
-    quickText: string
-    openApp: string
-    viewFaq: string
   }
   faq: {
     backToHome: string
@@ -81,442 +33,128 @@ type Translation = {
     intro: string
     items: FaqItem[]
   }
-  tours: Tour[]
-  steps: Step[]
 }
 
 export const translations: Record<Locale, Translation> = {
   nl: {
     meta: {
-      title: 'Ameland Audiotours | Audiotours op Ameland',
-      description:
-        "Ontdek Ameland met rustige, sfeervolle audiotours voor wandelen en fietsen.",
+      title: 'Ameland Audiotours | Wandel en luister door Ameland',
+      description: 'Zelfgeleide audiowandelingen op Ameland. Volg de route, loop naar iedere stop en luister naar lokale verhalen op de plek waar ze thuishoren.',
     },
-    site: {
-      name: 'Ameland Audiotours',
-      tagline: 'Audiotours op Ameland',
-    },
-    nav: {
-      tours: 'Tours',
-      howItWorks: 'Hoe het werkt',
-      faq: 'FAQ',
-      orderNow: 'Bestel direct',
-    },
-    languageSwitcher: {
-      label: 'Taal',
-      nl: 'NL',
-      en: 'EN',
-      de: 'DE',
-    },
-    home: {
-      heroBadge: 'Audiotours voor wandelen en fietsen op Ameland',
-      heroTitle: 'Audiotours voor wandelen en fietsen op Ameland',
-      heroText:
-        'Geen drukke excursie, maar een rustige manier om het eiland te ontdekken. Kies jouw route en beleef dorp, duin en landschap met verhalen in je oor.',
-      viewTours: 'Bekijk de tours',
-      orderNow: 'Bestel direct',
-      toursEyebrow: 'Tours',
-      toursTitle: 'Kies jouw eilandervaring',
-      toursText:
-        'Overzichtelijk en rustig gepresenteerd. Kies de tour die het beste past bij jouw bezoek aan Ameland.',
-      howItWorksId: 'hoe-werkt-het',
-      ctaTitle: 'Bestel jouw tour direct online',
-      ctaText:
-        'Kies je route, rond je bestelling af en ga direct op pad door dorp, duin en landschap.',
-      goToApp: 'Ga naar de app',
-    },
-    footer: {
-      description:
-        "Audiotours die bezoekers van Ameland op een rustige, toegankelijke en sfeervolle manier meenemen langs verhalen van het eiland.",
-      location: 'Ameland, Nederland',
-      quickStart: 'Direct starten',
-      chooseAndOrder: 'Kies en bestel online',
-      quickText:
-        'Ga direct naar de app en kies de tour die past bij jouw wandeling of fietstocht.',
-      openApp: 'Open de app',
-      viewFaq: 'Bekijk FAQ',
-    },
+    site: { name: 'Ameland Audiotours' },
+    nav: { tours: 'Tour', howItWorks: 'Hoe het werkt', faq: 'FAQ' },
     faq: {
-      backToHome: '← Terug naar home',
-      eyebrow: 'FAQ',
+      backToHome: 'Terug naar de website',
+      eyebrow: 'Praktische informatie',
       title: 'Veelgestelde vragen',
-      intro: 'Alles wat je wilt weten over de audiotours van Ameland Audiotours.',
+      intro: 'Alles wat je vooraf wilt weten over bestellen, starten, lopen en luisteren.',
       items: [
         {
           question: 'Moet ik een app downloaden?',
-          answer: 'Nee, je opent de tour eenvoudig op je telefoon via de browser.',
+          answer: 'Nee. De tour werkt rechtstreeks in de browser van je telefoon. Je hoeft geen account aan te maken of iets te installeren.',
         },
         {
-          question: 'Kan ik starten wanneer ik wil?',
-          answer: 'Ja, je kiest zelf het moment waarop je op pad gaat.',
+          question: 'Wanneer begint de tour?',
+          answer: 'De tour begint pas nadat je jouw persoonlijke link hebt geopend en zelf op Start de wandeling drukt. Daarna vraagt de app toestemming voor je locatie.',
         },
         {
-          question: 'Zijn de tours geschikt voor gezinnen?',
-          answer:
-            'Ja, Maak kennis met Hollum is ook geschikt voor gezinnen die op een rustige manier samen het dorp willen ontdekken.',
+          question: 'Hoe werkt de navigatie?',
+          answer: 'De kaart toont steeds één volgende stop en maakt een wandelroute vanaf jouw huidige locatie. Bij aankomst wordt het verhaal beschikbaar.',
         },
         {
-          question: 'Kan ik kiezen tussen wandelen en fietsen?',
-          answer:
-            'Ja, afhankelijk van de tour kies je een route die beter past bij wandelen of fietsen.',
+          question: 'Wat gebeurt er als GPS mij niet herkent?',
+          answer: 'Bij iedere stop staat ook de knop Ik ben bij de stop. Daarmee kun je de audio handmatig vrijgeven wanneer je aantoonbaar op de juiste plek bent.',
         },
         {
-          question: 'Hoe bestel ik een tour?',
-          answer:
-            'Via de app kies je jouw tour, rond je bestelling af en kun je direct starten.',
+          question: 'Kan ik pauzeren en later verdergaan?',
+          answer: 'Ja. Je voortgang wordt op je telefoon bewaard. De persoonlijke toegang blijft 48 uur actief.',
+        },
+        {
+          question: 'Heb ik een koptelefoon nodig?',
+          answer: 'Dat hoeft niet, maar één oortje of open-ear audio geeft onderweg de prettigste en veiligste ervaring.',
         },
       ],
     },
-    tours: [
-      {
-        title: 'Historische Dorpswandeling',
-        badge: 'Rustig ontdekken',
-        duration: '45–60 min',
-        image: '/images/tour-fietsen.jpg',
-        points: [
-          'Verhalen over dorp en geschiedenis',
-          'Zelfstandig en eenvoudig te volgen',
-          'Ideaal als eerste kennismaking',
-        ],
-        cta: 'Binnenkort verkrijgbaar',
-        featured: false,
-        available: false,
-      },
-      {
-        title: 'Maak kennis met Hollum',
-        badge: 'Meest gekozen',
-        duration: '90 min',
-        image: '/images/tour-duinen.jpg',
-        points: [
-          'Een rustige wandeling langs bijzondere plekken',
-          'Live kaart en audio precies op de juiste locatie',
-          'Perfect als eerste kennismaking met Hollum',
-        ],
-        cta: 'Bestel direct',
-        featured: true,
-        available: true,
-      },
-      {
-        title: 'Fietsroute door Duin & Dorp',
-        badge: 'Voor natuurliefhebbers',
-        duration: '60–90 min',
-        image: '/images/tour-dorp.jpg',
-        points: [
-          'Route door landschap en dorp',
-          'Luisteren op bijzondere plekken',
-          'Een complete eilandbeleving',
-        ],
-        cta: 'Binnenkort verkrijgbaar',
-        featured: false,
-        available: false,
-      },
-    ],
-    steps: [
-      {
-        number: '1',
-        title: 'Kies jouw tour',
-        text: 'Kies de route die past bij jouw dag op Ameland.',
-      },
-      {
-        number: '2',
-        title: 'Bestel direct online',
-        text: 'Open de tour eenvoudig op je telefoon en start wanneer je wilt.',
-      },
-      {
-        number: '3',
-        title: 'Ga op pad',
-        text: 'Ontdek dorp, duin en landschap met verhalen onderweg.',
-      },
-    ],
   },
-
   en: {
     meta: {
-      title: 'Ameland Audiotours | Audio tours on Ameland',
-      description:
-        'Discover Ameland with calm, atmospheric audio tours for walking and cycling.',
+      title: 'Ameland Audiotours | Walk and listen across Ameland',
+      description: 'Self-guided audio walks on Ameland. Follow the route, walk to each stop and hear local stories exactly where they belong.',
     },
-    site: {
-      name: 'Ameland Audiotours',
-      tagline: 'Audio tours on Ameland',
-    },
-    nav: {
-      tours: 'Tours',
-      howItWorks: 'How it works',
-      faq: 'FAQ',
-      orderNow: 'Order now',
-    },
-    languageSwitcher: {
-      label: 'Language',
-      nl: 'NL',
-      en: 'EN',
-      de: 'DE',
-    },
-    home: {
-      heroBadge: 'Audio tours for walking and cycling on Ameland',
-      heroTitle: 'Audio tours for walking and cycling on Ameland',
-      heroText:
-        'No crowded excursion, just a calm way to discover the island. Choose your route and experience village, dunes and landscape through stories along the way.',
-      viewTours: 'View tours',
-      orderNow: 'Order now',
-      toursEyebrow: 'Tours',
-      toursTitle: 'Choose your island experience',
-      toursText:
-        'Clear, calm and easy to browse. Choose the tour that best fits your visit to Ameland.',
-      howItWorksId: 'how-it-works',
-      ctaTitle: 'Order your tour online right away',
-      ctaText:
-        'Choose your route, complete your order and start exploring village, dunes and landscape right away.',
-      goToApp: 'Go to the app',
-    },
-    footer: {
-      description:
-        'Audio tours that guide visitors around Ameland in a calm, accessible and atmospheric way through the stories of the island.',
-      location: 'Ameland, The Netherlands',
-      quickStart: 'Start now',
-      chooseAndOrder: 'Choose and order online',
-      quickText:
-        'Go straight to the app and choose the tour that matches your walk or bike ride.',
-      openApp: 'Open the app',
-      viewFaq: 'View FAQ',
-    },
+    site: { name: 'Ameland Audiotours' },
+    nav: { tours: 'Tour', howItWorks: 'How it works', faq: 'FAQ' },
     faq: {
-      backToHome: '← Back to home',
-      eyebrow: 'FAQ',
+      backToHome: 'Back to the website',
+      eyebrow: 'Practical information',
       title: 'Frequently asked questions',
-      intro: 'Everything you want to know about Ameland Audiotours.',
+      intro: 'Everything you need to know about booking, starting, walking and listening.',
       items: [
         {
           question: 'Do I need to download an app?',
-          answer: 'No, you simply open the tour on your phone in the browser.',
+          answer: 'No. The tour works directly in your phone browser. No account or installation is required.',
         },
         {
-          question: 'Can I start whenever I want?',
-          answer: 'Yes, you decide yourself when you want to begin.',
+          question: 'When does the tour start?',
+          answer: 'The tour only starts after you open your personal link and press Start the walk yourself. The app then asks for location permission.',
         },
         {
-          question: 'Are the tours suitable for families?',
-          answer:
-            'Yes, Meet Hollum is also suitable for families who want to discover the village together in a relaxed way.',
+          question: 'How does navigation work?',
+          answer: 'The map shows one next stop at a time and creates a walking route from your current location. The story becomes available when you arrive.',
         },
         {
-          question: 'Can I choose between walking and cycling?',
-          answer:
-            'Yes, depending on the tour you can choose a route that is better suited for walking or cycling.',
+          question: 'What if GPS does not recognise me?',
+          answer: 'Every stop also has an I am at the stop button. Use it to unlock the audio manually when you are at the correct location.',
         },
         {
-          question: 'How do I order a tour?',
-          answer:
-            'In the app you choose your tour, complete your order and can start right away.',
+          question: 'Can I pause and continue later?',
+          answer: 'Yes. Your progress is saved on your phone. Your personal access remains active for 48 hours.',
+        },
+        {
+          question: 'Do I need headphones?',
+          answer: 'Not necessarily, but one earbud or open-ear audio gives the most comfortable and safest experience while walking.',
         },
       ],
     },
-    tours: [
-      {
-        title: 'Historic Village Walk',
-        badge: 'Explore at ease',
-        duration: '45–60 min',
-        image: '/images/tour-fietsen.jpg',
-        points: [
-          'Stories about the village and its history',
-          'Easy to follow on your own',
-          'Ideal as a first introduction',
-        ],
-        cta: 'Available soon',
-        featured: false,
-        available: false,
-      },
-      {
-        title: 'Meet Hollum',
-        badge: 'Most popular',
-        duration: '90 min',
-        image: '/images/tour-duinen.jpg',
-        points: [
-          'A relaxed walk past special places',
-          'Live map and audio at exactly the right location',
-          'Perfect as a first introduction to Hollum',
-        ],
-        cta: 'Order now',
-        featured: true,
-        available: true,
-      },
-      {
-        title: 'Cycling Route through Dunes & Village',
-        badge: 'For nature lovers',
-        duration: '60–90 min',
-        image: '/images/tour-dorp.jpg',
-        points: [
-          'Route through landscape and village',
-          'Listen at special locations',
-          'A complete island experience',
-        ],
-        cta: 'Available soon',
-        featured: false,
-        available: false,
-      },
-    ],
-    steps: [
-      {
-        number: '1',
-        title: 'Choose your tour',
-        text: 'Choose the route that fits your day on Ameland.',
-      },
-      {
-        number: '2',
-        title: 'Order online',
-        text: 'Open the tour easily on your phone and start whenever you like.',
-      },
-      {
-        number: '3',
-        title: 'Head out',
-        text: 'Discover village, dunes and landscape through stories along the way.',
-      },
-    ],
   },
-
   de: {
     meta: {
-      title: 'Ameland Audiotours | Audiotouren auf Ameland',
-      description:
-        'Entdecke Ameland mit ruhigen, stimmungsvollen Audiotouren zum Wandern und Radfahren.',
+      title: 'Ameland Audiotours | Wandern und zuhören auf Ameland',
+      description: 'Selbstgeführte Audiowanderungen auf Ameland. Folge der Route, gehe zu jedem Stopp und höre lokale Geschichten am passenden Ort.',
     },
-    site: {
-      name: 'Ameland Audiotours',
-      tagline: 'Audiotouren auf Ameland',
-    },
-    nav: {
-      tours: 'Touren',
-      howItWorks: 'So funktioniert es',
-      faq: 'FAQ',
-      orderNow: 'Jetzt buchen',
-    },
-    languageSwitcher: {
-      label: 'Sprache',
-      nl: 'NL',
-      en: 'EN',
-      de: 'DE',
-    },
-    home: {
-      heroBadge: 'Audiotouren zum Wandern und Radfahren auf Ameland',
-      heroTitle: 'Audiotouren zum Wandern und Radfahren auf Ameland',
-      heroText:
-        'Keine hektische Exkursion, sondern eine ruhige Art, die Insel zu entdecken. Wähle deine Route und erlebe Dorf, Dünen und Landschaft mit Geschichten unterwegs.',
-      viewTours: 'Touren ansehen',
-      orderNow: 'Jetzt buchen',
-      toursEyebrow: 'Touren',
-      toursTitle: 'Wähle dein Inselerlebnis',
-      toursText:
-        'Übersichtlich und ruhig präsentiert. Wähle die Tour, die am besten zu deinem Besuch auf Ameland passt.',
-      howItWorksId: 'so-funktioniert-es',
-      ctaTitle: 'Buche deine Tour direkt online',
-      ctaText:
-        'Wähle deine Route, schließe deine Bestellung ab und starte direkt durch Dorf, Dünen und Landschaft.',
-      goToApp: 'Zur App',
-    },
-    footer: {
-      description:
-        'Audiotouren, die Besucher Amelands auf ruhige, zugängliche und stimmungsvolle Weise entlang der Geschichten der Insel führen.',
-      location: 'Ameland, Niederlande',
-      quickStart: 'Direkt starten',
-      chooseAndOrder: 'Online wählen und buchen',
-      quickText:
-        'Gehe direkt zur App und wähle die Tour, die zu deinem Spaziergang oder deiner Fahrradtour passt.',
-      openApp: 'App öffnen',
-      viewFaq: 'FAQ ansehen',
-    },
+    site: { name: 'Ameland Audiotours' },
+    nav: { tours: 'Tour', howItWorks: 'So funktioniert es', faq: 'FAQ' },
     faq: {
-      backToHome: '← Zurück zur Startseite',
-      eyebrow: 'FAQ',
+      backToHome: 'Zurück zur Website',
+      eyebrow: 'Praktische Informationen',
       title: 'Häufig gestellte Fragen',
-      intro: 'Alles, was du über die Audiotouren von Ameland Audiotours wissen möchtest.',
+      intro: 'Alles, was du über Buchung, Start, Wanderung und Audio wissen möchtest.',
       items: [
         {
           question: 'Muss ich eine App herunterladen?',
-          answer:
-            'Nein, du öffnest die Tour ganz einfach auf deinem Handy im Browser.',
+          answer: 'Nein. Die Tour funktioniert direkt im Browser deines Handys. Ein Konto oder eine Installation ist nicht nötig.',
         },
         {
-          question: 'Kann ich starten, wann ich möchte?',
-          answer: 'Ja, du entscheidest selbst, wann du losgehst.',
+          question: 'Wann beginnt die Tour?',
+          answer: 'Die Tour beginnt erst, nachdem du deinen persönlichen Link geöffnet und selbst auf Wanderung starten gedrückt hast. Danach fragt die App nach der Standortfreigabe.',
         },
         {
-          question: 'Sind die Touren für Familien geeignet?',
-          answer:
-            'Ja, Hollum kennenlernen ist auch für Familien geeignet, die das Dorf gemeinsam in ruhiger Atmosphäre entdecken möchten.',
+          question: 'Wie funktioniert die Navigation?',
+          answer: 'Die Karte zeigt immer nur den nächsten Stopp und erstellt eine Fußroute von deinem aktuellen Standort. Bei der Ankunft wird die Geschichte verfügbar.',
         },
         {
-          question: 'Kann ich zwischen Wandern und Radfahren wählen?',
-          answer:
-            'Ja, je nach Tour wählst du eine Route, die besser zum Wandern oder Radfahren passt.',
+          question: 'Was mache ich, wenn GPS mich nicht erkennt?',
+          answer: 'Bei jedem Stopp gibt es zusätzlich die Schaltfläche Ich bin am Stopp. Damit kannst du das Audio am richtigen Ort manuell freigeben.',
         },
         {
-          question: 'Wie buche ich eine Tour?',
-          answer:
-            'In der App wählst du deine Tour, schließt die Bestellung ab und kannst direkt starten.',
+          question: 'Kann ich pausieren und später fortfahren?',
+          answer: 'Ja. Dein Fortschritt wird auf deinem Handy gespeichert. Der persönliche Zugang bleibt 48 Stunden aktiv.',
+        },
+        {
+          question: 'Brauche ich Kopfhörer?',
+          answer: 'Nicht unbedingt. Ein Ohrhörer oder Open-Ear-Audio bietet unterwegs jedoch das angenehmste und sicherste Erlebnis.',
         },
       ],
     },
-    tours: [
-      {
-        title: 'Historischer Dorfrundgang',
-        badge: 'In Ruhe entdecken',
-        duration: '45–60 Min.',
-        image: '/images/tour-fietsen.jpg',
-        points: [
-          'Geschichten über das Dorf und seine Geschichte',
-          'Selbstständig und einfach zu folgen',
-          'Ideal als erste Einführung',
-        ],
-        cta: 'Bald verfügbar',
-        featured: false,
-        available: false,
-      },
-      {
-        title: 'Hollum kennenlernen',
-        badge: 'Am beliebtesten',
-        duration: '90 Min.',
-        image: '/images/tour-duinen.jpg',
-        points: [
-          'Ein ruhiger Spaziergang entlang besonderer Orte',
-          'Live-Karte und Audio genau am richtigen Ort',
-          'Perfekt als erster Eindruck von Hollum',
-        ],
-        cta: 'Jetzt buchen',
-        featured: true,
-        available: true,
-      },
-      {
-        title: 'Fahrradroute durch Dünen & Dorf',
-        badge: 'Für Naturliebhaber',
-        duration: '60–90 Min.',
-        image: '/images/tour-dorp.jpg',
-        points: [
-          'Route durch Landschaft und Dorf',
-          'An besonderen Orten zuhören',
-          'Ein vollständiges Inselerlebnis',
-        ],
-        cta: 'Bald verfügbar',
-        featured: false,
-        available: false,
-      },
-    ],
-    steps: [
-      {
-        number: '1',
-        title: 'Wähle deine Tour',
-        text: 'Wähle die Route, die zu deinem Tag auf Ameland passt.',
-      },
-      {
-        number: '2',
-        title: 'Direkt online buchen',
-        text: 'Öffne die Tour einfach auf deinem Handy und starte, wann du möchtest.',
-      },
-      {
-        number: '3',
-        title: 'Unterwegs gehen',
-        text: 'Entdecke Dorf, Dünen und Landschaft mit Geschichten unterwegs.',
-      },
-    ],
   },
 }
 
