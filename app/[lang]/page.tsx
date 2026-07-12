@@ -25,13 +25,19 @@ import {
 } from '@/lib/data/site-content'
 import { notFound } from 'next/navigation'
 
-const getAppUrl = (lang: string) => `https://app.wadnverhaal.nl?lang=${lang}`
+const getAppUrl = (lang: string) => `https://app.amelandaudiotours.nl/tours?lang=${lang}`
 const staticAssetOrigin =
   process.env.NEXT_PUBLIC_STATIC_ASSET_ORIGIN ||
   'https://ameland-audiotours-website-r1gbm5k5z-wadnverhaals-projects.vercel.app'
 
-function resolveTourImage(value: string) {
-  return value.startsWith('/images/') ? `${staticAssetOrigin}${value}` : value
+function resolveTourImage(value: unknown) {
+  if (typeof value !== 'string' || !value.trim()) {
+    return `${staticAssetOrigin}/images/hero-ameland.jpg`
+  }
+  const assetPath = value
+    .trim()
+    .replace(/^https?:\/\/(?:www\.)?amelandaudiotours\.nl(?=\/images\/)/, '')
+  return assetPath.startsWith('/images/') ? `${staticAssetOrigin}${assetPath}` : value
 }
 
 type Props = {
@@ -87,6 +93,23 @@ type MarketingTour = {
   duration_label: string
   cta: string
   points: string[]
+}
+
+type MarketingTourTranslationRow = {
+  title: string
+  badge: string
+  duration_label: string
+  cta: string
+  points: string[] | null
+}
+
+type MarketingTourRow = {
+  slug: string
+  image_url: string | null
+  featured: boolean
+  available: boolean
+  sort_order: number
+  tour_marketing_translations: MarketingTourTranslationRow | MarketingTourTranslationRow[]
 }
 
 const pageCopy: Record<Locale, LocalPageCopy> = {
@@ -258,7 +281,7 @@ async function getMarketingTours(locale: Locale): Promise<MarketingTour[]> {
     throw error
   }
 
-  return (data ?? []).map((row: any) => {
+  return ((data ?? []) as MarketingTourRow[]).map((row) => {
     const translation = Array.isArray(row.tour_marketing_translations)
       ? row.tour_marketing_translations[0]
       : row.tour_marketing_translations
@@ -334,8 +357,8 @@ export default async function LocalizedHomepage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-[#f4fbfb] text-[#143a43]">
-      <header className="sticky top-0 z-50 border-b border-[#d8e9ea] bg-[#f7ffff]/90 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
+      <header className="sticky top-0 z-50 border-b border-[#d8e9ea]/90 bg-[#f7ffff]/88 shadow-[0_8px_30px_rgba(15,75,88,0.04)] backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
           <Link href={`/${locale}`} className="flex items-center gap-3">
             <div className="relative h-12 w-12 overflow-hidden rounded-full border border-[#d9e9e9] bg-white shadow-sm">
               <Image
@@ -347,7 +370,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                 priority
               />
             </div>
-            <span className="text-[1.35rem] font-black tracking-tight text-[#0f4b58] sm:text-[1.55rem]">
+            <span className="hidden text-[1.35rem] font-black tracking-tight text-[#0f4b58] min-[420px]:inline sm:text-[1.55rem]">
               {t.site.name}
             </span>
           </Link>
@@ -378,7 +401,7 @@ export default async function LocalizedHomepage({ params }: Props) {
       </header>
 
       <main>
-        <section className="relative overflow-hidden px-6 pb-16 pt-8 md:pb-20 md:pt-12">
+        <section className="relative overflow-hidden px-4 pb-14 pt-7 sm:px-6 md:pb-20 md:pt-12">
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(27,150,165,0.10),transparent_30%),radial-gradient(circle_at_top_right,rgba(239,127,99,0.08),transparent_24%)]" />
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.98fr] lg:items-center">
             <div>
@@ -386,7 +409,7 @@ export default async function LocalizedHomepage({ params }: Props) {
                 {heroBlock?.eyebrow || copy.heroEyebrow}
               </p>
 
-              <h1 className="mt-5 max-w-4xl font-serif text-5xl leading-[0.92] tracking-tight text-[#0d3d48] sm:text-6xl md:text-[5.8rem]">
+              <h1 className="mt-5 max-w-4xl font-serif text-[clamp(3rem,8vw,5.8rem)] leading-[0.92] tracking-[-0.055em] text-[#0d3d48]">
                 {heroBlock?.title || copy.heroTitle}
               </h1>
 
@@ -397,7 +420,7 @@ export default async function LocalizedHomepage({ params }: Props) {
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
                   href={heroBlock?.primary_cta_url || getAppUrl(locale)}
-                  className="inline-flex items-center gap-2 rounded-2xl bg-[#0f4b58] px-7 py-4 text-base font-semibold text-white shadow-[0_16px_38px_rgba(15,75,88,0.20)] transition hover:opacity-90"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#0f4b58] px-7 py-4 text-base font-semibold text-white shadow-[0_16px_38px_rgba(15,75,88,0.20)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#0b404b] sm:w-auto"
                 >
                   {heroBlock?.primary_cta_label || copy.heroPrimaryCta}
                   <ArrowRight className="h-4 w-4" />
@@ -405,7 +428,7 @@ export default async function LocalizedHomepage({ params }: Props) {
 
                 <a
                   href={heroBlock?.secondary_cta_url || '#tours'}
-                  className="inline-flex rounded-2xl border border-[#cfe3e5] bg-white px-7 py-4 text-base font-semibold text-[#0f4b58] transition hover:bg-[#f8ffff]"
+                  className="inline-flex w-full items-center justify-center rounded-2xl border border-[#cfe3e5] bg-white px-7 py-4 text-base font-semibold text-[#0f4b58] transition duration-300 hover:-translate-y-0.5 hover:bg-[#f8ffff] sm:w-auto"
                 >
                   {heroBlock?.secondary_cta_label || copy.heroSecondaryCta}
                 </a>
@@ -429,11 +452,14 @@ export default async function LocalizedHomepage({ params }: Props) {
 
             <div>
               <div className="relative overflow-hidden rounded-[2.4rem] border border-[#d9ebec] bg-white shadow-[0_34px_90px_rgba(15,75,88,0.14)]">
-                <div className="relative h-[580px]">
-                  <img
+                <div className="relative h-[480px] md:h-[580px]">
+                  <Image
                     src="/images/hero-ameland.jpg"
                     alt={heroBlock?.title || t.home.heroTitle}
-                    className="absolute inset-0 h-full w-full object-cover"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 48vw, 100vw"
+                    className="island-hero-image absolute inset-0 h-full w-full object-cover"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,48,56,0.02)_0%,rgba(8,48,56,0.10)_42%,rgba(8,48,56,0.58)_100%)]" />
 
@@ -472,7 +498,7 @@ export default async function LocalizedHomepage({ params }: Props) {
           </div>
         </section>
 
-        <section id="tours" className="px-6 pb-12">
+        <section id="tours" className="scroll-mt-24 px-4 pb-12 sm:px-6">
           <div className="mx-auto max-w-7xl">
             <div className="overflow-hidden rounded-[2.4rem] border border-[#dbecef] bg-white shadow-[0_24px_70px_rgba(15,75,88,0.08)]">
               <div className="border-b border-[#e7f1f2] px-6 py-6 md:px-8">
@@ -500,15 +526,17 @@ export default async function LocalizedHomepage({ params }: Props) {
                 {orderedTours.map((tour) => (
                   <div
                     key={tour.slug}
-                    className={`grid gap-6 px-6 py-6 md:px-8 lg:grid-cols-[260px_1fr_auto] lg:items-center ${
+                    className={`group grid gap-6 px-5 py-6 sm:px-6 md:px-8 lg:grid-cols-[260px_1fr_auto] lg:items-center ${
                       tour.available ? '' : 'bg-[#fbfdfd]'
                     }`}
                   >
-                    <div className="relative h-52 overflow-hidden rounded-[1.5rem]">
-                      <img
+                    <div className="relative h-56 overflow-hidden rounded-[1.5rem] bg-[#dfeeed] lg:h-52">
+                      <Image
                         src={tour.image_url}
                         alt={tour.title}
-                        className="h-full w-full object-cover"
+                        fill
+                        sizes="(min-width: 1024px) 260px, 100vw"
+                        className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.045]"
                       />
                       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,48,56,0.02)_0%,rgba(8,48,56,0.08)_46%,rgba(8,48,56,0.35)_100%)]" />
 
@@ -589,7 +617,7 @@ export default async function LocalizedHomepage({ params }: Props) {
           </div>
         </section>
 
-        <section id={t.home.howItWorksId} className="px-6 pb-12 pt-4">
+        <section id={t.home.howItWorksId} className="scroll-mt-24 px-4 pb-12 pt-4 sm:px-6">
           <div className="mx-auto max-w-7xl">
             <div className="overflow-hidden rounded-[2.4rem] border border-[#dbecef] bg-white shadow-[0_24px_70px_rgba(15,75,88,0.08)]">
               <div className="border-b border-[#e7f1f2] px-6 py-8 md:px-8 md:py-10">
@@ -670,7 +698,7 @@ export default async function LocalizedHomepage({ params }: Props) {
           </div>
         </section>
 
-        <section className="px-6 pb-28 pt-6 md:pb-20">
+        <section className="px-4 pb-28 pt-6 sm:px-6 md:pb-20">
           <div className="mx-auto max-w-7xl">
             <div className="relative overflow-hidden rounded-[2.5rem] bg-[#0f4b58] shadow-[0_30px_80px_rgba(15,75,88,0.20)]">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.10),transparent_30%),linear-gradient(135deg,#0f4b58_0%,#0d3f4d_58%,#0a3340_100%)]" />
