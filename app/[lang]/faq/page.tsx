@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import LanguageSwitcher from '@/components/language-switcher'
 import { getTranslation, isValidLocale, locales, type Locale } from '@/lib/i18n'
 import { getFaqItems } from '@/lib/data/site-content'
 import { notFound } from 'next/navigation'
@@ -48,22 +49,25 @@ export default async function FaqPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-transparent px-6 py-16 text-[#163c43]">
       <div className="mx-auto max-w-4xl">
-        <Link
-          href={`/${lang}`}
-          className="inline-flex items-center gap-3 rounded-full border border-[#cfe7e5] bg-white/92 px-3 py-2 text-sm font-medium text-[#2d6269] shadow-sm transition hover:bg-white hover:text-[#163c43]"
-        >
-          <div className="relative h-10 w-10 overflow-hidden rounded-full border border-[#cde6e4] bg-white">
-            <Image
-              src="/images/ameland-audiotours-logo.webp"
-              alt="Ameland Audiotours logo"
-              fill
-              className="object-cover"
-              sizes="40px"
-              priority
-            />
-          </div>
-          <span>{t.faq.backToHome}</span>
-        </Link>
+        <div className="flex items-center justify-between gap-4">
+          <Link
+            href={`/${lang}`}
+            className="inline-flex items-center gap-3 rounded-full border border-[#cfe7e5] bg-white/92 px-3 py-2 text-sm font-medium text-[#2d6269] shadow-sm transition hover:bg-white hover:text-[#163c43]"
+          >
+            <div className="relative h-10 w-10 overflow-hidden rounded-full border border-[#cde6e4] bg-white">
+              <Image
+                src="/images/ameland-audiotours-logo.webp"
+                alt="Ameland Audiotours logo"
+                fill
+                className="object-cover"
+                sizes="40px"
+                priority
+              />
+            </div>
+            <span>{t.faq.backToHome}</span>
+          </Link>
+          <LanguageSwitcher currentLocale={locale} />
+        </div>
 
         <div className="mt-8 max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#4f8a8e]">
