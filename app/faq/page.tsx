@@ -50,7 +50,7 @@ export default async function FaqPage({ params }: Props) {
         >
           <div className="relative h-10 w-10 overflow-hidden rounded-full border border-[#cde6e4] bg-white">
             <Image
-              src="/images/ameland-audiotours-logo.webp"
+              src="https://app.amelandaudiotours.nl/images/ameland-audiotours-logo.webp"
               alt={`${t.site.name} logo`}
               fill
               className="object-cover"
