@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { cookies } from 'next/headers'
 import { defaultLocale, isValidLocale } from '@/lib/i18n'
+import { SkipperHiddeChat } from '@/components/support/skipper-hidde-chat'
 import './globals.css'
 
 const geistSans = Geist({
@@ -33,7 +34,16 @@ export default async function RootLayout({
       lang={lang}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <SkipperHiddeChat
+          apiEndpoint={
+            process.env.NEXT_PUBLIC_SUPPORT_API_URL ||
+            'https://app.amelandaudiotours.nl/api/support/chat'
+          }
+          privacyUrl="https://app.amelandaudiotours.nl/privacy"
+        />
+      </body>
     </html>
   )
 }
