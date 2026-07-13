@@ -15,6 +15,7 @@ import {
   ShieldCheck,
 } from 'lucide-react'
 import LanguageSwitcher from '@/components/language-switcher'
+import BrandHomepage from '@/components/brand-homepage'
 import {
   getTranslation,
   isValidLocale,
@@ -108,10 +109,10 @@ type MarketingTourRow = {
 
 const pageCopy: Record<Locale, LocalPageCopy> = {
   nl: {
-    heroEyebrow: 'Zelfgeleide wandelingen op Ameland',
-    heroTitle: 'Loop door het landschap. Luister naar wat hier gebeurd is.',
-    heroText: 'Ameland Audiotours brengt route en eilandverhalen samen op je telefoon. Je loopt op je eigen tempo en luistert precies op de plek waar het verhaal thuishoort.',
-    heroPrimary: 'Bekijk de tour',
+    heroEyebrow: 'Verhalen die blijven hangen',
+    heroTitle: 'Ontdek Ameland met andere ogen',
+    heroText: 'Luister, beleef en verwonder. Onze audiotours nemen je mee langs verhalen die je anders zou missen.',
+    heroPrimary: 'Bekijk alle audiotours',
     heroSecondary: 'Zo werkt het',
     benefit1: 'Eén volgende stop tegelijk',
     benefit2: 'Audio op de juiste plek',
@@ -144,10 +145,10 @@ const pageCopy: Record<Locale, LocalPageCopy> = {
     footerText: 'Lokale audiotours die je rustig door de verhalen van Ameland laten lopen.',
   },
   en: {
-    heroEyebrow: 'Self-guided walks on Ameland',
-    heroTitle: 'Walk through the landscape. Hear what happened here.',
-    heroText: 'Ameland Audiotours brings routes and island stories together on your phone. Walk at your own pace and listen exactly where each story belongs.',
-    heroPrimary: 'View the tour',
+    heroEyebrow: 'Stories that stay with you',
+    heroTitle: 'Discover Ameland with fresh eyes',
+    heroText: 'Listen, experience and be amazed. Our audio tours guide you past stories you might otherwise miss.',
+    heroPrimary: 'View all audio tours',
     heroSecondary: 'How it works',
     benefit1: 'One next stop at a time',
     benefit2: 'Audio in the right place',
@@ -180,10 +181,10 @@ const pageCopy: Record<Locale, LocalPageCopy> = {
     footerText: 'Local audio tours that let you walk calmly through the stories of Ameland.',
   },
   de: {
-    heroEyebrow: 'Selbstgeführte Wanderungen auf Ameland',
-    heroTitle: 'Geh durch die Landschaft. Höre, was hier geschehen ist.',
-    heroText: 'Ameland Audiotours verbindet Routen und Inselgeschichten auf deinem Handy. Du gehst in deinem Tempo und hörst jede Geschichte genau an dem Ort, zu dem sie gehört.',
-    heroPrimary: 'Tour ansehen',
+    heroEyebrow: 'Geschichten, die bleiben',
+    heroTitle: 'Entdecke Ameland mit anderen Augen',
+    heroText: 'Höre, erlebe und staune. Unsere Audiotouren führen dich zu Geschichten, die du sonst vielleicht verpassen würdest.',
+    heroPrimary: 'Alle Audiotouren ansehen',
     heroSecondary: 'So funktioniert es',
     benefit1: 'Immer nur ein nächster Stopp',
     benefit2: 'Audio am richtigen Ort',
@@ -298,7 +299,7 @@ export default async function LocalizedHomepage({ params }: Props) {
   const footerEmail = contactSettings?.email || 'info@amelandaudiotours.nl'
   const footerPhone = contactSettings?.phone || '06 13 67 83 10'
 
-  return (
+  const legacyHomepage = (
     <div className="min-h-screen bg-[#f4fbfb] text-[#143a43]">
       <header className="sticky top-0 z-50 border-b border-[#d8e9ea]/90 bg-[#f7ffff]/92 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
@@ -478,5 +479,36 @@ export default async function LocalizedHomepage({ params }: Props) {
         </div>
       </footer>
     </div>
+  )
+
+  void legacyHomepage
+
+  return (
+    <BrandHomepage
+      locale={locale}
+      siteName={t.site.name}
+      nav={t.nav}
+      hero={{
+        eyebrow: copy.heroEyebrow,
+        title: copy.heroTitle,
+        text: copy.heroText,
+        primary: copy.heroPrimary,
+      }}
+      tour={{
+        label: copy.availableEyebrow,
+        title: primaryTour?.title || copy.availableTitle,
+        text: copy.availableText,
+        image: primaryTour?.image_url || assetUrl('tour-dorp.jpg'),
+        duration: copy.duration,
+        distance: copy.distance,
+        stops: copy.stops,
+        price: copy.price,
+        cta: copy.tourCta,
+      }}
+      steps={copy.steps}
+      footerText={copy.footerText}
+      email={footerEmail}
+      phone={footerPhone}
+    />
   )
 }
