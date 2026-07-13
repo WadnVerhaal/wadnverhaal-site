@@ -67,7 +67,7 @@ export default function BrandHomepage({ locale, siteName, nav, hero, tour, steps
 
       <main>
         <section className="relative min-h-[520px] overflow-hidden bg-[#032f3e] text-white">
-          <Image src={`${ASSET_BASE}/tour-duinen.jpg`} alt="Vuurtoren en duinen op Ameland" fill priority sizes="100vw" className="object-cover" />
+          <Image src={`${ASSET_BASE}/tour-duinen-v2.webp`} alt="Vuurtoren en duinen op Ameland" fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,37,50,.96)_0%,rgba(2,37,50,.78)_42%,rgba(2,37,50,.12)_82%)]" />
           <div className="relative mx-auto flex min-h-[520px] max-w-7xl items-center px-6 py-16 sm:px-9">
             <div className="max-w-[620px]">
