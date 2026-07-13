@@ -25,9 +25,10 @@ import { getContactSettings } from '@/lib/data/site-content'
 import { notFound } from 'next/navigation'
 
 const getAppUrl = (lang: string) => `https://app.amelandaudiotours.nl/tours?lang=${lang}`
+const assetUrl = (filename: string) => `https://app.amelandaudiotours.nl/images/${filename}`
 
 function resolveTourImage(value: unknown) {
-  if (typeof value !== 'string' || !value.trim()) return '/images/tour-dorp.jpg'
+  if (typeof value !== 'string' || !value.trim()) return assetUrl('tour-dorp.jpg')
   const filename = value.trim().split(/[?#]/)[0].split('/').pop()
   const localImages = new Set([
     'hero-ameland.jpg',
@@ -35,7 +36,7 @@ function resolveTourImage(value: unknown) {
     'tour-duinen.jpg',
     'tour-fietsen.jpg',
   ])
-  return filename && localImages.has(filename) ? `/images/${filename}` : '/images/tour-dorp.jpg'
+  return filename && localImages.has(filename) ? assetUrl(filename) : assetUrl('tour-dorp.jpg')
 }
 
 type Props = {
@@ -303,7 +304,7 @@ export default async function LocalizedHomepage({ params }: Props) {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
           <Link href={`/${locale}`} className="flex items-center gap-3">
             <div className="relative h-11 w-11 overflow-hidden rounded-full border border-[#d9e9e9] bg-white shadow-sm sm:h-12 sm:w-12">
-              <Image src="/images/ameland-audiotours-logo.webp" alt="Ameland Audiotours" fill className="object-cover" sizes="48px" priority />
+              <Image src={assetUrl('ameland-audiotours-logo.webp')} alt="Ameland Audiotours" fill className="object-cover" sizes="48px" priority />
             </div>
             <span className="hidden text-xl font-black tracking-tight text-[#0f4b58] min-[430px]:inline sm:text-2xl">{t.site.name}</span>
           </Link>
@@ -354,7 +355,7 @@ export default async function LocalizedHomepage({ params }: Props) {
 
             <div className="overflow-hidden rounded-[2.2rem] border border-[#d9ebec] bg-white shadow-[0_34px_90px_rgba(15,75,88,.14)]">
               <div className="relative h-[460px] sm:h-[560px]">
-                <Image src="/images/hero-ameland.jpg" alt={copy.heroTitle} fill priority sizes="(min-width: 1024px) 48vw, 100vw" className="object-cover" />
+                <Image src={assetUrl('hero-ameland.jpg')} alt={copy.heroTitle} fill priority sizes="(min-width: 1024px) 48vw, 100vw" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#082f38]/75 via-transparent to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
                   <div className="grid grid-cols-3 overflow-hidden rounded-2xl border border-white/20 bg-[#0b3c46]/88 text-white shadow-xl backdrop-blur">
@@ -379,7 +380,7 @@ export default async function LocalizedHomepage({ params }: Props) {
             <article className="overflow-hidden rounded-[2.2rem] border border-[#dbecef] bg-white shadow-[0_24px_70px_rgba(15,75,88,.10)]">
               <div className="grid lg:grid-cols-[.92fr_1.08fr]">
                 <div className="relative min-h-[310px] bg-[#dfeeed] sm:min-h-[420px]">
-                  <Image src={primaryTour?.image_url || '/images/tour-dorp.jpg'} alt={primaryTour?.title || copy.availableTitle} fill sizes="(min-width: 1024px) 44vw, 100vw" className="object-cover" />
+                  <Image src={primaryTour?.image_url || assetUrl('tour-dorp.jpg')} alt={primaryTour?.title || copy.availableTitle} fill sizes="(min-width: 1024px) 44vw, 100vw" className="object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#082f38]/55 to-transparent" />
                 </div>
 
@@ -464,7 +465,7 @@ export default async function LocalizedHomepage({ params }: Props) {
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-12 md:grid-cols-[1fr_auto] md:items-end">
           <div>
             <div className="flex items-center gap-3">
-              <div className="relative h-11 w-11 overflow-hidden rounded-full bg-white"><Image src="/images/ameland-audiotours-logo.webp" alt="Ameland Audiotours" fill className="object-cover" sizes="44px" /></div>
+              <div className="relative h-11 w-11 overflow-hidden rounded-full bg-white"><Image src={assetUrl('ameland-audiotours-logo.webp')} alt="Ameland Audiotours" fill className="object-cover" sizes="44px" /></div>
               <p className="text-xl font-black">{t.site.name}</p>
             </div>
             <p className="mt-4 max-w-xl text-base leading-7 text-[#c8e2e2]">{copy.footerText}</p>
